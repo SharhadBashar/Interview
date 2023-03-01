@@ -1,0 +1,51 @@
+bloomberg
+
+https://leetcode.com/problems/decode-string/solution/
+''' 
+
+str -> k[x]
+
+3[a] -> aaa
+3[ab] -> ababab
+
+a2[b] -> abb
+
+a2[d]q -> addq
+
+a2[w]q2[e] -> awwqee
+
+3[2[ab]q] ->ababq.ababq.ababq
+
+'''
+
+def decode(s):
+    stack = []
+    for c in s:
+        if (c != ']'):
+            stack.append(c)
+        else:
+            tempStr = []
+            while stack[-1] != '[':
+                tempStr.append(stack.pop())
+            tempStr = ''.join(reversed(tempStr))
+            
+            stack.pop()
+            
+            num = []
+            while stack and stack[-1].isdigit():
+                num.append(stack.pop())
+            num = int(''.join(reversed(num)))
+            stack.append(num * tempStr)
+    return ''.join(stack)
+    
+print(decode('3[a]'))
+
+s = 3[a12[bc]] -> abcbc abcbc abcbc
+
+O(maxK*N)
+
+stack = [bcbc, a, [, 3]
+tempStr = 'bc'
+num = 2
+
+

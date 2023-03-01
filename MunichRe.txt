@@ -1,0 +1,84 @@
+Case Study:
+design a model that predicts 3 categories from patients on life insurance
+end to end:
+1. data prep
+2. feature selection
+3. correlation
+4. eda
+5. model selection
+6. training, testing
+7. evaluation
+8. deploy model
+9. model monitoring and updating
+
+"""
+Q1: Code Review
+A junior data scientist implemented this code to find an element in a list.
+You are reviewing the PR and going over the code with the junior data scientist. 
+Can you walk through how you would review this code with them? 
+"""
+
+def find_in_list(list_num, num_to_find):
+    first = 0
+    last = len(x)
+    found = False
+    
+    while first <= last:
+        midpoint = (first + last) // 2
+        if x[midpoint] == y:
+            return True
+        else:
+            if y < x[midpoint]:
+                last = midpoint-1
+            else:
+                first = midpoint+1 
+    return found
+
+
+######################################################################################
+"""
+Q2: SQL
+  
+Given following tables with following schema:  
+
+ExternalData  
+
+Represents the data ordered from external data providers for specific insurance case.  
+
+* eid: unique id associated to each external data (int, PK)  
+
+* case_id: associated case id (int, FK)   
+
+* data_source: enum of the data providers (Enum(D1, D2, D3))   
+
+* data: raw data retrieved from data provider(string)  
+
+* created_at: external data created time (datetime)   
+
+* status: enum of the external data status (Enum(IN_PROGRESS, COMPLETE, ERROR))  
+
+  
+Case  
+
+Represents an insurance case.  
+
+* case_id: unique id associated to each case (int, PK)  
+
+* created_at: case creation time (datetime)  
+
+  
+Write SQL query which finds the number of the external data sources by each case that have status COMPLETE only, sorted by the case creation time. 
+  
+"""
+SQL
+SELECT COUNT(*)
+FROM ExternalData
+JOIN Case
+ON ExternalData.case_id = Case.case_id
+WHERE ExternalData.status = 'COMPLETE'
+GROUPBY ExternalData.case_id
+ORDER BY Case.created_at
+
+Pyspark
+external.join(case, external.case_id == ase.case_id)groupby(ExternalData.case_id, count)where(ExternalData.status = 'COMPLETE')orderby(case.created_at)
+

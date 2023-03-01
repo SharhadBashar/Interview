@@ -1,0 +1,288 @@
+I have this coding question, that i was unable to complete
+
+Given an array, find all the subarrays, of length 1 <= k <= len(arr) and find imbalance in those subarrays
+
+Imbalance is when the difference between two neighboring items in a sorted array is more than one
+
+Imbalance is defined as the number of items j who are more than 1 from the item before them, i.e sorted_arr[j] - sorted_arr[j - 1 > 1
+
+for example given array = [4, 1, 3, 2]
+
+The subarrays are:
+
+1. [4]
+2. [1]
+3. [3]
+4. [2]
+5. [4, 1]
+6. [1, 3]
+7. [3, 2]
+8. [4, 1, 3]
+9. [1, 3, 2]
+10. [4, 1, 3, 2]
+for each subarray, after sorting them, only 5, 6 and 8 have a case where subarray[i] - subarray[i - 1] > 1, in which case imbalance will be incremented by 1
+
+In the above example, imbalance = 3
+
+heres my code for the probem:
+
+def get_imbalance(arr):
+    imbalance = 0
+    for i in range(1, len(arr)):
+        imbalance += 1 if arr[i] - arr[i - 1] > 1 else 0
+    return imbalance
+
+def func(arr):
+    imbalance = 0
+    if len(arr) <= 1: return 0
+    if len(arr) == 2:
+        return 1 if abs(arr[0] - arr[1]) > 1 else 0
+    for i in range(2, len(arr) + 1):
+        for j in range(len(arr) - i + 1):
+            imbalance += get_imbalance(sorted(rank[j: j + i]))
+    return imbalance
+
+I am using a sliding window to get all the different subarrays of the main array, then sorting the result and returning the imbalance. However, this runs into time limit exceed issues. How can I optimize the algorithm?
+
+
+Python Implementation:
+TC - O(N^2)
+SC - O(1)
+
+def countImbalance(arr):
+    i=0
+    result = 0
+    while i<len(arr)-1:
+        minVal = arr[i] #min(arr)
+        maxVal = minVal
+        j=i+1
+        while j<len(arr):
+            maxVal = max(maxVal,arr[j])
+            minVal = min(minVal, arr[j])
+            diff = maxVal-minVal+1
+            size = j-i+1
+            if diff!=size:
+                result+=1 
+            j+=1
+        print(i,j-1)
+        i+=1
+
+    return result
+
+
+
+
+
+
+Disjoint-Set / Union Find O((N^2)α(N)) ≈ O(N^2) approach:
+
+I saw this in an OA and could not for the life of me figure out an approach. Only after the fact, I finally managed to figure out something halfway decent that anyone should be able to prove to themselves solves the problem.
+
+.
+
+1) Brute Force O((N^3)*logN)
+
+Let's start with the brute-force because the brute force actually gives the solutions to this problem as they are described (we can test against this):
+
+# Time Complexity: O((N^3)*logN)
+# Space Complexity: O(N)
+def solveBrute(rank):
+    n = len(rank)
+
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            sub = rank[i:j]
+            sub.sort()
+
+            for k in range(1, len(sub)):
+                if sub[k] - sub[k - 1] > 1:
+                    count += 1
+    
+    return count
+.
+
+2) Union-Find inside of 3 for loops: O((N^3)α(N)) ≈ O(N^3)
+
+Adding this for context.
+I actually tried to focus on a DP approach first and saw there's no obvious subproblems but tried to really understand why this is the case.
+
+I noticed that for e.g. [3, 1, 2], the subarray [3, 1] gives us a +1 in the total imbalance, however [3, 1, 2] "resets"/"removes" the +1 we got from the previous version of the subarray not including 2.
+Why is this? Because now 1 had an element after it that was larger than our 1 by +1. But when 1 did not have an element before it, because there was no element (1) + 1, we could have considered [1] as a "range" and [3] as a "range" that we could not "link" to each other using a middle element (3) - 1 = (1) + 1. As soon as we could "link" them to each other, the point disappeared, they became one "range". But notice, the missing "middle elements" to link these "disjoint" "ranges" are in fact what give us the imbalance values we are looking for!!
+Ergo, the number of ranges minus one is the number of "missing join points", is the imbalance for any one subarray.
+
+And we can use Disjoint-Set / Union Find to find these "ranges", because we don't actually care about the order of the elements inside "ranges"/"groups", just about how many non-linked "ranges"/"groups" we have. And "ranges"/"groups" are given by the distinct number of top-level parents in the Disjoint-Set data structure.
+
+We'll just start with every element as it's own "range"/"group", and for any element num, link it to num - 1 and num + 1 if either of those exists in the current subarray. The final number of groups will allow us to calculate the "missing join points" (= num_groups - 1), giving us the imbalance for that subarray.
+
+# Time Complexity: O((N^3)α(N)) ≈ O(N^3)
+# Space Complexity: O(N)
+def solve1(rank):
+    n = len(rank)
+
+    count = 0
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            groups = unionFindSolve(rank, i, j) - 1
+            count += groups
+    
+    return count
+
+def unionFindSolve(nums, start, end):
+    par = {nums[k]: nums[k] for k in range(start, end)}
+    rank = {nums[k]: 1 for k in range(start, end)}
+
+    def find(num):
+        while num != par[num]:
+            par[num] = par[par[num]]
+            num = par[num]
+        return num
+    
+    def union(num1, num2):
+        par1, par2 = find(num1), find(num2)
+
+        if par1 == par2:
+            return
+        
+        if rank[par1] > rank[par2]:
+            par[par2] = par1
+            rank[par1] += rank[par2]
+        else:
+            par[par1] = par2
+            rank[par2] += rank[par1]
+
+    for k in range(start, end):
+        num = nums[k]
+
+        if (num - 1) in par:
+            union(num, num - 1)
+        
+        if (num + 1) in par:
+            union(num, num + 1)
+        
+    # count the number of distinct sets
+    unique = set()
+    for num in par.keys():
+        top_level_par = find(num)
+        unique.add(top_level_par)
+    
+    return len(unique)
+3) Union-Find inside of 2 for loops: O((N^2)α(N)) ≈ O(N^2)
+
+My next thought was whether or not we really need the third loop for the union join. Is there a reason we couldn't build the parent and rank maps dynamically? That is, just as we do with DP, essentially reuse a previous subproblem and build on top of that?
+
+Turns out there is absolutely no reason we couldn't. The main issue is keeping track of the number of distinct top-level parents, but that's solved by simply tracking every new parent you add in a set (the element itself, it is its own parent by default, just as you do by default initialising your union-find arrays/maps), and removing that parent when/if the element ends up joining into one or more other "ranges"/"groups":
+
+# Time Complexity: O((N^2)α(N)) ≈ O(N^2)
+# Space Complexity: O(N)
+def solve2(nums):
+
+    n = len(nums)
+    count = 0
+    for i in range(n):
+        par = {}
+        rank = {}
+        topLevelParents = set()
+
+        def find(num):
+            while num != par[num]:
+                par[num] = par[par[num]]
+                num = par[num]
+            return num
+        
+        def union(num1, num2):
+            p1, p2 = find(num1), find(num2)
+
+            if p1 == p2:
+                return (None, None) # (removed top level parent => None, added top level parent => None)
+            
+            if rank[p1] > rank[p2]:
+                par[p2] = p1
+                rank[p1] += rank[p2]
+
+                return (p1, p2)
+            else:
+                par[p1] = p2
+                rank[p2] += rank[p1]
+
+                return (p2, p1)
+
+        for j in range(i, n):
+            num = nums[j]
+
+            par[num] = num
+            rank[num] = 1
+
+            topLevelParents.add(num)
+
+            if (num - 1) in par:
+                addedTLP, removedTLP = union(num, num-1)
+                topLevelParents.add(addedTLP)
+
+                if removedTLP in topLevelParents:
+                    topLevelParents.remove(removedTLP)
+
+            if (num + 1) in par:
+                addedTLP, removedTLP = union(num, num+1)
+                topLevelParents.add(addedTLP)
+                
+                if removedTLP in topLevelParents:
+                    topLevelParents.remove(removedTLP)
+
+            # some way to track distinct parents
+            groups = len(topLevelParents)
+            count += (groups - 1)
+    
+    return count
+4) 2 for loops + one set: O(N^2) (Even better approach)
+
+@jerrywang1010 provides a solution that can be interpreted using all the reasoning above to count the "gaps" between the "ranges"/"groups" directly using just a set, thereby dropping the α(N) of my Union-Find. His solution can be found back in this post here: https://leetcode.com/discuss/interview-question/2461490/Amazon-OA-or-Group-Imbalance-or-2022/1609398
+
+Here's a python version of his C++ code:
+
+# Time Complexity: O(N^2)
+# Space Complexity: O(N)
+def solve3(nums):
+    n = len(nums)
+    count = 0
+    for i in range(n):
+        subarray = set([nums[i]])
+        imbalance = 0
+        for j in range(i + 1, n):
+            num = nums[j]
+
+            if num - 1 in subarray and num + 1 in subarray:
+                imbalance -= 1
+            elif num - 1 not in subarray and num + 1 not in subarray:
+                imbalance += 1
+            
+            subarray.add(num)
+            count += imbalance
+    
+    return count
+.
+
+Some Test Cases (that pass):
+
+FUNCTION = [
+    solveBrute, # brute force *is* the exact problem solution as described! The solutions given by this are always right
+    solve1, 
+    solve2
+] 
+
+TESTS = [
+    ([4, 1, 3, 2], 3), 
+    ([3, 1, 2], 1), 
+    ([2, 3, 1, 4], 3), 
+    ([3, 1, 5, 6], 7),
+    ([3, 5, 1], 4)
+]
+
+for func in FUNCTION:
+    print(f"Testing function {func.__name__}:")
+
+    for arr, expect in TESTS:
+        res = func(arr)
+        print(f"{res} [expect {expect}] [{'OK' if res == expect else 'NOK'}]")
+
+    print()

@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "postinstall": "cd client && npm install",
+    "heroku-postbuild": "cd client && npm run heroku-postbuild"
+  },
+  "engines": {
+    "node": "14.17.4",
+    "npm": "6.14.14"
+  },
+  "cacheDirectories": [
+    "client/node_modules"
+  ],
+  "dependencies": {
+  }
+}

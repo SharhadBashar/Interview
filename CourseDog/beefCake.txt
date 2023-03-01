@@ -1,0 +1,5 @@
+What happens for Beef Cake
+1. daysRemaining  > 0 AND quality  > 0 -> daysRemaining - 1 AND quality - 2
+2. daysRemaining >= 0 AND quality == 0 -> daysRemaining - 1 AND quality unchanged
+3. daysRemaining <= 0 AND quality irr  -> daysRemaining - 1 AND quality - 4
+4. quality can never go below 0. SO quality = max(quality, 0) 

@@ -1,0 +1,13 @@
+prime or not
+def isPrime(n):
+    for i in range(2, n):
+        if (n % i) == 0:
+            return i
+    else:
+        return 1
+
+https://leetcode.com/problems/reverse-integer/discuss/132861/3-lines-Python-Solution
+def reverseInteger(current):
+    sign = [1, -1][current < 0]
+    result = sign * int(str(abs(current))[::-1])
+    return result if -(2 ** 31) - 1 < result < 2 ** 31 else 0

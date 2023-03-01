@@ -1,0 +1,63 @@
+What is oop
+Object-oriented programming (OOP) is a programming language model organized around objects rather than "actions" and data rather than logic
+Object-oriented programming takes the view that what we really care about are the objects we want to manipulate rather than the logic required to manipulate them. 
+
+object" refers to a particular instance of a class where the object can be a combination of variables, functions, and data structures.
+create: declare the object, instantiate the object(new), initialize the object(new)
+Puppy myPuppy = new Puppy( "tommy" )
+
+Abstract classes serve as templates for their subclasses. For example, the abstract class Tree and subclass, Banyan_Tree, has all the characteristics of a tree as well as characteristics that are specific to the banyan tree.
+abstraction is a process of hiding the implementation details from the user
+abstract classes cannot be initiated, but you can inherit the methods from an abstract class
+
+Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit. 
+In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class. 
+Therefore, it is also known as data hiding.
+declare variables as private
+provide getters and setters to access variables
+
+Polymorphism is the ability of an object to take on many forms.
+Polymorphism describes a pattern in object oriented programming in which classes have different functionality while sharing a common interface
+IS-A test
+public interface Vegetarian{}
+public class Animal{}
+public class Deer extends Animal implements Vegetarian{}
+
+classes inherit state and behavior from their superclasses
+class bike -> superclass
+class mountainbike -> inherits things from bike
+class MountainBike extends Bicycle {}
+
+If a class inherits a method from its superclass, then there is a chance to override the method provided that it is not marked final.
+
+A class is a blueprint or prototype from which objects are created
+class: dog -> object: puppy
+
+constructor is claaed when an object is created
+for example: public class puppy{
+	public Puppy(String name) {
+      // This constructor has one parameter, name.
+}
+
+An interface is a contract between a class and the outside world. When a class implements an interface, it promises to provide the behavior published by that interface
+the languages and codes that the applications use to communicate with each other and with the hardware.
+It is a collection of abstract methods. A class implements an interface, thereby inheriting the abstract methods of the interface.
+interface Animal {
+   public void eat();
+   public void travel();
+}
+
+public class MammalInt implements Animal {}
+Writing an interface is similar to writing a class. 
+But a class describes the attributes and behaviors of an object. 
+And an interface contains behaviors that a class implements.
+
+stack is lifo, queue is fifo
+
+Static method is the method that it can be used without instantiating a class.
+
+Singleton This pattern involves a single class which is responsible to create an object while making sure that only single object gets created.
+
+In Factory pattern, we create object without exposing the creation logic to the client and refer to newly created object using a common interface.
+
+

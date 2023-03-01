@@ -1,0 +1,185 @@
+Step 1:
+flipp.com
+
+Redirects you to : https://flipp.com/flyers
+side navigation
+top navigation
+flyers page
+
+Top Navigation bar:
+1. search box:
+    a function that takes in the input of the search bar
+    runs a search function that searches the db for anything that matches what the user is typing
+    returns a list of possible items matching the users query
+2. about flipp drop down box
+    clicking the link will bring down the list of dropdowns, and clicking the drop down will redirect you to the appropriate page
+3. sign in
+    clicking this will bring a popup box allowing us to signin using facebook or google
+4. shpping list
+  navigate us to https://flipp.com/shopping_list
+
+side Navigation:
+1. get the users location
+2. Based on the which of the three categories are selected:
+  a.(selected by default)if we click on Flyers tab:
+    based on the location:
+      a. navigate to https://flipp.com/flyers
+      b. get the total number of flyers in the radius of users
+      c. count the total number of flyers in the radius for each category
+  b.if we click on Favourites tab:
+    based on the location:
+      a. navigate to https://flipp.com/favorites
+      b. get the total number of flyers in the radius of users
+      c. count the total number of flyers in the radius for each category
+      d. passes a get request to the Flyers page for all the favourited flyers
+         this will display all the flyers that the user has favourited
+  c. if we click on the Coupons tab:
+    based on the location:
+      a. navigate to https://flipp.com/coupons
+      b. side navigation will change to coupon categories
+      c. get the total number of coupon in the radius of users
+      d. count the total number of coupon in the radius for each category
+
+
+4c. if we click on coupons tab:
+  based on the location:
+    a. navigate to https://flipp.com/coupons
+    b. get the total number of flyers in a radius that has been favourited
+
+if we click on a flyer type, it will navigate us to https://flipp.com/flyers/<flyerType> for example: https://flipp.com/flyers/groceries
+
+Flyers Page:
+get request, and get all the flyers in the users location range
+(selected by default)if we select featured tab: get request, and get all the flyers that are featured, and show them based on which store is closer
+if we select latest tab: get request, and get all the flyers, but now sorted in ascending order based on posted date
+if we change to A-Z: get request, and get all the flyers, but now sorted in ascending order based on store name
+
+if we select a flyer:
+navigates us to the store page
+shows us a link to navigate to the stores site
+shows us any coupons for the store
+lists all the items in that store
+
+if we select an item:
+a popup comes up with name, description, price of item
+also shows two buttons: one for buy, another for clip item
+buy button takes me to the site where I can buy the item
+clip item: clips the item and ads it in the shopping list tab
+
+step 2:
+Signing in:
+lets say we sign in with facebook
+we get three things from facebook: users name, profile picture and email
+all of these are now either shown or can be seen if we click the name of the user
+a signout button is also shown
+
+inside shopping list:
+clippings: add the id fo the clippings
+
+
+
+Flyers:
+{
+  _id: some uniquie id,
+  storeId: id of store,
+  storeName: name of the store,
+  storeUrl: url to flipp site of store,
+  location: postal code,
+  city: city of flyer
+  saleDate: sale timeline,
+  datePosted: date it was posted,
+  picture: location of flyer picture,
+  featured: true or false
+}
+
+Favourited{
+  _id: some id,
+  flyerid: flyer id,
+  userid: user id
+}
+
+Store:
+{
+  _id: unique id of item,
+  storeName: name of store,
+  url: url to store,
+  location: location of store
+}
+
+City:
+{
+  postalCode: postal code
+  city: city for postal code
+}
+
+Product:
+{
+  _id: id of product,
+  name: name of product,
+  flyerId: which flyer it comes from,
+  storeId: which store it comes from,
+  price: item price,
+  url: url to buy,
+  type: type of item,
+  keywords: [],
+  storeUrl: flipp store url
+}
+
+Grocerise:
+{
+  flyerid: id of flyer
+}
+
+Pharmacy:
+{
+  flyerid: id of flyer
+}
+
+
+Coupon:
+{
+  _id: unique id of coupon,
+  storeid: id of store,
+  value: how much you save,
+  product: product that the coupon applies to,
+  expiry: expiry date
+}
+
+
+User:
+{
+  _id: user id,
+  name: user name,
+  email: user email,
+  picture: user picture
+}
+
+LoyaltyCard:
+{
+  loyalycardId: unique card id,
+  userId: user id for card,
+  cardNumber: last 4 digits,
+  expiryDate: card expiry date,
+  companyId: company it belongs to
+}
+
+LoyaltyCardCompany:
+{
+  comapnyId: comapny id
+  companyName: name of company,
+  cardPicture: picture of card
+}
+
+
+carttable{
+
+  cartid
+  userid
+}
+
+cartitemstable{
+  cartid
+  productid
+}
+query table to get user loyalty cards
+

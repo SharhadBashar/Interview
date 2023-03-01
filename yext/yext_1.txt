@@ -1,0 +1,406 @@
+# You have been contracted to work on a banking application. The company
+# that owns the application recently tried to add some new features to the
+# application. There are some bugs in the implementations of the new  
+# features, and you have been asked to fix them. To make your job easier, 
+# the intended functionality of the application and its features have been 
+# documented and a test suite is provided to verify the implementation. 
+
+# You can refer to the comments in the code to know which parts of the code
+# can be considered reliable and which parts might contain a bug.
+
+
+#
+# Represents a bank. The bank contains accounts which are stored in a map of
+# unique id to account.
+#
+class Bank(object):
+    def __init__(self, customerAccounts):
+        accounts = {}
+        for key, value in customerAccounts.items():
+            accounts[key] = Account(value.userId, value.type, value.balance)
+        self.customerAccounts = accounts
+
+    def __str__(self):
+      out = ""
+      for key, value in self.customerAccounts.items():
+          out += str(key) + ": " + str(value) + "\n"
+
+      return out
+
+    # ------------------------------------------------------
+    # New features (potential bugs here) between 30 - 120
+    # ------------------------------------------------------
+
+    #
+    # Pays interest to all accounts
+    # Accounts earn 5% interest unless they have type
+    # 'Savings', then they earn 10%
+    #
+    # @return total Amount of interest paid across all accounts
+    #
+    def generateInterest(self):
+        totalInterestPaid = 0
+        interestRate = 0.05
+
+        for account in self.customerAccounts.values():
+            if account.type == "Savings":
+                interestRate = 0.10
+            else:
+                interestRate = 0.05
+
+            accountInterest = account.getBalance() * interestRate
+            totalInterestPaid += accountInterest
+
+            account.setBalance(account.getBalance() + accountInterest)
+        return totalInterestPaid
+
+    #
+    # Transfer money between two accounts
+    # If a transfer request is invalid for any reason, it should do nothing
+    #
+    # @param sourceAccount  Account to transfer money from
+    # @param destAccount    Account to transfer money to
+    # @param amountToTransfer Amount to transfer between accounts
+    #
+    def transfer(self, sourceAccount, destAccount, amountToTransfer):
+        if sourceAccount is None or destAccount is None or amountToTransfer < 0:
+            return
+        if sourceAccount.getBalance() < amountToTransfer:
+            return 
+        sourceAccount.setBalance(sourceAccount.getBalance() - amountToTransfer)
+        destAccount.setBalance(destAccount.getBalance() + amountToTransfer)
+
+    #
+    # Transfers money between two users
+    # If a transfer request is invalid for any reason, it should do nothing
+    # Money can be pulled from any of the source user's accounts and will
+    # deposited in one of the dest user's accounts
+    #
+    # @param sourceUserId     UserId to transfer money from
+    # @param destUserId       UserId to transfer money to
+    # @param amountToTransfer Amount to transfer between accounts
+    #
+    def makePaymentBetweenUsers(self, sourceUserId, destUserId, amountToTransfer):
+        availableBalance = 0
+        destAccount = None
+        sourceUserAccounts = []
+
+        for acct in self.customerAccounts.values():
+            if acct.userId == sourceUserId:
+                sourceUserAccounts.append(acct)
+                availableBalance += acct.getBalance()
+
+            if destAccount is None and acct.userId == destUserId:
+                destAccount = acct
+
+        print(availableBalance)
+        print(amountToTransfer)
+        print(sourceUserAccounts)
+        # print(destAccount)
+
+        if availableBalance < amountToTransfer:
+            return
+
+
+        for acct in sourceUserAccounts:
+            
+            if amountToTransfer <= 0:
+                return
+
+            if acct.getBalance() >= amountToTransfer:
+                self.transfer(acct, destAccount, amountToTransfer)
+                return
+            else:
+                self.transfer(acct, destAccount, acct.getBalance())
+                amountToTransfer -= acct.getBalance()
+                print(acct)
+    #
+    # Generates an id for a new account and inserts into customerAccounts
+    #
+    # @param account account to add to the bank
+    # @return id of newly generated account
+    #
+    def addAccount(self, account):
+        maxCurrentAccountId = len(self.customerAccounts)
+        newAccountId = maxCurrentAccountId + 1
+        self.customerAccounts[newAccountId] = account
+        return newAccountId
+
+# --------------------------------------------------------------------
+# Existing functionality (no bugs past this point)
+# You should read this code to understand it, but you won't need to
+# modify anything here.
+# --------------------------------------------------------------------
+    #
+    # Deletes account by Id
+    #
+    # @param accountId
+    #
+    def deleteAccount(self, accountId):
+        del self.customerAccounts[accountId]
+
+    #
+    # Gets account by Id
+    #
+    # @param accountId
+    #
+    def getAccount(self, accountId):
+        return self.customerAccounts[accountId]
+
+
+    #
+    # Gets total balance from all accounts belonging to a user
+    #
+    # @param userId
+    #
+    def getTotalUserBalance(self, userId):
+        total = 0
+        for acct in self.customerAccounts.values():
+            if acct.userId == userId:
+                total += acct.getBalance()
+        return total
+
+    #
+    # Gets total balance of all customer accounts
+    #
+    # @returns {number}
+    #
+    def getTotalBankBalance(self):
+        total = 0
+        for acct in self.customerAccounts.values():
+            total += acct.getBalance()
+        return total
+
+
+#
+# Represents a bank account with userId, type, and balance
+# An account cannot have a negative balance
+#
+class Account(object):
+    def __init__(self, userId, type, balance):
+        self.userId = userId
+        self.type = type
+        self.balance = balance
+
+    def __str__(self):
+        return "userId: " + self.userId + ", type: " + self.type + ", balance: " + str(self.balance)
+    
+    __repr__=__str__
+
+    #
+    # Sets balance of an account
+    # Accounts cannot have a negative balance
+    #
+    # @param {account} account
+    # @param {number}  balance
+    #
+    def setBalance(self, balance):
+        if balance >= 0:
+            self.balance = balance
+
+
+    #
+    # Gets balance of an account
+    #
+    # @param {account} account
+    # @param {number}  balance
+    #
+    def getBalance(self):
+        return self.balance
+
+#
+# Class for testing Bank functionality
+#
+class BankTester(object):
+    accounts = {
+        1: Account("Ben123", "Checking", 110),
+        2: Account("Ben123", "Savings", 20),
+        3: Account("Ben123", "Checking", 200),
+        4: Account("Amy456", "Savings", 1000),
+    }
+
+    # Bank should correctly calculate the amount of interest to pay to accounts
+    def testInterestPayments(self):
+        b = Bank(self.accounts)
+        expectedInterest = (0.05 * 110) + (0.1 * 20) + (0.05 * 200) + (0.1 * 1000)
+        actualInterest = b.generateInterest()
+
+        if actualInterest != expectedInterest:
+            print("Interest Payment Test Failed")
+        else:
+            print("Interest Payment Test Passed!")
+
+    # After making transfers between accounts, the total amount of
+    # money in the bank should remain the same
+    def testAccountTransfers(self):
+        b = Bank(self.accounts)
+        totalCustomerAccountsBalanceBeforeTransfers = b.getTotalBankBalance()
+        acct1 = b.getAccount(1)
+        acct2 = b.getAccount(2)
+        b.transfer(acct1, acct2, 50)
+        b.transfer(acct2, acct1, 200)
+        b.transfer(acct1, acct2, 120)
+        totalCustomerAccountsBalanceAfterTransfers = b.getTotalBankBalance()
+
+        if totalCustomerAccountsBalanceBeforeTransfers != totalCustomerAccountsBalanceAfterTransfers:
+            print("Account Transfer Test Failed")
+        else:
+            print("Account Transfer Test Passed!")
+
+
+    # After making transfers between users, the total balance
+    # held by each user should have changed appropriately
+    def testUserTransfers(self):
+        b = Bank(self.accounts)
+        originalBenTotal = b.getTotalUserBalance("Ben123")
+        originalAmyTotal = b.getTotalUserBalance("Amy456")
+        b.makePaymentBetweenUsers("Ben123", "Amy456", 10)
+        b.makePaymentBetweenUsers("Ben123", "Amy456", 50)
+        b.makePaymentBetweenUsers("Ben123", "Amy456", 230)
+        input()
+        expectedBenTotalAfterTransfers = originalBenTotal - 10 - 50 - 230
+        expectedAmyTotalAfterTransfers = originalAmyTotal + 10 + 50 + 230
+        actualBenTotalAfterTransfers = b.getTotalUserBalance("Ben123")
+        actualAmyTotalAfterTransfers = b.getTotalUserBalance("Amy456")
+
+        if expectedBenTotalAfterTransfers != actualBenTotalAfterTransfers or expectedAmyTotalAfterTransfers != actualAmyTotalAfterTransfers:
+            print("User Transfer Test Failed")
+        else:
+            print("User Transfer Test Passed!")
+
+    # After creating and deleting an equal number of accounts,
+    # the total number of accounts should not have changed
+    def testAccountManagement(self):
+        b = Bank(self.accounts)
+        originalNumberOfAccounts = len(b.customerAccounts)
+        b.addAccount(Account("Cat789", "Checking", 100))
+        b.deleteAccount(1)
+        b.deleteAccount(2)
+        b.addAccount(Account("Dave012", "Savings", 2300))
+        finalNumberOfAccounts = len(b.customerAccounts)
+
+        if originalNumberOfAccounts != finalNumberOfAccounts:
+            print("Account Management Test Failed")
+        else:
+            print("Account Management Test Passed!")
+
+# Run Test Cases
+tester = BankTester()
+tester.testInterestPayments()
+tester.testAccountTransfers()
+tester.testUserTransfers()
+tester.testAccountManagement()
+
+
+
+
+
+
+
+class Bank(object):
+    def __init__(self, customerAccounts):
+        accounts = {}
+        for key, value in customerAccounts.items():
+            accounts[key] = Account(value.userId, value.type, value.balance)
+        self.customerAccounts = accounts
+
+    def __str__(self):
+      out = ""
+      for key, value in self.customerAccounts.items():
+          out += str(key) + ": " + str(value) + "\n"
+
+      return out
+
+    # ------------------------------------------------------
+    # New features (potential bugs here) between 30 - 120
+    # ------------------------------------------------------
+
+    #
+    # Pays interest to all accounts
+    # Accounts earn 5% interest unless they have type
+    # 'Savings', then they earn 10%
+    #
+    # @return total Amount of interest paid across all accounts
+    #
+    def generateInterest(self):
+        totalInterestPaid = 0
+        interestRate = 0.05
+
+        for account in self.customerAccounts.values():
+            if account.type == "Savings":
+                interestRate = 0.10
+            else:
+                interestRate = 0.05
+
+            accountInterest = account.getBalance() * interestRate
+            totalInterestPaid += accountInterest
+
+            account.setBalance(account.getBalance() + accountInterest)
+        return totalInterestPaid
+
+    #
+    # Transfer money between two accounts
+    # If a transfer request is invalid for any reason, it should do nothing
+    #
+    # @param sourceAccount  Account to transfer money from
+    # @param destAccount    Account to transfer money to
+    # @param amountToTransfer Amount to transfer between accounts
+    #
+    def transfer(self, sourceAccount, destAccount, amountToTransfer):
+        if sourceAccount is None or destAccount is None or amountToTransfer < 0:
+            return
+        if sourceAccount.getBalance() < amountToTransfer:
+            return 
+        sourceAccount.setBalance(sourceAccount.getBalance() - amountToTransfer)
+        destAccount.setBalance(destAccount.getBalance() + amountToTransfer)
+
+    #
+    # Transfers money between two users
+    # If a transfer request is invalid for any reason, it should do nothing
+    # Money can be pulled from any of the source user's accounts and will
+    # deposited in one of the dest user's accounts
+    #
+    # @param sourceUserId     UserId to transfer money from
+    # @param destUserId       UserId to transfer money to
+    # @param amountToTransfer Amount to transfer between accounts
+    #
+    def makePaymentBetweenUsers(self, sourceUserId, destUserId, amountToTransfer):
+        availableBalance = 0
+        destAccount = None
+        sourceUserAccounts = []
+
+        for acct in self.customerAccounts.values():
+            if acct.userId == sourceUserId:
+                sourceUserAccounts.append(acct)
+                availableBalance += acct.getBalance()
+
+            if destAccount is None and acct.userId == destUserId:
+                destAccount = acct
+
+        if availableBalance < amountToTransfer:
+            return
+
+
+        for acct in sourceUserAccounts:
+            if amountToTransfer <= 0:
+                return
+
+            if acct.getBalance() >= amountToTransfer:
+                self.transfer(acct, destAccount, amountToTransfer)
+                
+                return
+            else:
+                amountToTransfer = amountToTransfer - acct.getBalance() # moved this up
+                self.transfer(acct, destAccount, acct.getBalance())
+    #
+    # Generates an id for a new account and inserts into customerAccounts
+    #
+    # @param account account to add to the bank
+    # @return id of newly generated account
+    #
+    def addAccount(self, account):
+        maxCurrentAccountId = sorted(list(self.customerAccounts.keys()))[-1]
+        newAccountId = maxCurrentAccountId + 1
+        self.customerAccounts[newAccountId] = account
+        
+        return newAccountId

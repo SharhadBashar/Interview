@@ -1,0 +1,18 @@
+name: 'Push tests to Notion'
+description: 'Github Action to push feature files to Notion DB'
+inputs:
+  NOTION_API_KEY:  # id of input
+    description: 'API Key to get access to the notion board'
+    required: true
+    default: ''
+  NOTION_TESTS_DATABASE:  # id of input
+    description: 'Notion Test Database where the feature files are to be pushed'
+    required: true
+    default: ''
+  TEST_FILE_PATH:  # id of input
+    description: 'Path from where the test files are to be read'
+    required: true
+    default: ''
+runs:
+  using: 'node16'
+  main: 'index.js'

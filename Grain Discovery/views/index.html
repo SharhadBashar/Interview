@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="/src/calcPI.js"></script>
+    </head>
+    <body>
+
+        <h1>Value of PI</h1>
+        <form id="formId">
+            
+            <input type="text" id="lowerDot" name="textField">
+            <input type="text" id="higherDot" name="textField">
+            <button type="submit" id="calculate">Calculate</button>
+        </form>
+        Enter the lower range of dots:  <input id = "lowerDots" /><br/>
+        Enter the higher range of dots: <input id = "higherDots" /><br/>
+        <br/>
+        <button onclick = "starterFrontend(lowerDots.value,higherDots.value)">Calculate</button><br/>
+        <br/>
+        Dots used: <div id = "dots"></div> <br/>
+        Actual value of PI: <div id = "piActual"></div><br/>
+        Calculated value of PI: <div id = "piCalculated"></div><br/>
+      </div>
+    </body>
+</html>

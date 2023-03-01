@@ -1,0 +1,11 @@
+volatile: volatile int foo; 
+int volatile foo;
+basically means that another program or hardware can update that variable
+
+Stack is used for static memory allocation and Heap for dynamic memory allocation, both stored in the computer's RAM .
+
+A pointer is a variable whose value is the address of another variable, i.e., direct address of the memory location. Like any variable or constant, you must declare a pointer before using it to store any variable address. The general form of a pointer variable declaration is −
+
+In computer science, a reference is a value that enables a program to indirectly access a particular data, such as a variable or a record, in the computer's memory or in some other storage device. The reference is said to refer to the datum, and accessing the datum is called dereferencing the reference.
+
+

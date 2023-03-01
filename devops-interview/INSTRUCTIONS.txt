@@ -1,0 +1,42 @@
+BACKGROUND
+The motivation behind this test is similar to a situation we actually encountered; we wanted an automated tool to detect changes to relevant files between two given versions of our codebase (for this exercise, each stored in separate directories). This would assist us in detecting breaking API changes.
+
+This is split up into two problems, with problem 1 being a sub-problem of problem 2 (where problem 2 adds recursing into subdirectories).  I recommend you start with problem 1, so that you can show some progress even if you don't have time to finish both.
+
+GUIDANCE
+- You may make any changes you like to the sample directories, for your own testing purposes
+- You can use the internet (Google, StackOverflow, etc.), but please work independently
+- Please do me a favour, help keep this test fair, and don't share the test with anybody (either while you work on it or afterwards!)
+
+PROBLEM 1 REQUIREMENTS:
+Please write a program that takes two command-line parameters, each representing a directory, and searches through the directory (not recursing into sub-directories, yet) for relevant files that have changed.
+- No input validation is required.  You may assume that the two command line parameters represent valid directories.
+- "Relevant" files are any files whose filenames end in ".cs" and that contain the text "[DataContract]" (not including the quotation marks, but including the square brackets)
+- A file should be considered relevant if it is relevant in either directory.
+- Two files (one in each of the two directories) should be compared against each other if they have the same name.  They should be considered "changed" if the file contents are different.
+- If a file is present in one directory but not the other, then it counts as having changed
+- The target output is the filenames of relevant files that have changed, one per line.
+- You may output the relevant changed files in any order (i.e. the order of lines in your output is irrelevant)
+
+PROBLEM 1 SAMPLE:
+You may use the following as a test case and clarification of requirements for your program
+- sampleA and sampleB directories
+- sample1.out file as sample correct output for those directories
+- i.e. running your program with command line parameters as absolute or relative path names for sampleA and sampleB should output the same results as sample1.out, except that lines may be in any order.
+
+PROBLEM 2 REQUIREMENTS
+This is the same as problem 1, except that now it should recurse into subdirectories
+- Where problem 1 talked about directories, problem 2 now talks about directory trees (with 
+- Two files (one in each of the two directories) should be compared against each other if they have the same name and the same path relative to the root of the respective directory tree.  They should be considered different if the file contents are different.
+- When outputting changed relevant files, include the path relative to the root of the directory trees along with the filename.
+
+PROBLEM 2 SAMPLE:
+You may use the following as a test case and clarification of requirements for your program
+- sampleA and sampleB directory trees
+- sample2.out file as sample correct output for those directories
+- i.e. running your program for problem 2 with command line parameters as absolute or relative path names for sampleA and sampleB should output the same results as sample2.out, except that lines may be in any order.
+
+SENDING RESULTS
+- Please send the source code for your work by replying to the email with instructions
+- You should send this back within 30 minutes of when the original email was sent to you
+- If you aren't able to complete the exercise, that's totally fine!  Please send what you have anyway.

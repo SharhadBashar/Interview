@@ -1,0 +1,14 @@
+1.
+The only thing that i was unable to do was add async filter applicaation to the picture, so now you can only add one filter per picture. 
+If I was able to implement that, i would be able to pass in an array of filters and all of them would be applied to the picture
+
+2.
+Adding an async operation
+
+3. 
+get the size of the picture
+get the size of the tagging area
+add the tagging area x and y dimentions to the picture model. 
+implement a on hover and pass in the x and y dimenations.
+if the mouse is over those dimensions, show the tag square
+can also use AI for facial recognition and such

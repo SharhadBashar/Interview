@@ -1,0 +1,2 @@
+django==3.0.*
+confluent-kafka==1.4.*

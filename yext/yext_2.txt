@@ -1,0 +1,322 @@
+'''
+We will be implementing part of a game that involves Mines on a Mine Field.
+
+The Mine Field is presented as an NxN matrix of integers.
+
+A value of 1 indicates that a cell has a Mine.
+A value of 0 indicates that a cell does not have a Mine.
+
+Below is an example 4x4 Mine Field.
+
+    0 1 2 3
+-----------
+0 | 0 0 0 0
+1 | 0 1 1 0
+2 | 0 0 0 0
+3 | 0 0 0 0  
+
+Using [row, col] indices to specify coordinates on the Mine Field, 
+the Mine Field above has two Mines at [1,1] and [1,2].
+
+The part of the game that we will implement involves destroying a specified starting cell.
+
+If this cell does not contain a Mine, then that is the only cell that will be destroyed.
+
+For example, if the starting cell we specify in the Mine Field above is [0,0], then we detonate the cells below denoted by '*'.
+
+    0 1 2 3
+-----------
+0 | * 0 0 0
+1 | 0 1 1 0
+2 | 0 0 0 0
+3 | 0 0 0 0   
+
+In this case, we see that 1 cell has been detonated.
+
+If the specified cell contains a Mine, then destroying that cell detonates the Mine which in turn destroys its two vertically adjacent and two horizontally adjacent neighbors (four neighbors in total).
+
+If we specify [1,1] as the starting cell in the example Mine Field above, then the following cells will be destroyed.
+
+    0 1 2 3
+-----------
+0 | 0 * * 0
+1 | * * * *
+2 | 0 * * 0
+3 | 0 0 0 0
+
+In this case, a total of 8 cells will have been destroyed.
+
+Implement a function that accepts a Mine Field and coordinates for the starting cell to destroy, and returns the total number of cells destroyed.
+
+Do not modify the Mine Field.
+
+'''
+
+# mineField : 2D matrix of integers
+# N : bounds of the NxN mine field
+# [rowIndex,colIndex] : coordinates of the starting cell to detonate    
+def getTotalNumberOfCellsDestroyed (mineField, N, rowIndex, colIndex) :
+    
+    # implement this method and any helper methods you may need
+
+    return 0
+
+
+def initializeMineField (mineField, N, defaultValueOfAllCells) :
+
+    for i in range(N) :
+        for j in range(N) :
+            mineField[i][j] = defaultValueOfAllCells
+
+
+def printMineField(mineField, N) :
+
+    for i in range(N) :
+        
+        for j in range(N) :
+            
+                print(mineField[i][j], end=" ")
+            
+        print()
+        
+
+testCaseNumberBeingExecuted = 0
+
+def test(testCaseNumberBeingExecuted, mineField, N, rowIndex, colIndex, expectedNumCellsDestroyed) :
+
+    calculatedNumCellsDestroyed = getTotalNumberOfCellsDestroyed(mineField, N, rowIndex, colIndex)
+
+    if calculatedNumCellsDestroyed == expectedNumCellsDestroyed :
+        print("Test Case" , testCaseNumberBeingExecuted , "Passed");
+    else :
+        print("Test Case" , testCaseNumberBeingExecuted , "Failed");
+
+
+def runTests() :
+
+    # Tests with a 1x1 Mine Field
+    N = 1
+
+    mineFieldSizeOne = [[0 for x in range(N)] for y in range(N)]
+
+    # Mine Field
+    # 0
+      
+    # expected result of test case :
+    # *
+      
+    test (1, mineFieldSizeOne, N, 0, 0, 1) # Test Case 1
+
+    mineFieldSizeOne[0][0] = 1
+
+    #Mine Field
+    # 1
+      
+    # expected result of test case :
+    # *
+    test (2, mineFieldSizeOne, N, 0, 0, 1) # Test Case 2
+
+
+    # Tests with a 2x2 Mine Field
+    N = 2
+      
+    mineFieldSizeTwo = [[0 for x in range(N)] for y in range(N)]
+
+    mineFieldSizeTwo[0][0] = 1
+    mineFieldSizeTwo[1][1] = 1      
+      
+    # Mine Field
+    # 10
+    # 01
+      
+    # expected result of test case :
+    # **
+    # *1
+    test (3, mineFieldSizeTwo, N, 0, 0, 3) # Test Case 3
+      
+    # expected result of test case :
+    # 1*
+    # **
+    test (4, mineFieldSizeTwo, N, 1, 1, 3) # Test Case 4
+      
+    # expected result of test case :
+    # 1*
+    # 01
+    test (5, mineFieldSizeTwo, N, 0, 1, 1) # Test Case 5
+      
+    # expected result of test case :
+    # 10
+    # *1
+    test (6, mineFieldSizeTwo, N, 1, 0, 1) # Test Case 6
+
+
+    # Tests with a 5x5 Mine Field
+
+    N = 5
+
+    mineFieldSizeFive = [[0 for x in range(N)] for y in range(N)]
+
+    mineFieldSizeFive[1][1] = 1;
+
+    # Mine Field
+    # 00000
+    # 01000
+    # 00000
+    # 00000
+    # 00000      
+      
+    # expected result of test case :
+    # *0000
+    # 01000
+    # 00000
+    # 00000
+    # 00000      
+    test (7, mineFieldSizeFive, N, 0, 0, 1) # Test Case 7
+      
+    # expected result of test case :
+    # 00000
+    # *1000
+    # 00000
+    # 00000
+    # 00000      
+    test (8, mineFieldSizeFive, N, 1, 0, 1) # Test Case 8
+      
+    # expected result of test case :
+    # 0*000
+    # ***00
+    # 0*000
+    # 00000
+    # 00000      
+    test (9, mineFieldSizeFive, N, 1, 1, 5) # Test Case 9
+      
+    mineFieldSizeFive[1][2] = 1
+
+    # Mine Field
+    # 00000
+    # 01100
+    # 00000
+    # 00000
+    # 00000   
+      
+    # expected result of test case :
+    # 0**00
+    # ****0
+    # 0**00
+    # 00000
+    # 00000      
+    test (10, mineFieldSizeFive, N, 1, 1, 8) # Test Case 10
+            
+    mineFieldSizeFive[1][1] = 0
+    mineFieldSizeFive[1][2] = 0
+    mineFieldSizeFive[0][1] = 1
+    mineFieldSizeFive[0][2] = 1
+
+    # Mine Field
+    # 01100
+    # 00000
+    # 00000
+    # 00000
+    # 00000   
+      
+    # expected result of test case :
+    # ****0
+    # 0**00
+    # 00000
+    # 00000
+    # 00000   
+    test (11, mineFieldSizeFive, N, 0, 1, 6) # Test Case 11
+
+      
+    mineFieldSizeFive = [[1 for x in range(N)] for y in range(N)]
+    mineFieldSizeFive[3][0] = 0
+    mineFieldSizeFive[3][1] = 0
+    mineFieldSizeFive[4][1] = 0
+      
+    # Mine Field
+    # 11111
+    # 11111
+    # 11111
+    # 00111
+    # 10111
+
+    # expected result of test case :
+    # 11111
+    # 11111
+    # 11111
+    # 0*111
+    # 10111    
+    test (12, mineFieldSizeFive, N, 3, 1, 1) # Test Case 12
+      
+    # expected result of test case :
+    # *****
+    # *****
+    # *****
+    # *****
+    # 1****    
+    test (13, mineFieldSizeFive, N, 4, 4, 24) # Test Case 13
+    
+
+runTests()
+
+
+def num_island(grid):
+    if not grid:
+        return 0
+    count = 0
+    visited = set()
+    row, col = len(grid), len(grid[0])
+    
+    def dfs(r, c):
+        if (r < 0 or r >= row or c < 0 or c >= col or grid[r][c] == 0 or (r, c) in visited):
+            return 
+        visited.add((r, c))
+        dfs(r + 1, c)
+        dfs(r - 1, c)
+        dfs(r, c + 1)
+        dfs(r, c - 1)
+    
+    for r in range(row):
+        for c in range(col):
+            if ((r, c) not in visited and grid[r][c] == 1):
+                dfs(r, c)
+                count += 1
+    return count
+
+
+import collections 
+from pprint import pprint
+
+def mines(grid, x, y):
+    if grid[x][y] == 0:
+        return 1
+    
+    count = 0
+    directions = [
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1]
+    ]
+    q = collections.deque()
+    visited = set()
+    rows, cols = len(grid), len(grid[0])
+    
+    q.append((x, y))
+    while q:
+        row, col = q.pop()
+        visited.add((row, col))
+        grid[row][col] = '*'
+        count += 1
+        for dr, dc in directions:
+            r = row + dr
+            c = col + dc
+            if (r in range(rows) and c in range(cols) and (r, c) not in visited): 
+                
+                if (grid[r][c] == 0):
+                    grid[r][c] = '*'
+                    count += 1
+                else:
+                    q.append((r, c))
+                    
+    pprint(grid)
+    return count

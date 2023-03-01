@@ -1,0 +1,59 @@
+{
+    "babel": {
+        "plugins": [
+            "babel-plugin-transform-line"
+        ],
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": {
+                        "node": "current"
+                    }
+                }
+            ]
+        ],
+        "sourceMaps": "inline"
+    },
+    "dependencies": {
+        "isotropic-error": "^0.12.0",
+        "isotropic-later": "^0.12.0",
+        "isotropic-make": "^0.12.0",
+        "isotropic-pubsub": "^0.12.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.18.10",
+        "@babel/core": "^7.19.1",
+        "babel-plugin-transform-line": "^0.10.0",
+        "@babel/preset-env": "^7.19.1",
+        "eslint": "^8.23.1",
+        "eslint-plugin-isotropic": "^0.7.0"
+    },
+    "eslintConfig": {
+        "env": {
+            "es6": true,
+            "node": true
+        },
+        "extends": "plugin:isotropic/isotropic",
+        "parserOptions": {
+            "ecmaFeatures": {
+                "globalReturn": false,
+                "impliedStrict": true,
+                "jsx": false
+            },
+            "ecmaVersion": 2020,
+            "sourceType": "module"
+        },
+        "plugins": [
+            "isotropic"
+        ],
+        "root": true
+    },
+    "license": "UNLICENSED",
+    "name": "ibi-project-template",
+    "scripts": {
+        "build": "babel js -d lib",
+        "lint": "eslint js"
+    },
+    "version": "0.0.0"
+}

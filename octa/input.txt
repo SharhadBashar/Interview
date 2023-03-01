@@ -1,0 +1,59 @@
+Example test:   (7, [0, 1, 2, 1, 4, 4], [1, 2, 0, 4, 5, 6])
+Output:
+7 [0, 1, 2, 1, 4, 4] [1, 2, 0, 4, 5, 6]
+WRONG ANSWER (got -1 expected 2)
+
+Example test:   (7, [0, 1, 2, 4, 5], [1, 2, 3, 5, 6])
+Output:
+7 [0, 1, 2, 4, 5] [1, 2, 3, 5, 6]
+WRONG ANSWER (got -1 expected 2)
+
+Example test:   (4, [0, 1, 2, 3], [1, 2, 3, 0])
+Output:
+4 [0, 1, 2, 3] [1, 2, 3, 0]
+WRONG ANSWER (got -1 expected 0)
+
+Example test:   (4, [0, 1, 2], [1, 2, 0])
+Output:
+4 [0, 1, 2] [1, 2, 0]
+WRONG ANSWER (got -1 expected 1)
+
+
+
+def count_conn(dict_n):
+    for key, value in dict_n.items():
+        if len(value) <= 1:
+            return True
+    return False
+
+def drop_one(dict_n):
+    keys_to_drop = set()
+    for key, value in dict_n.items():
+        if len(value) <= 1:
+            keys_to_drop.add(key)
+    
+    for key_to_drop in keys_to_drop:
+        dict_n.pop(key_to_drop, None)
+    
+    for key, value in dict_n.items():
+        for key_to_drop in keys_to_drop:
+            if key_to_drop in value:
+                value.remove(key_to_drop)
+        dict_n[key] = value
+    return dict_n
+
+def solution(N, A, B):
+    M = len(A)
+    dict_n = {}
+    for i in range(N):
+        dict_n[i] = set()
+    
+    for i in range(M):
+        dict_n[A[i]].add(B[i])
+        dict_n[B[i]].add(A[i])
+    
+    hours = 0
+    while(count_conn(dict_n)):
+        dict_n = drop_one(dict_n)
+        hours += 1
+    return hours

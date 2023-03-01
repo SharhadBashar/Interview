@@ -1,0 +1,12 @@
+{
+  "name": "calculatepi",
+  "version": "1.0.0",
+  "description": "This function will calculate the value of PI using ratios",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "node app.js"
+  },
+  "author": "Sharhad Bashar",
+  "license": "ISC"
+}

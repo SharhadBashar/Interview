@@ -1,0 +1,8 @@
+
+<h1>Messages sent</h1>
+
+<ul>
+    {% for message in object_list %}
+        <li>{{ message.msg }}</li>
+    {% endfor %}
+</ul>

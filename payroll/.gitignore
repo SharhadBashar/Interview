@@ -1,0 +1,11 @@
+.idea/
+node_modules/
+
+### Django ###
+*.log
+*.pot
+*.pyc
+*.iml
+__pycache__/
+local_settings.py
+build/

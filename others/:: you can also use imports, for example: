@@ -1,0 +1,108 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        int count = 0;
+        int currentVal = 0;
+        while(currentVal != -1){
+            currentVal = CurrentVal(currentVal, A);
+            count++;
+            if (count == A.length){
+                return count;
+            }
+        }
+        return count;
+    }
+    public int CurrentVal(int i, int[] A){
+        return A[i];
+    }
+}
+
+
+
+
+
+
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public String solution(String S) {
+        ArrayList<Integer> numbers = getIntegers(S);
+        String phoneNumber = "";
+        if(numbers.size() % 3 == 2 || numbers.size() % 3 == 0){
+            for (int i = 0; i < numbers.size(); i++){
+                phoneNumber += numbers.get(i);
+                if (i % 3 == 2 && i != numbers.size() - 1){
+                    phoneNumber += "-";
+                }
+            }
+        }
+        else if (numbers.size() % 3 == 1){
+            while(numbers.size() > 0){
+                phoneNumber += numbers.get(0);
+                numbers.remove(0);
+                if ((phoneNumber.length() == 3 || phoneNumber.length() % 3 == 1) && phoneNumber.length() != 1 &&numbers.size() != 0){
+                    phoneNumber += "-";
+                }
+            }
+        }
+        return phoneNumber;
+    }
+    public ArrayList<Integer> getIntegers(String S){
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        char[] stringChar = S.toCharArray();
+        for(int i = 0; i < stringChar.length; i++){
+            if (Character.isDigit(stringChar[i])){
+                numbers.add(Character.getNumericValue(stringChar[i]));
+            }
+        }
+        return numbers;
+    }
+}
+
+
+
+
+
+
+
+// you can also use imports, for example:
+import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+//int[] A = passengers weight
+//int[] B = parrents floors
+//A and B have length N
+//int M = hotels floors
+//int x = max number of people
+//int y = weight limit
+class Solution {
+    public int solution(int[] A, int[] B, int M, int X, int Y) {
+        int numPeople = A.length;
+        int i = 0;
+        int stops = 0;
+        while(i < numPeople){
+            long weight = 0;
+            int capacity = 0;
+
+            HashMap<Integer,String> floors = new HashMap<Integer,String>();
+            while (capacity < X && i < numPeople && weight + A[i] <= Y){
+                weight = weight + A[i];
+                floors.put(B[i],null);
+                i++;
+                capacity++;
+            }
+            stops = stops + floors.size() + 1;
+        }
+        return stops;
+    }
+}

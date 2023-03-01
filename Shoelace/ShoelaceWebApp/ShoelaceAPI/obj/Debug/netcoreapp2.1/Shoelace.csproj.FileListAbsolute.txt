@@ -1,0 +1,15 @@
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.csprojAssemblyReference.cache
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.csproj.CoreCompileInputs.cache
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.RazorAssemblyInfo.cache
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.RazorAssemblyInfo.cs
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.AssemblyInfoInputs.cache
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.AssemblyInfo.cs
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\bin\Debug\netcoreapp2.1\Shoelace.deps.json
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\bin\Debug\netcoreapp2.1\Shoelace.runtimeconfig.json
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\bin\Debug\netcoreapp2.1\Shoelace.runtimeconfig.dev.json
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\bin\Debug\netcoreapp2.1\Shoelace.dll
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\bin\Debug\netcoreapp2.1\Shoelace.pdb
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.RazorTargetAssemblyInfo.cache
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.dll
+C:\Users\Sharhad\Desktop\Shoelace\ShoelaceAPI\obj\Debug\netcoreapp2.1\Shoelace.pdb

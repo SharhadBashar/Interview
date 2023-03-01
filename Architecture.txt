@@ -1,0 +1,82 @@
+Architecture
+
+App
+  Assets
+    - Images
+      - Logo.png
+      - Stars.png
+      - Earth.png
+    - Fonts
+      - LatoLight
+      - LatoRegular
+      - LatoBold
+
+  lib
+    main.dart
+
+    Env
+      - Env.dart
+
+    Oauth
+      - Credentials.dart (client id, client secret) -> add to .gitignore
+      - Scope.dart
+
+    Helper
+      - Helper.dart (all async stuff as well as calls to backend)
+      For now can keep them in one file, but as it grows, we might want to differenciate:
+      - OauthHelper.dart
+      - LoginHelper.dart
+      - SignupHelper.dart
+      - BorwserHelper.dart
+
+    UI (different UI pages)
+      - Welcome.dart
+      - SignupEmail.dart
+      - SignupUsername.dart
+      - Browser.dart
+      - Login.dart
+      .
+      .
+      .
+
+Coding standards
+
+Short one line comment on top of every page saying what the page does
+Comments on top of functions:
+  - One line describing what the function does
+  - Inputs for the function (if any) both input type and name
+  - Outputs or void
+
+e.g:
+  /* This function checks if the email address is in use.
+  ** @arg String email: email address to check.
+  ** @ret Bool: true if email address is already in use. */
+  bool validateEmail(String email) async {}
+
+Imports
+  - Alphabetical Order
+  - All flutter libraries should come first
+  - Then import all our files (such as helpers or oauth or env)
+
+Variable declaration
+ - CAML case
+ - avoid using var as much as possible
+ - const or final var should be capitalized and with underscore if more than one word e.g: final VARIABLE_NAME or const VARIABLE_NAME
+ - If we are declaring and initializing variables, then one variable per line
+ - If we are only declaring variables, then all variables in one line
+  e.g:
+    int count = 0;
+    bool focused = false;
+    String email, String password, String username;
+
+
+Function declaration
+  - CAML case
+  - function functionName() {}
+  - function functionName() async {}
+
+
+
+
+
+

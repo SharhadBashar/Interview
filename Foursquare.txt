@@ -1,0 +1,83 @@
+Foursquare
+
+# Any language OK Not judging on syntax
+# Not judging on library function names
+# Arch/design exercise, computer science fundamental
+# Simple question + make it more challenging
+#
+# Sum a list of numbers [5, -1, 7, 3, 10, 2]
+# sum a tree of numbers
+#           (5)
+#         /  |  \
+#      (-1) (7) (3)
+#      / \
+#   (10) (2)
+# Product (multiply together) list of numbers
+# * Generalize to more operations than just sum
+#   * Product
+#   * Sum of squares
+#   * Mean (average)
+
+class Operations():
+    '''
+    operations:
+    1. sum
+    2. product
+    3. sum of squares
+    4. mean
+    5. median
+    '''
+    import numpy as np
+    def __init__(self, a, operation = 1):
+        if (operation == 1):
+            self.sum_list(a)
+        elif(operation == 2):
+            self.product_list(a)
+        elif(operation == 3):
+            self.squares_sum(a)
+        elif(operation == 4):
+            self.mean(a)
+        else:
+            self.median(a)
+    
+    def sum_list(self, a):
+        return np.sum(a)
+
+    def product_list(self, a):
+        # output = 1
+        # for i in a:
+        #     output *= i
+        # return output
+        return np.product(a)
+        
+    def squares_sum(a):
+        return np.sum(np.square(a))
+    
+    def mean(self, a):
+        return np.mean(a)
+        
+    def median(self, a):
+        return np.median(a)
+        
+        
+def operation(a, func):
+    return func(a)
+
+    
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+        self.children = []
+    
+def binary_tree(root, func = 's'):
+    if func == 's':
+        if (root == None):
+            return 0
+        return (root.value + binary_tree(root.left, 's') + binary_tree(root.right, 's'))
+    elif func == 'p':
+        if (root == None):
+            return 1
+        return (root.value * binary_tree(root.left, 'p') * binary_tree(root.right, 'p'))
+

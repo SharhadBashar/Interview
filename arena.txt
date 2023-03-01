@@ -1,0 +1,54 @@
+arena
+
+'''
+1-byte: 0xxxxxxx
+2-byte: 110xxxxx 10xxxxxx
+3-byte: 1110xxxx 10xxxxxx 10xxxxxx
+
+Examples:
+"10000000" -> False
+01111111 -> True
+11000000 10111111 (note: real input will not have spaces) -> True
+11000000 -> False
+
+"01111111 01111110     11100000 10111111              01111111         1110xxxx 10xxxxxx 10xxxxxx"
+
+'''
+
+def is_valid(chunks, encoding):
+    if len(chunks) != encoding: return False
+
+    for i in range(1, len(chunks)):
+        if (chunks[i][0] != '1' or chunks[i][1] != '0'): return False
+    return True
+
+def utf(str, n = 8):
+    if len(str) < 8: return False
+    if len(str) % 8 != 0: return False
+    # "01111111 01111110     11000000 10111111     01111111       1110xxxx 10xxxxxx 10xxxxxx"
+    chunks = [str[i: i + n] for i in range(0, len(str), n)]
+
+    for i in range(len(chunks)):
+        if chunks[i][0] == '0':
+            continue
+        else:
+            count = 0
+            for j in range(n):
+                if chunks[i][j] == '1':
+                    count += 1
+                if chunks[i][j] == '0':
+                    break
+            sub_chunks = chunk[i: i + count]
+
+            if is_valid(sub_chunks, count):
+                i += count - 1
+                if (i > len(chunks)): return False
+            else: return False
+    return True
+
+
+
+
+
+Insetion sort
+How does min and max heap work

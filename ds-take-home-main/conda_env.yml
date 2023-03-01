@@ -1,0 +1,12 @@
+name: hrth
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - scikit-learn
+  - catboost
+  - xgboost
+  - pip
+  - pip:
+    - jupyter
+    - jupyterlab

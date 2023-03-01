@@ -1,0 +1,32 @@
+{
+  "name": "picalculator",
+  "version": "1.0.0",
+  "description": "This function will calculate the value of PI using ratios",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "lint": "eslint app.js"
+  },
+  "author": "Sharhad Bashar",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "eslint": "^5.6.0",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.4",
+    "path": "^0.12.7"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500",
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": 3000
+    }
+  }
+}

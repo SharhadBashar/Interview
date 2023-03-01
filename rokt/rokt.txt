@@ -1,0 +1,253 @@
+mean vs median
+what is p value
+hypothesis testing
+central limit theorem
+bayes
+why naive
+unsupervised vs supervised
+how to choose k in k means
+linear vs logistic regression
+formula of linear and logistic regression
+how to normalize data 
+regularization
+when is L1 better than L2
+overfitting
+random forrest vs gradiant boosting
+where does randomness in random forest trees come from
+
+
+# This problem is a multiple part problem. Each part will extend the previous solution.
+# Be sure to pace yourself appropriately.
+
+# For the first section, write a function which takes two string arguments and returns
+# a boolean. The function is intended to check if the two strings match. The string
+# will be lowercase alphabetical characters only. The first string may contain a wildcard
+# character represented as: `.`. If the strings match including the wildcard character,
+# your function should return True, otherwise False.
+
+#  - first argument will only be lowercase alphabetical characters and the wildcard
+#  - second argument will only be lowercase alphabetical characters
+#  - both arguments will always be strings
+
+# Examples
+# pattern_match("rokt", "rokt")  => True
+# pattern_match("foo", "rokt")   => False
+
+# pattern_match("r.kt", "rokt")  => True
+# pattern_match("r.kt", "rakt")  => True
+# pattern_match("r.kt", "rzkt")  => True
+
+# pattern_match("r..t", "rokt")  => True
+
+# pattern_match("rokt.", "rokt") => False
+# pattern_match("...", "rokt")   => False
+
+# pattern_match("", "").         => True
+# pattern_match(".", "").        => False
+# pattern_match("", "f").        => False
+
+
+# This problem is a multiple part problem. Each part will extend the previous solution.
+# Be sure to pace yourself appropriately.
+
+# For the first section, write a function which takes two string arguments and returns
+# a boolean. The function is intended to check if the two strings match. The string
+# will be lowercase alphabetical characters only. The first string may contain a wildcard
+# character represented as: `.`. If the strings match including the wildcard character,
+# your function should return True, otherwise False.
+
+#  - first argument will only be lowercase alphabetical characters and the wildcard
+#  - second argument will only be lowercase alphabetical characters
+#  - both arguments will always be strings
+
+# Examples
+# pattern_match("rokt", "rokt")  => True
+# pattern_match("foo", "rokt")   => False
+
+# pattern_match("r.kt", "rokt")  => True
+# pattern_match("r.kt", "rakt")  => True
+# pattern_match("r.kt", "rzkt")  => True
+
+# pattern_match("r..t", "rokt")  => True
+
+# pattern_match("rokt.", "rokt") => False
+# pattern_match("...", "rokt")   => False
+
+# pattern_match("", "").         => True
+# pattern_match(".", "").        => False
+# pattern_match("", "f").        => False
+
+
+# Part 2
+# Your task is to extend this language, instead of using a `.` wildcard character your
+# code should support numbers as the wild card. The semantics for the numbers are
+# as follows:
+
+#  - There will never be double digit numerics
+#  - The numerics be within the range 1-9
+#  - There can be multiple numerics within a string
+
+# Examples
+# pattern_match("rokt", "rokt")  => True
+# pattern_match("foo", "rokt")   => False
+# pattern_match("r1kt", "rokt")  => True
+# pattern_match("r2t", "rokt")   => True
+# pattern_match("1ok1", "rokt")  => True
+# pattern_match("rokt1", "rokt") => False
+# pattern_match("rok2", "rokt")  => False
+
+def pattern_match(s_1, s_2):
+    if (len(s_1) != len(s_2)): return False
+    for i in range(len(s_1)):
+        if (s_1[i] == '.' or s_1[i] == s_2[i]):
+            continue
+        else:
+            return False
+    return True
+        
+# print(pattern_match("r.kt", "rakt"))     
+        
+        
+def test(expected, pattern, given, msg):
+    actual = pattern_match(pattern, given)
+    assert expected == actual, "{} actual: {} expected: {}".format(msg, actual, expected)
+    print("Pass {}".format(msg))
+
+
+test(False, "rokt.", "rokt", "longer")
+test(False, "foo", "rokt", "different")
+test(True, "rokt", "rokt", "the same")
+test(True, "r.kt", "rokt", "one dot")
+test(True, "r..t", "rokt", "two dot")
+test(True, "....", "rokt", "all dot")
+test(False, "", "rokt", "empty pattern string")
+test(False, "rokt", "", "empty given string")
+        
+        
+# This problem is a multiple part problem. Each part will extend the previous solution.
+# Be sure to pace yourself appropriately.
+
+# For the first section, write a function which takes two string arguments and returns
+# a boolean. The function is intended to check if the two strings match. The string
+# will be lowercase alphabetical characters only. The first string may contain a wildcard
+# character represented as: `.`. If the strings match including the wildcard character,
+# your function should return True, otherwise False.
+
+#  - first argument will only be lowercase alphabetical characters and the wildcard
+#  - second argument will only be lowercase alphabetical characters
+#  - both arguments will always be strings
+
+# Examples
+# pattern_match("rokt", "rokt")  => True
+# pattern_match("foo", "rokt")   => False
+
+# pattern_match("r.kt", "rokt")  => True
+# pattern_match("r.kt", "rakt")  => True
+# pattern_match("r.kt", "rzkt")  => True
+
+# pattern_match("r..t", "rokt")  => True
+
+# pattern_match("rokt.", "rokt") => False
+# pattern_match("...", "rokt")   => False
+
+# pattern_match("", "").         => True
+# pattern_match(".", "").        => False
+# pattern_match("", "f").        => False
+
+
+
+
+def pattern_match(s_1, s_2):
+    if (len(s_1) != len(s_2)): return False
+    for i in range(len(s_1)):
+        if (s_1[i] == '.' or s_1[i] == s_2[i]):
+            continue
+        else:
+            return False
+    return True
+        
+# print(pattern_match("r.kt", "rakt"))     
+        
+        
+def test(expected, pattern, given, msg):
+    actual = pattern_match(pattern, given)
+    assert expected == actual, "{} actual: {} expected: {}".format(msg, actual, expected)
+    print("Pass {}".format(msg))
+
+
+    
+# Part 2
+# Your task is to extend this language, instead of using a `.` wildcard character your
+# code should support numbers as the wild card. The semantics for the numbers are
+# as follows:
+
+#  - There will never be double digit numerics
+#  - The numerics be within the range 1-9
+#  - There can be multiple numerics within a string
+
+# Examples
+# pattern_match("rokt", "rokt")  => True
+# pattern_match("foo", "rokt")   => False
+# pattern_match("r1kt", "rokt")  => True
+# pattern_match("r2t", "rokt")   => True
+# pattern_match("1ok1", "rokt")  => True
+# pattern_match("rokt1", "rokt") => False
+# pattern_match("rok2", "rokt")  => False
+
+
+def pattern_match_2_old(s_1, s_2):
+    if (s_1 == s_2): return True
+    # s_1[i].isdigit()
+    s_1_decoded = ''
+    for char in s_1:
+        if (char.isdigit()):
+            num = int(char)
+            s_1_decoded += '.' * num
+        else:
+            s_1_decoded += char
+    
+    return pattern_match(s_1_decoded, s_2)
+
+    
+def pattern_match_2(s_1, s_2):
+    if (s_1 == s_2): return True
+    i = 0
+    j = 0
+    while (i < len(s_1) and j < len(s_2)):
+        s_1_i = s_1[i]
+        s_2_j = s_2[j]
+        if (s_1_i.isdigit()):
+            s_1_i_int = int(s_1_i)
+            j += s_1_i_int
+            i += 1
+        else:
+            if (s_1_i != s_2_j): return False
+            i += 1
+            j += 1
+    if (i != len(s_1) or j != len(s_2)): return False
+    return True
+
+    
+# print(pattern_match_2('r2t', 'rokt'))
+def test(expected, pattern, given, msg):
+    actual = pattern_match_2(pattern, given)
+    assert expected == actual, "{} actual: {} expected: {}".format(msg, actual, expected)
+    print("Pass {}".format(msg))
+
+
+test(True, "r2t", "rokt", "number two")
+test(False, "rokt1", "rokt", "longer")
+test(False, "rok2", "rokt", "longer via expansion")
+test(True, "r1kt", "rokt", "single number")
+test(True, "1ok1", "rokt", "two numbers")
+test(False, "foo", "rokt", "different")
+test(True, "rokt", "rokt", "the same")
+test(False, "", "rokt", "empty pattern string")
+test(False, "rokt", "", "empty given string")
+
+
+
+
+
+        
+        

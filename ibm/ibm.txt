@@ -1,0 +1,45 @@
+def betterCompression(s):
+    count = dict()
+    s_arr = list(s)
+    i = 0
+    while i < len(s_arr):
+        if (s_arr[i].isalpha()):
+            key = s_arr[i]
+            i += 1
+        else:
+            j = i
+            s_count = ''
+            while (j < len(s_arr) and s_arr[j].isdigit()):
+                s_count += s_arr[j]
+                j += 1
+            # print(s_count)
+            try:    
+                count[key] += int(s_count)
+            except:
+                count[key] = int(s_count)
+            i = j
+    
+    output = ''
+    for key  in sorted(count):
+        output += key + str(count[key])
+    return output
+
+
+
+def triplets(t, d):
+    output = 0
+    d.sort()
+    n = len(d)
+    if (n <= 2):
+        return output
+    
+    for i in range(n - 2):
+        j = i + 1
+        k = n - 1
+        while (j < k):
+            if (d[i] + d[j] + d[k] > t):
+                k -= 1
+            else:
+                output += (k - j)
+                j += 1
+    return output

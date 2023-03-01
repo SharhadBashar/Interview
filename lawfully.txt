@@ -1,0 +1,29 @@
+lawfully
+threadpool in java
+
+Coding Interview
+
+Given the start time, and the end time of a lawyer's working hours along with the list of lawyer’s schedule,
+
+Return a list of available time slots. Each time slot can start at every hour and at 30 minutes past the hour.
+
+ex) startAt=9, endAt=17, schedule=[["12:00","13:30"], ["15:15", "16:20"]]
+
+Output = [“9:00”, “9:30”, “10:00”, “10:30”, “11:00”, “11:30”, “13:30”, “14:00”, “14:30”, “16:30”]
+
+
+
+Design a USCIS case update notification system with below constraints.
+
+For context, USCIS server responds to the current status of a given case number. If users add their cases on Lawfully’s app, they want to get a push notification when the status of the case is updated as soon as possible.
+
+Assume cases update randomly.
+The system can cover 200K cases.
+Users want to get a push notification within an hour after the case is updated.
+Response time of USCIS server : 200ms
+High level design
+
+*USCIS: United States Citizenship and Immigration Services
+
+
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <title>Kasif</title>
+
+    <style>
+      body, html {
+        height: 100%;
+        margin: 0;
+      }
+      .button1{
+        position: absolute;
+        top: 85%;
+        left: 43.75%;
+        z-index:10;
+      }
+      .button2{
+        position: absolute;
+        top: 85%;
+        left: 48.75%;
+        z-index:10;
+      }
+      .button3{
+        position: absolute;
+        top: 85%;
+        left: 52.85%;
+        z-index:10;
+      }
+
+      #title{
+        position: absolute;
+        top:10%;
+        left:35%;
+        color: white;
+      }
+
+      #head1{
+        position: absolute;
+        top:0%;
+        left:0%;
+      }
+
+      #head2{
+        position: absolute;
+        top:0%;
+        left:0%;
+        display: none;
+      }
+
+      #head3{
+        position: absolute;
+        top:0%;
+        left:0%;
+        display:none;
+      }
+
+      #bg {
+        background-image: url("background.jpeg");
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+
+    <script>
+
+      function function1(){
+        var img1 = document.getElementById("head1");
+        var img2 = document.getElementById("head2");
+        var img3 = document.getElementById("head3");
+        if (img1.style.display === "block") {}
+        else {
+          img1.style.display = "block";
+          img2.style.display = "none";
+          img3.style.display = "none";
+        }
+        sound(1);
+      }
+      function function2(){
+        var img1 = document.getElementById("head1");
+        var img2 = document.getElementById("head2");
+        var img3 = document.getElementById("head3");
+
+        if (img2.style.display === "block") {}
+        else {
+          img1.style.display = "none";
+          img2.style.display = "block";
+          img3.style.display = "none";
+        }
+        sound(2);
+      }
+      function function3(){
+        var img1 = document.getElementById("head1");
+        var img2 = document.getElementById("head2");
+        var img3 = document.getElementById("head3");
+        if (img3.style.display === "block") {}
+        else {
+          img1.style.display = "none";
+          img2.style.display = "none";
+          img3.style.display = "block";
+        }
+        sound(3);
+      }
+
+      function sound(buttonNum){
+        var sound1 = document.getElementById("audio1");
+        var sound2 = document.getElementById("audio2");
+        var sound3 = document.getElementById("audio3");
+        var sounds = document.getElementsByTagName('audio');
+        for(i=0; i<sounds.length; i++) sounds[i].pause();
+        if (buttonNum === 1){
+          sound1.loop = true;
+          sound1.play();
+        }
+        else if (buttonNum === 2){
+          sound2.loop = true;
+          sound2.play();
+        }
+        else if (buttonNum === 3){
+          var sounds = document.getElementsByTagName('audio');
+          for(i=0; i<sounds.length; i++) sounds[i].pause();
+          sound3.loop = true;
+          sound3.play();
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+     <div class="row">
+      <input class = "col-xs-1 col-lg-4 button1" type = "button" onclick = "function1();" value = "Click me!" />
+      <input class = "col-xs-1 col-lg-4 button2" type = "button" onclick = "function2();" value = "Or ME!" />
+      <input class = "col-xs-1 col-lg-4 button3" type = "button" onclick = "function3();" value = "Not me X" />
+     </div>
+    </div>
+
+    <div id = "title">
+      <h1 align="center">MAKE KASIF GREAT AGAIN</h1>
+    </div>
+
+    <audio id = "audio1">
+      <source src = "sound1.wav" type = "audio/wav">
+    </audio>
+
+    <audio id = "audio2">
+      <source src = "sound2.wav" type = "audio/wav">
+    </audio>
+
+    <audio id = "audio3">
+      <source src = "sound3.wav" type = "audio/wav">
+    </audio>
+
+    <div id = "head1">
+      <img src = "cap2.png" width="100%" height="100%">
+    </div>
+
+    <div id = "head2">
+      <img src = "kasif2.png" width="100%" height="100%">
+    </div>
+
+    <div id = "head3">
+      <img src = "dip2.png" width="100%" height="100%">
+    </div>
+
+    <div id = "bg"></div>
+
+    <script>
+
+    </script>
+
+  </body>
+</html>

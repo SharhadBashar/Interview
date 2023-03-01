@@ -1,0 +1,312 @@
+You are given a string source consisting of lowercase English letters. Your task is to find the longest contiguous substring consisting of the same character. If there are several substrings of the same length that meet this condition, find the rightmost one. Return a string consisting of this character concatenated with its number of occurrences in the longest contiguous substring (i.e., the length of the substring).
+
+Example
+
+For source = "bbacccdbbab", the output should be solution(source) = "c3".
+
+Explanation:
+
+There are two contiguous substrings consisting of the character "a", both have a length of 1.
+There are three contiguous substrings consisting of the character "b", two have a length of 2 and one has a length of 1.
+There is just one contiguous substring consisting of the character "c", which has a length of 3. So, this is the longest contiguous substring and hence the answer is "c3".
+For source = "bbaacaa", the output should be solution(source) = "a2".
+
+Explanation:
+There are three different contiguous substrings with a length of 2, so the answer should be the rightmost one — "a2".
+
+
+source: "bbacccdbbab" "c3"
+source: "bbaacaa" "a2"
+source: "x" "x1"
+source: "abcdefghijklmnopqrstuvwxyz" "z1"
+source: "tttttrrrrr" "r5"
+source: "ccooodddeeesiiiignalll" "i4"
+source: "xxxxxxxxxn" "x9"
+source: "nnkkkkuuuuuuusggywta" "u7"
+source: "iiiiiuuuuuuuuuuuuuuu" "u15"
+source: "yyyyyyyyyyyuuuuuuuuuuusssssssa" "u11"
+
+
+def solution(source):
+    ans = 1
+    temp = 1
+    for i in range(1, len(source)):
+        if (source[i] == source[i - 1]):
+            temp += 1
+        else:
+            ans = max(ans, temp)
+            temp = 1
+    ans = max(temp, ans)
+    for i in range(len(source) - ans + 1):
+        temp_arr = source[i: i + ans]
+        if temp_arr.count(temp_arr[0]) == len(temp_arr):
+            answer =  '' + temp_arr[0] + str(ans)
+            continue
+    return answer 
+
+
+
+
+
+
+For a rectangular matrix of integers, a cross is a figure formed by joining one row and one column. A cross is considered to be regular if all the elements in it are equal.
+A cross is called nearly regular if all of its elements are equal except for, at times, the element in the intersection of the row and the column which form the cross.
+
+You are given a rectangular matrix of integers matrix. Your task is to return the number of nearly regular crosses within matrix. Note that by definition the regular cross is also considered to be a nearly regular cross.
+
+Example
+
+For
+
+matrix = [
+  [1, 1, 1, 1],
+  [2, 3, 1, 1],
+  [1, 1, 1, 0],
+  [1, 4, 1, 1]
+]
+the output should be solution(matrix) = 2.
+
+Explanation:
+The only two nearly regular crosses are:
+
+The cross formed by the first row and the third column;
+
+The cross formed by the third row and the last column.
+
+For
+
+matrix = [
+  [1, 2],
+  [2, 1]
+]
+the output should be solution(matrix) = 4.
+
+Explanation:
+All possible combinations of one row and one column form a nearly regular cross.
+
+For
+
+matrix = [[2, 3]]
+the output should be solution(matrix) = 2.
+
+Explanation:
+All possible combinations of one row and one column form a nearly regular cross.
+
+
+Input:
+matrix:
+[[1,1,1,1], 
+ [2,3,1,1], 
+ [1,1,1,0], 
+ [1,4,1,1]]
+Expected Output:
+2
+
+
+
+Input:
+matrix:
+[[1,2], 
+ [2,1]]
+Expected Output:
+4
+
+
+
+
+Input:
+matrix: [[2,3]]
+Expected Output:
+2
+
+
+
+
+nput:
+matrix:
+[[2,2,2], 
+ [2,3,2], 
+ [2,2,2]]
+Expected Output:
+5
+
+
+
+
+Input:
+matrix: [[1000]]
+Expected Output:
+1
+
+
+
+
+nput:
+matrix: [[4,3,4,4,4,4]]
+Expected Output:
+1
+
+
+
+
+Input:
+matrix:
+[[1,1,1,1], 
+ [1,3,1,1], 
+ [1,1,1,0], 
+ [1,4,1,1]]
+Expected Output:
+3
+
+
+
+
+Input:
+matrix:
+[[3], 
+ [2], 
+ [3], 
+ [3]]
+Expected Output:
+1
+
+
+
+
+Input:
+matrix:
+[[6,4,6], 
+ [4,6,4]]
+Expected Output:
+2
+
+
+
+
+Input:
+matrix:
+[[7,3,3], 
+ [3,3,3], 
+ [3,3,3], 
+ [3,3,3], 
+ [3,3,3]]
+Expected Output:
+9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You are given an array of integers towers representing the height of some block towers (in number of blocks), and are asked to make the towers into an ascending or descending stair-step pattern. This means the height of each tower should differ from its neighbors by exactly 1, and the whole sequence should be either strictly increasing or decreasing. To change the towers, you can make multiple moves in which you add only one block to the top of any tower. Your task is to find the minimum number of moves required to make the towers either consecutively taller or shorter - whichever sequence requires fewer moves.
+
+Example
+
+For towers = [1, 4, 3, 2], the output should be solution(towers) = 4.
+
+The optimal solution is to add:
+
+Four blocks to the top of the first tower.
+The final height of the towers will be: [5, 4, 3, 2].
+
+For towers = [5, 7, 9, 4, 11], the output should be solution(towers) = 9.
+
+The optimal solution is to add:
+
+Two blocks to the top of the first tower;
+One block to the top of the second tower;
+Six blocks to the top of the fourth tower.
+The final height of the towers will be: [7, 8, 9, 10, 11].
+
+Input:
+towers: [1, 4, 3, 2]
+Expected Output:
+4
+
+
+
+
+Input:
+towers: [5, 7, 9, 4, 11]
+Expected Output:
+9
+
+
+
+
+Input:
+towers: [2, 3, 1, 3]
+Expected Output:
+5
+
+
+
+
+Input:
+towers: [10, 3, 1, 7, 7, 2]
+Expected Output:
+21
+
+
+
+
+Input:
+towers: [2, 1000]
+Expected Output:
+997
+
+
+
+
+Input:
+towers: [2, 3, 6, 8, 10, 8, 7, 4]
+Expected Output:
+28
+
+
+
+
+Input:
+towers: [13, 21, 22, 22, 28, 6, 34, 32, 26, 6]
+Expected Output:
+115
+
+
+
+
+Input 8 :
+towers: [2, 5, 2, 1, 2, 1, 1, 2, 3, 3, 3, 3, 2, 5, 1, 1, 3, 2, 2, 5, 2, 1, 1, 5, 3, 3, 2, 3, 5, 4, 2, 3, 5, 4, 2, 2, 4, 1, 2, 5, 4, 3, 2, 1, 5, 1, 5, 2, 4, 2, 2, 1, 1, 3, 1, 3, 4, 4, 5, 1, 2, 1, 4, 5, 3, 1, 1, 5, 1, 1, 3, 3, 1, 3, 1, 1, 2, 2, 5, 5, 1, 2, 1, 5, 2, 3, 2, 4, 3, 1, 4, 1, 2, 2, 2, 2, 1, 3, 2, 5, ...]
+Expected Output:
+11377
+
+
+
+
+Input 9:
+towers: [41, 299, 434, 185, 405, 145, 227, 26, 415, 336, 71, 451, 319, 193, 461, 440, 288, 204, 202, 131, 2, 410, 399, 475, 235, 47, 298, 447, 252, 164, 118, 397, 103, 150, 231, 455, 173, 195, 106, 320, 27, 179, 70, 47, 384, 420, 189, 11, 390, 61, 245, 123, 278, 73, 152, 398, 373, 4, 72, 349, 187, 180, 272, 76, 10, 118, 222, 270, 230, 127, 473, 201, 199, 354, 275, 431, 360, 466, 149, 260, 312, 333, 367, 152, 318, 392, 395, 43, 335, 253, 138, 181, 379, 65, 239, 338, 377, 437, 121, 249, ...]
+Expected Output:
+60480
+
+
+
+
+
+Input 10:
+towers: [195, 207, 297, 121, 195, 457, 411, 480, 70, 872, 788, 871, 788, 314, 652, 548, 118, 818, 223, 739, 921, 848, 896, 212, 745, 313, 890, 213, 519, 296, 447, 875, 485, 98, 373, 532, 251, 767, 832, 998, 189, 574, 586, 382, 834, 300, 155, 12, 344, 822, 387, 151, 292, 525, 939, 893, 900, 749, 132, 523, 68, 183, 610, 843, 517, 535, 38, 120, 886, 287, 898, 428, 577, 930, 92, 547, 197, 618, 858, 915, 702, 453, 456, 418, 958, 734, 45, 735, 701, 180, 852, 178, 846, 827, 98, 509, 722, 613, 578, 768, ...]
+Expected Output:
+350345
+

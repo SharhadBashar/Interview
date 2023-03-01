@@ -1,0 +1,39 @@
+rokt
+work on stats and stats model like baiyesian and stuff, tree based model
+
+
+
+composition vs inheritance
+https://www.infoworld.com/article/3409071/java-challenger-7-debugging-java-inheritance.html#:~:text=Inheritance%20and%20composition%20are%20two,the%20sum%20of%20its%20parts.
+
+Solid software design 
+
+concurrency in python
+
+implement dictionary in python -> how hash tables work, collisions
+
+Given an array of n+1 integers with values in [1, n].
+There is exactly one duplicated number.
+Write a function "find_duplicate" that takes an array of integers and returns the duplicated number
+
+from collections import Counter
+
+def find_duplicate(arr):
+    arr_count = Counter(arr)
+    for key, value in arr_count.items():
+        if value == 2:
+            return key
+    return -1
+
+def find_duplicate_2(arr):
+    arr_set = set()
+    for i in arr:
+        try:
+            value = arr_set.get(i)
+            return value
+        except:
+            arr_set.add(i)
+    return -1
+    
+    
+find_duplicate_2([2, 3, 2, 1])

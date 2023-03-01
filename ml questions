@@ -1,0 +1,62 @@
+u net
+over fitting vs underfitting
+convolutional layer vs fully connected layer
+  any advantages of that
+rain question
+
+F-measure
+Recall
+Precision
+Accuracy
+
+https://datascience.stackexchange.com/questions/107719/difference-between-the-different-measurement-metric
+
+def lowerCost(stations:List[int]):
+  '''
+  Input:
+    stations: A list of stations with their maintenance cost
+    
+  Output:
+    cost: This is the max amount of money that can be saved from removing gas stations on this road
+    
+  Constraints:
+    - If you remove two gas stations next to each other then the road becomes unpassable.
+    
+  Examples:
+    - [ ] -> 0
+    - [ 1* ] -> 1
+    - [ 1, 4*, 2 ] -> 4
+    - [ 2*, 4, 3* ] -> 5
+    - [ 2*, 4, 3*, 1, 7*] -> 12
+    - [ 2, 6*, 3, 1, 7*] -> 13
+    
+    [7, 4, 6, 5]
+    sub 1: [7, 4, 8, 6]
+    sub 2: [4, 8, 6, 5]
+  '''
+  
+    if len(stations) == 0:
+      return 0
+    
+    n = len(stations)
+    
+    if n == 1:
+      return stations[0]
+    
+    if n == 2: 
+      return max(stations[0], stations[1])
+    
+    arr = [0] * n
+    
+    #base cases
+    arr[0] = stations[0]
+    arr[1] = max(stations[0], stations[1])
+    
+    for i in range(2, n):
+      arr[i] = max(stations[i] + arr[i  - 2], arr[i - 1])
+    
+    return arr[-1]
+  
+  Time compl: O(n)
+  space compl: O(n)
+    

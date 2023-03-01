@@ -1,0 +1,104 @@
+# Trade:
+# id, type (BUY/SELL), totalGold, totalUSD
+# where:
+# totalGold, totalUSD > 0
+
+# Net Position:
+# netGold, netUSD
+# where: 
+# -Infinity < netGold, netUSD < Infinity
+
+# Problem 1:
+# Input: List of `Trade`s
+# Output: Net Position for those trades
+
+# Example:
+# For the two trades with ids "A" and "B" here
+#  * “A”, BUY, totalGold = 1, totalUSD = 1750
+#  * “B”, SELL, totalGold = 0.25, totalUSD = 750
+
+# The Net Position is:
+#     netGold = 0.75, netUSD = -1000
+
+def func_get_net(trades):
+  net_gold = 0
+  net_usd = 0
+  for trade in trades:
+    if (trade[1] == 'BUY'):
+      net_gold += trade['totalGold']
+      net_usd -= trade['totalUSD']
+    else:
+      net_gold -= trade['totalGold']
+      net_usd += trade['totalUSD']
+  return net_gold, net_usd
+
+# Trade:
+# id, type (BUY/SELL), totalGold, totalUSD, ourTag, 
+
+# where: 
+# totalGold, totalUSD > 0
+# for all ourTag theirTag, ourTag != theirTag (these are non-intersecting sets)
+
+# Trades:
+# * A: ourTag = “x”, theirTag = “0”
+# * B: ourTag = “x”, theirTag = “1”
+# * C: ourTag = “y”, theirTag = “1”
+# * D: ourTag = “z”, theirTag = “2”
+# * E: ourTag = “y”, theirTag = “3”
+# A,B,C are in the same group.
+# D is in a group by itself.
+
+# Problem 2:
+# Input: List of Trades, a tag
+# Output: The NetPosition for the group of Trades containing that tag.
+import pandas as pd
+
+trades = [], tag = ''
+
+def get_tags(df, tag):
+  tag = []
+  our = False
+  their = False
+  for trade in trades:
+    if df['ourTag'] == tag:
+      our = True
+      break
+    elif df['their'] == tag:
+      their = True
+      break
+
+  if our:
+    df_1 = df.groupby(df['ourTag'] == tag)
+    df_2 = df.groupby(df['theirTag'] in df_1)
+
+def func_pd(trades, tag):
+  df = pd.DataFrame(trades)
+  tags = get_tags(trades, tag)
+  df_tag = df[df['ourTag'] in tags or df['theirTag'] in tags]
+  net_gold, net_usd = func_get_net(list(df_tag))
+  return (net_gold, net_usd)
+
+
+#trades = 
+# * A: ourTag = “x”, theirTag = “0”
+# * B: ourTag = “x”, theirTag = “1”
+# * C: ourTag = “y”, theirTag = “1”
+# * D: ourTag = “z”, theirTag = “2”
+# * E: ourTag = “y”, theirTag = “3”
+
+# tag = 'x'
+# tags = [0, 1, 'x']
+
+def func(trades, tag):
+  trades_tag = []
+  tags = get_tags(trades, tag)
+  for trade in trades:
+    if (trade['ourTag'] in tags or trade['theirTag'] in tags):
+      trades_tag.append(trade)
+  net_gold, net_usd = func_get_net(trades_tag)
+  return (net_gold, net_usd)
+
+  time = O(N)
+  space = O(N)
+
+

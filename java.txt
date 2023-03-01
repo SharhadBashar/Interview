@@ -1,0 +1,82 @@
+Reverse a single linked list without using any defined function
+finding the middle of a singly linked list,
+Also asked to write an insert method for a BST.
+Post order BST traversal using stacks
+
+Write a procedure to calculate the quadratic formula
+check if word is a palindrome
+reversing words in a string eg "hello world" =&gt; "world hello"
+say you have to arrays a1 and a2. a1 has elements that are in a2. How would you remove those elements from a1 (no restrictions on implementation)
+Write a procedure to convert the number of bits which are in an array of bytes. v
+Convert Integer to String without using any library.
+Calculate the number of bits in bytes array
+Reverse a string.
+
+Difference between Trigger and Store procedure
+We can execute a stored procedure whenever we want with the help of the exec command, but a trigger can only be executed whenever an event (insert, delete, and update) is fired on the table on which the trigger is defined.
+We can call a stored procedure from inside another stored procedure but we can't directly call another trigger within a trigger.
+Stored procedure can take input parameters, but we can't pass parameters as input to a trigger.
+Cant use transaction statements inside trigger
+Stored procedures can return values but a trigger cannot return a value.
+Stored procedures are used for performing tasks. Trigger is for auditing
+Stored procedure can be called from front end
+
+Degree between hour and Minute(3:15) its 7.5
+
+what is GUID and how to obtain it
+Global Unidue Identifier. GUIDs are large, enormous numbers that are nearly guaranteed to be unique. They are usually 128 bits long. wmic gets GUID
+
+what is stateless and statefull system? Why is a stateless system more scalable than stateful?
+Stateful servers maintain user’s state information in the form of sessions
+Stateless servers on the other hand do not maintain any state information for the user. Each request is completely independent to the previous request. Most common stateless architecture that uses the HTTP is REST
+stateless is more scalable because the server doesn't need to know anything about the origin of the connection made by the client. There is no permanent connection needed from client to server. There is no "metadata" hidden in the connection, or in the session this connection entails.
+This means that you can easily scale horizontally: when your server continuously reaches its client connection limits or other resource limits, you can simply add another server, so you can serve more clients.
+
+difference between JavaBeans and EJB
+Javabean is a general purpose component model, EJB is a component model that is enterprise specific
+
+Was asked to explain
+  OOP
+    Object-oriented programming (OOP) is a programming language model organized around objects rather than "actions" and data rather than logic. OOP takes the view that what we really care about are the objects we want to manipulate rather than the logic required to manipulate them
+
+  encapsulation,
+    fundamental concept of oop. In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class. to achieve this, variables need to be provate and we need to provide public getters and setters to modify and view the variables values
+
+  polymorphism
+    Polymorphism is the ability of an object to take on many forms. Any Java object that can pass more than one IS-A test is considered to be polymorphic. deer example
+
+  inheritance
+    process where one class acquires the properties (methods and fields) of another. need to use the word exends
+
+  abstraction
+    abstraction is a process of hiding the implementation details from the user, only the functionality will be provided to the user. In other words, the user will have the information on what the object does instead of how it does it. In Java, abstraction is achieved using Abstract classes and interfaces.
+
+  class
+    A class is the blueprint from which individual objects are created
+
+  object
+    object refers to a particular instance of a class, where the object can be a combination of variables, functions, and data structures.
+
+  interface vs abstract class
+    Interface can have only abstract methods
+    variables in interfaces are final or static
+    Abstract class can provide the implementation of interface. Interface can’t
+    A Java interface can be implemented using keyword “implements” and abstract class can be extended using keyword “extends”.
+    An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces
+
+  static vs non static
+    static methods belong to the class. non static belongs to the object of a class
+    dont need to create an instance of the static method to access it
+    static method can only call other static methods
+    access static methods -> classname.saticmethodname
+    access nonstatic methods -> Foo bar = new Foo(1) bar.method2()
+
+  left join, full join
+    (INNER) JOIN: Returns records that have matching values in both tables
+    LEFT (OUTER) JOIN: Return all records from the left table, and the matched records from the right table
+    RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table
+    FULL (OUTER) JOIN: Return all records when there is a match in either left or right table
+
+what is a hash table used for
+Soap and Mir-IHOP and Rmi.
+

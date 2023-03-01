@@ -1,0 +1,6 @@
+Service.cs
+Location.cs
+Purchasing\Vendor.cs
+Purchasing\Lines\PurchaseOrderLine.cs
+Sales\SalesOrder.cs
+Sales\Lines\SalesOrderPickLine.cs

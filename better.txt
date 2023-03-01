@@ -1,0 +1,242 @@
+# Suppose we have an unsorted log file of accesses to web resources. Each log entry consists of an access time, the ID of the user making the access, and the resource ID.
+
+# The access time is represented as seconds since 00:00:00, and all times are assumed to be in the same day.
+
+# For example:
+# logs1 = [
+#     ["58523", "user_1", "resource_1"],
+#     ["62314", "user_2", "resource_2"],
+#     ["54001", "user_1", "resource_3"],
+#     ["200", "user_6", "resource_5"],
+#     ["215", "user_6", "resource_4"],
+#     ["54060", "user_2", "resource_3"],
+#     ["53760", "user_3", "resource_3"],
+#     ["58522", "user_22", "resource_1"],
+#     ["53651", "user_5", "resource_3"],
+#     ["2", "user_6", "resource_1"],
+#     ["100", "user_6", "resource_6"],
+#     ["400", "user_7", "resource_2"],
+#     ["100", "user_8", "resource_6"],
+#     ["54359", "user_1", "resource_3"],
+# ]
+
+
+# We would like to compute user sessions, specifically: write a function that takes the logs and returns a data structure that associates to each user their earliest and latest access times.
+
+# Example:
+# {'user_1': [54001, 58523],
+#  'user_2': [54060, 62314],
+#  'user_3': [53760, 53760],
+#  'user_5': [53651, 53651],
+#  'user_6': [2, 215],
+#  'user_7': [400, 400],
+#  'user_8': [100, 100],
+#  'user_22': [58522, 58522],
+# }
+
+# Example 2:
+# logs2 = [
+#     ["300", "user_1", "resource_3"],
+#     ["599", "user_1", "resource_3"],
+#     ["900", "user_1", "resource_3"],
+#     ["1199", "user_1", "resource_3"],
+#     ["1200", "user_1", "resource_3"],
+#     ["1201", "user_1", "resource_3"],
+#     ["1202", "user_1", "resource_3"]
+# ]
+
+# Should return:
+# {'user_1': [300, 1202]}
+
+# Example 3:
+# logs3 = [
+#     ["300", "user_10", "resource_5"]
+# ]
+
+# Should return:
+# {'user_10': [300, 300]}
+
+# Complexity analysis variables:
+
+# n: number of logs in the input
+import math
+
+logs1 = [
+    ["58523", "user_1", "resource_1"],
+    ["62314", "user_2", "resource_2"],
+    ["54001", "user_1", "resource_3"],
+    ["200", "user_6", "resource_5"],
+    ["215", "user_6", "resource_4"],
+    ["54060", "user_2", "resource_3"],
+    ["53760", "user_3", "resource_3"],
+    ["58522", "user_22", "resource_1"],
+    ["53651", "user_5", "resource_3"],
+    ["2", "user_6", "resource_1"],
+    ["100", "user_6", "resource_6"],
+    ["400", "user_7", "resource_2"],
+    ["100", "user_8", "resource_6"],
+    ["54359", "user_1", "resource_3"],
+]
+
+logs2 = [
+    ["300", "user_1", "resource_3"],
+    ["599", "user_1", "resource_3"],
+    ["900", "user_1", "resource_3"],
+    ["1199", "user_1", "resource_3"],
+    ["1200", "user_1", "resource_3"],
+    ["1201", "user_1", "resource_3"],
+    ["1202", "user_1", "resource_3"]
+]
+
+logs3 = [
+    ["300", "user_10", "resource_5"]
+]
+
+def create_log(logs):
+  users = {}
+  for log in logs:
+    user = log[1]
+    time = int(log[0])
+    try:
+      time_arr = users[user]
+      if (time < time_arr[0]):
+        users[user][0] = time
+      elif (time > time_arr[1]):
+        users[user][1] = time
+    except:
+      users[user] = [time, time]
+  return users
+
+
+users = create_log(logs3)
+
+print(users)
+
+
+# Suppose we have an unsorted log file of accesses to web resources. Each log entry consists of an access time, the ID of the user making the access, and the resource ID.
+
+# The access time is represented as seconds since 00:00:00, and all times are assumed to be in the same day.
+
+# Example:
+# logs1 = [
+#     ["58523", "user_1", "resource_1"],
+#     ["62314", "user_2", "resource_2"],
+#     ["54001", "user_1", "resource_3"], -
+#     ["200", "user_6", "resource_5"],
+#     ["215", "user_6", "resource_4"],
+#     ["54060", "user_2", "resource_3"],
+#     ["53760", "user_3", "resource_3"],
+#     ["58522", "user_22", "resource_1"],
+#     ["53651", "user_5", "resource_3"],
+#     ["2", "user_6", "resource_1"],
+#     ["100", "user_6", "resource_6"],
+#     ["400", "user_7", "resource_2"],
+#     ["100", "user_8", "resource_6"],
+#     ["54359", "user_1", "resource_3"],
+# ]
+
+# Example 2:
+# logs2 = [
+#     ["300", "user_1", "resource_3"],
+#     ["599", "user_1", "resource_3"],
+#     ["900", "user_1", "resource_3"],
+#     ["1199", "user_1", "resource_3"],
+#     ["1200", "user_1", "resource_3"],
+#     ["1201", "user_1", "resource_3"],
+#     ["1202", "user_1", "resource_3"]
+# ]
+
+# Example 3:
+# logs3 = [
+#     ["300", "user_10", "resource_5"]
+# ]
+
+# Write a function that takes the logs and returns the resource with the highest number of accesses in any 5 minute window, together with how many accesses it saw.
+
+# Expected Output:
+# most_requested_resource(logs1) # => ('resource_3', 3)
+# Reason: resource_3 is accessed at 53760, 54001, and 54060
+
+# most_requested_resource(logs2) # => ('resource_3', 4)
+# Reason: resource_3 is accessed at 1199, 1200, 1201, and 1202
+
+# most_requested_resource(logs3) # => ('resource_5', 1)
+# Reason: resource_5 is accessed at 300
+
+# Complexity analysis variables:
+
+# n: number of logs in the input
+
+
+
+
+
+import math
+
+logs1 = [
+    ["58523", "user_1", "resource_1"],
+    ["62314", "user_2", "resource_2"],
+    ["54001", "user_1", "resource_3"],
+    ["200", "user_6", "resource_5"],
+    ["215", "user_6", "resource_4"],
+    ["54060", "user_2", "resource_3"],
+    ["53760", "user_3", "resource_3"],
+    ["58522", "user_22", "resource_1"],
+    ["53651", "user_5", "resource_3"],
+    ["2", "user_6", "resource_1"],
+    ["100", "user_6", "resource_6"],
+    ["400", "user_7", "resource_2"],
+    ["100", "user_8", "resource_6"],
+    ["54359", "user_1", "resource_3"],
+]
+
+logs2 = [
+    ["300", "user_1", "resource_3"],
+    ["599", "user_1", "resource_3"],
+    ["900", "user_1", "resource_3"],
+    ["1199", "user_1", "resource_3"],
+    ["1200", "user_1", "resource_3"],
+    ["1201", "user_1", "resource_3"],
+    ["1202", "user_1", "resource_3"]
+]
+
+logs3 = [
+    ["300", "user_10", "resource_5"]
+]
+
+
+
+
+def create_log(logs):
+  users = {}
+  for log in logs:
+    user = log[1]
+    time = int(log[0])
+    try:
+      time_arr = users[user]
+      if (time < time_arr[0]):
+        users[user][0] = time
+      elif (time > time_arr[1]):
+        users[user][1] = time
+    except:
+      users[user] = [time, time]
+  return users
+
+
+# users = create_log(logs3)
+
+# print(users)
+
+def create_log_2(logs):
+  resources = {}
+  for log in logs:
+    log[0] = int(log[0])
+  logs.sort(key = lambda x: x[0])
+  for log in logs:
+    try:
+      resources[log[2]].append(round(log[0] / 60, 2))
+    except:
+      resources[log[2]] = [round(log[0] / 60, 2)]
+  for key, val in
+
+create_log_2(logs1)

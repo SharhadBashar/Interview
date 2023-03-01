@@ -1,0 +1,13 @@
+Suppose you’re building a classifier for a company that sells manufacturing equipment to people who make furniture out of wood, metal, or wood and metal. You want to use the items’ product descriptions to tag a product as either being for making wood furniture, metal furniture or either type. Another machine learning engineer you’re working with suggests using pre-trained word embeddings from a Facebook model to kickstart development. Would you follow that advice? Why or why not?
+
+Explain the difference between an LSTM plus attention architecture and a transformer architecture. You're welcome to consult external resources if you're unfamiliar with these topics.
+
+Imagine a member of the product team is working on a new feature. She would like to add a feature that either classifies customers as profitable or unprofitable. In her research, she's discovered that for the most part, customers who are unprofitable spend under $1,000 per year. In a planning meeting, she proposes building a very simple classifier that uses her heuristic. If the customer spends under $1,000 per year, label them as unlikely to be profitable. She further notes it's critical to get out, as we've promised it to a user.A software engineer on the team has concerns. She worries that this simple heuristic is unlikely to produce very good results, even though it will be much faster to implement. This might undermine adoption, because the predictions aren't good enough. The team turns to you for an opinion. What do you think? How do you think the team should
+
+In Python 3, write a function that takes two arguments, (1) an n x m matrix and (2) a 1 x n matrix, and that multiplies each row by the corresponding index of the scaling matrix. For example, f(A, [3, 10]), would operate on a 2 x m matrix A and multiply each element of the first row by 3 and the second row by 10. 
+
+import numpy as np
+def scale_matrix(a, b):
+    a = np.array(a)
+    b = np.array(b)
+    return (a.T * b).T

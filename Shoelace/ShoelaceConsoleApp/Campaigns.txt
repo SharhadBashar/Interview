@@ -1,0 +1,1 @@
+[ID: 1, Name: Campaign 1, Template: Single Image Ad, Ad Title: Product 1, Ad Copy: This is Product 1 , Image: https://portal.azure.com/, Campaign Objective: LeadGeneration]

@@ -1,0 +1,202 @@
+JAVASCRIPT
+
+String:
+\' -> putting a backslash before something makes it a string
+ex: 'Hello what\'s up';
+we can also do: "hello what's up" -> different parathesis
+string properties do not have () at the end:
+ex: string.length;
+methods do
+ex: string.toUpperCae();
+
+Operator:
+Binary operator requirs a operand before and after the operator: x+y or x*z
+uniray operator requirs only one operand: ++x or x++
+
+== -> equal value
+=== -> equal value and type
+
+postfix: x++ -> returns current value of x and then increments
+prefix: ++x -> increments x and then returns it
+
+var person = {
+  name: 'ramisa',
+  age: 25,
+  female: true
+};
+var object = {};
+object.property = value; -> dot notaiont
+object['property'] = value; -> bracket notation
+
+bracket notation can add properties which has space in them. dot notaion cannot
+
+example: var car = {
+  'origin year' = 1994
+}
+to update it:
+car['origin year'] = 2018 -> cannot do this with dot notation due to the space
+
+function functionName(property1, property2, property3,...){
+  this.property1 = property1
+  this.property2 = property2
+  this.property3 = property3
+  .
+  .
+  .
+}
+var object = new functionName(property1, property2, property3)
+
+var varName = new varType(value);
+ex: var superHero = new String('Super Man');
+objects > primitives in regards to memory
+
+array.pop -> return and remove last element
+array.push -> add to end of array
+
+array.shift -> return and remove first element
+array.unshift -> add to front of array
+
+array.splice(Index, number of items to slice off)
+
+var functionName = function(property1, property2, property3){
+  funtion code
+}
+
+if you wrap a function in brackets, it calls it immedieatly. does not need to be invoked
+var variableName = (function(property1, property2, property3,...){
+  funtion code
+}(property1, property2, property3,...))
+
+
+stitch(variableName){
+  case 'case1':
+    code for case1
+    break;
+  case 'case2':
+    code for case2
+    break;
+  ...
+  ...
+  ...
+  default:
+    code for default
+    break;
+}
+
+let vs var:
+print variable
+let variable = 10
+this will give an error
+
+print variable
+var variable = 10
+this will give an undefined
+
+if(true){
+  var foo = 10
+}
+print foo
+this will work
+
+if(true){
+  let foo = 10
+}
+print foo
+this will not work
+
+let has blcok scoping, var does not
+
+
+Rest Parameters:
+function (day, ...variableName){
+  variableName.foreach(id => console.log(id));
+}
+variableName('monday', 100, 200, 300)
+day is a normal variable
+...variableName is an array
+
+
+destructering array
+let array = [1,2,3]
+let[var1, var2, var3] = array
+console.log(var1, var2, var3) -> 1 2 3
+
+console.log('Hello World!!!!!');
+let car = {var1: 100, var2:'some'};
+let {var1, var2} = car;
+console.log(var1, var2);
+for destructing,
+use [] for arrays, and {} for objects
+
+
+Set in JS is the same as Hasset in java
+
+return word.length>4 ? word.split('').reverse().join('') : word; -> what does ? do
+
+function digital_root(n) {
+  return (n - 1) % 9 + 1;
+}
+
+
+sort an array of string by length: arr.sort(function(a,b){
+    return a.length - b.length;
+  });
+
+ISOGRAM
+
+
+function isIsogram(str){
+  var letters = {};
+  if(str == ""){return true;}
+  var str = str.toLowerCase();
+  var splitStr = str.split("");
+  for (i = 0; i < splitStr.length; i++){
+    if (typeof(letters[splitStr[i]]) == 'undefined'){
+      letters[splitStr[i]] = 1;
+
+    }
+    else{
+      letters[splitStr[i]] = Number(letters[splitStr[i]]) + 1;
+    }
+  }
+  var lettersSorted = (Object.values(letters)).sort();
+  if(lettersSorted[lettersSorted.length - 1] === 1){return true;}
+  return false;
+}
+
+js sort an array by integers:
+
+queArr.sort(function(a,b){
+      return a-b;
+    });
+
+function queueTime(customers, n) {
+  if (customers.length === 0){return 0;}
+  if(n >= customers.length){
+    return customers.sort()[customers.length - 1];
+  }
+  var queArr = [];
+  for (var i = 0; i < n; i++){
+    queArr.push(0);
+  }
+
+  for(var i = 0; i < customers.length; i++){
+    queArr[0] += customers[i];
+    queArr.sort(function(a,b){
+      return a-b;
+    });
+  }
+  return queArr[queArr.length - 1];
+}
+
+sum of everything in an array:
+arr.reduce((a,b) => a + b)
+function findEvenIndex(arr)
+{
+  for (var i = 1; i < arr.length-1; i++){
+    var leftSide = arr.slice(0, i).reduce((a,b) => a + b);
+    var rightSide = arr.slice(i + 1).reduce((a,b) => a + b);
+    if (leftSide === rightSide){return i;}
+  }
+  return -1;
+}

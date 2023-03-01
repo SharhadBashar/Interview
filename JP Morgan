@@ -1,0 +1,23 @@
+JP Morgan
+1. 2 1d vectors of size n. convolve them
+2. is python interpreted or compiled code
+    what happens when you type python in compiler
+    
+3. how is memory allocated in python
+4. when is garbage collection ran? does it affect your code
+5. Global lock in python
+6. 
+
+
+jpmorgan.txt
+
+svm
+polymorphism vs inheritance
+generator
+decorator
+bias vs variance
+List Comprehension, its faster than for loops
+python common data types
+how to join pandas df
+global vs locals
+memory management python

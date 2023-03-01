@@ -1,0 +1,59 @@
+/* The css file for all the styling */
+
+/* The header and all the links in there */
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+.header a {
+    margin: 10px 10px;
+}
+.links { 
+    margin: 10px 10px;
+}
+
+/* The error message */
+.error {
+    color: red;
+    text-transform: uppercase;
+    padding-left: 10px;
+}
+
+/* The input fields */
+fieldset {
+    border: white;
+}
+input {
+    border-radius: 4px;
+}
+
+/* The buttons */
+button {
+    margin: 10px;
+    border-radius: 8px;
+}
+button:not(.disabled) {
+    background-color: white; 
+    color: #008CBA; 
+    border: 2px solid #008CBA;
+}
+button:hover:not(.disabled) {
+    background-color: #008CBA;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+button:active {
+    box-shadow: none;
+}
+button.disabled {
+    background-color: lightgray;
+    color: grey;
+    border: 2px solid white;
+}
+
+/* Text components */
+.content { 
+    margin-left: 10px;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "nuxt-datadog-trace",
+  "version": "0.1.3",
+  "description": "Enable Datadog tracing in your Nuxt application",
+  "main": "index.js",
+  "author": "Aaron Ransley (https://aaronransley.com)",
+  "homepage": "https://github.com/aaronransley/nuxt-datadog-trace",
+  "repository": "github:aaronransley/nuxt-datadog-trace",
+  "contributors": [
+    "Charlie Pitkin",
+    "FINE, A Brand Agency (https://wearefine.com)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "dd-trace": "^1.5.0"
+  }
+}

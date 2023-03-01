@@ -1,0 +1,8 @@
+Hi!
+
+Thanks for doing this phone interview exercise!  Please extract the attached zip file, and then open the extracted file INSTRUCTIONS.TXT for more details on what to do!  Please then email your source code back to me within 30 minutes of when this email was sent.
+
+Thanks, and good luck!
+
+cheers,
+-Stephen

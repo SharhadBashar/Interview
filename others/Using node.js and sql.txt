@@ -1,0 +1,105 @@
+Using node.js and sql
+
+app.js
+const express = require('express');
+const chalk = require('chalk');
+// const debug = require('debug')('app');
+const morgan = require('morgan');
+const path = require('path');
+const sql = require('mssql');
+
+const app = express();
+const port = process.env.PORT || 4000;
+const someString = 'this is the string';
+
+const config = {
+  user: '...',
+  password: '...',
+  server: 'localhost', // You can use 'localhost\\instance' to connect to named instance
+  database: '...',
+
+  options: {
+    encrypt: true // Use this if you're on Windows Azure
+  }
+};
+sql.connect(config).catch(err => console.log(err));
+
+app.use(morgan('tiny'));
+app.use(express.static(path.join(__dirname, 'public/')));
+app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
+app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
+app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
+
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/index.html'));
+});
+
+app.get('/ejs', (req, res) => {
+  res.render(
+    'index',
+    {
+      title: 'EJS',
+      nav: [
+        { link: '/books', title: 'Books' },
+        { link: '/author', title: 'Author' }
+      ]
+    }
+  );
+});
+
+const bookRouter = require('./src/routes/routes')(someString);
+
+app.use('/books', bookRouter);
+
+app.listen(port, () => {
+  console.log(`listening on port ${chalk.green(port)}`);
+});
+
+
+
+
+
+
+router.js
+const express = require('express');
+const sql = require('mssql');
+
+const bookRouter = express.Router();
+
+function router(someString) {
+  bookRouter.route('/')
+    .get((req, res) => {
+      (async function query() {
+        const request = new sql.Request();
+        // const result = await request.query('SELECT * from books');
+        // console.log(result.recordset);
+        const { recordset } = await request.query('SELECT * from books');
+        console.log(recordset);
+        res.send(someString);
+      }());
+    });
+  bookRouter.route('/:id')
+    .all((req, res, next) => {
+      (async function queryOne() {
+        const { id } = req.params;
+        const request = new sql.Request();
+        const { recordset } = await request
+          .input('id', sql.Int, id)
+          .query('SELECT * from books where id = @id');
+        console.log(recordset);
+        [req.book] = recordset;
+        next();
+      }());
+    })
+    .get((req, res) => {
+      res.send(`hello single book ${req.book}`);
+    });
+  return bookRouter;
+}
+
+
+module.exports = router;

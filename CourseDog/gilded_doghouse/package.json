@@ -1,0 +1,21 @@
+{
+  "name": "gilded_doghouse",
+  "version": "1.0.0",
+  "description": "Recruitment task",
+  "main": "gilded_doghouse.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/coursedog/gilded_doghouse.git"
+  },
+  "author": "Kuba Krzempek",
+  "bugs": {
+    "url": "https://github.com/coursedog/gilded_doghouse/issues"
+  },
+  "homepage": "https://github.com/coursedog/gilded_doghouse#readme",
+  "devDependencies": {
+    "jest": "^27.4.3"
+  }
+}

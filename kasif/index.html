@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <title>Kasif</title>
+
+  <style>
+    body,
+    html {
+      height: 100%;
+      max-height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    #title {
+      text-align: center;
+      color: white;
+    }
+
+    #title h1{
+      margin-top: 15%;
+      font-size: 32px;
+    }
+
+    #head1 {
+      top: 0;
+      left:-20%;
+      position: absolute;
+      height: 300%;
+    }
+
+    #head2 {
+      top: 0;
+      left: -5%;
+      position: absolute;
+      height: 100%;
+      display:none;
+
+    }
+
+    #head3 {
+      top: -20%;
+      left: -10%;
+      position: absolute;
+      height: 100%;
+      display:none;
+    }
+
+    #bg {
+      background-image: url("background.jpeg");
+      height: 100vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-content: space-between;
+    }
+
+    .image-container {
+      position: relative;
+
+      height: 500px;
+      width: 100vw;
+      max-width: 320px;
+
+    }
+
+    .btn {
+      margin-bottom: 20%;
+    }
+    .btn-container {
+      width: 300px;
+    }
+
+    @media screen and (min-width: 600px) {
+      #bg {
+        justify-content: space-around;
+      }
+
+      .image-container {
+        box-sizing: border-box;
+        margin-left: 250px;
+        height: 500px;
+        width: 100vw;
+        max-width: 667px;
+      }
+
+
+
+      #head1 {
+        position: absolute;
+        height: 500px;
+      }
+
+      #head2 {
+        position: absolute;
+        height: 500px;
+      }
+
+      #head3 {
+        position: absolute;
+        height: 700px;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        max-width: 600px;
+      }
+      button {
+        margin: 0 10px;
+      }
+    }
+
+  </style>
+
+  <script>
+
+    function function1() {
+      var img1 = document.getElementById("head1");
+      var img2 = document.getElementById("head2");
+      var img3 = document.getElementById("head3");
+      if (img1.style.display === "block") { }
+      else {
+        img1.style.display = "block";
+        img2.style.display = "none";
+        img3.style.display = "none";
+      }
+      sound(1);
+    }
+    function function2() {
+      var img1 = document.getElementById("head1");
+      var img2 = document.getElementById("head2");
+      var img3 = document.getElementById("head3");
+
+      if (img2.style.display === "block") { }
+      else {
+        img1.style.display = "none";
+        img2.style.display = "block";
+        img3.style.display = "none";
+      }
+      sound(2);
+    }
+    function function3() {
+      var img1 = document.getElementById("head1");
+      var img2 = document.getElementById("head2");
+      var img3 = document.getElementById("head3");
+      if (img3.style.display === "block") { }
+      else {
+        img1.style.display = "none";
+        img2.style.display = "none";
+        img3.style.display = "block";
+      }
+      sound(3);
+    }
+
+    function sound(buttonNum) {
+      var sound1 = document.getElementById("audio1");
+      var sound2 = document.getElementById("audio2");
+      var sound3 = document.getElementById("audio3");
+      var sounds = document.getElementsByTagName('audio');
+      for (i = 0; i < sounds.length; i++) sounds[i].pause();
+      if (buttonNum === 1) {
+        sound1.loop = true;
+        sound1.play();
+      }
+      else if (buttonNum === 2) {
+        sound2.loop = true;
+        sound2.play();
+      }
+      else if (buttonNum === 3) {
+        var sounds = document.getElementsByTagName('audio');
+        for (i = 0; i < sounds.length; i++) sounds[i].pause();
+        sound3.loop = false;
+        sound3.play();
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="bg">
+
+    <div id = "title">
+      <h1>MAKE KASIF GREAT AGAIN</h1>
+    </div>
+
+    <audio id = "audio1">
+      <source src = "kasif1.wav" type = "audio/wav">
+    </audio>
+
+    <audio id = "audio2">
+      <source src = "kasif2.wav" type = "audio/wav">
+    </audio>
+
+    <audio id = "audio3">
+      <source src = "kasif3.wav" type = "audio/wav">
+    </audio>
+
+    <div class="image-container">
+
+      <img class="heads" id="head1" src="cap.png">
+
+      <img class="heads" id="head2" src="kasif.png">
+
+      <img class="heads" id="head3" src="dip.png">
+
+    </div>
+
+    <div class="btn-container">
+        <button class="col-xs-12 col-sm-3 btn btn-primary btn-sm" type = "button" onclick = "function1();" >Click me!</button>
+        <button class="col-xs-12 col-sm-3 btn btn-primary btn-sm" type = "button" onclick = "function2();" >Or ME!</button>
+        <button class="col-xs-12 col-sm-3 btn btn-primary btn-sm" type = "button" onclick = "function3();" >Not me X</button>
+    </div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+name: environment
+channels:
+  - nodefaults
+dependencies:
+  - python
+  - flask

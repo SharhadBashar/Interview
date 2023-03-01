@@ -1,0 +1,1 @@
+This is a fake readme file for a sample application.

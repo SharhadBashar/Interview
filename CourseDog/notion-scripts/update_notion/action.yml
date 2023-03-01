@@ -1,0 +1,14 @@
+name: 'Update Notion Task Status'
+description: 'Github Action to Update Notion Task when a PR has been merged to a particular stage'
+inputs:
+  NOTION_API_KEY:  # id of input
+    description: 'API Key to get access to the notion board'
+    required: true
+    default: ''
+  NOTION_DATABASE_TOKEN:  # id of input
+    description: 'Token to identify the task board in which the change is going to happen'
+    required: true
+    default: ''
+runs:
+  using: 'node16'
+  main: 'index.js'
