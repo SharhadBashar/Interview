@@ -1,0 +1,91 @@
+##OLS Regression
+## One response variable and one predictor variable
+
+import numpy as np
+import matplotlib.pyplot as plot
+
+##create dummy data
+
+from sklearn import datasets as skds
+
+X,y = skds.make_regression(n_samples=200,n_features=1,n_informative=1,n_targets=1,noise=20.0)
+##200 values each for the target and predictor variable
+
+if(y.ndim==1):
+    y=y.reshape(len(y),1)
+
+plot.figure(figsize=(15,9))
+
+plot.plot(X,y,'.b')
+
+from sklearn.model_selection import train_test_split
+
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,random_state=123)
+##set aside 30% dataset for testing
+
+##Defining inputs, parameters and other variables
+num_outputs=y_train.shape[1] #one response variable
+num_inputs=X_train.shape[1] #one predictor
+
+##Use placeholders
+import tensorflow as tf
+
+##define eqn: y=W*x + b
+
+x_tensor=tf.placeholder(dtype=tf.float32, shape=[None,num_inputs],name="x")
+## tf placeholder to accomodate the input
+y_tensor=tf.placeholder(dtype=tf.float32, shape=[None,num_outputs],name="y")##response variable
+
+w=tf.Variable(tf.zeros([num_inputs,num_outputs]),dtype=tf.float32,name="w")
+b=tf.Variable(tf.zeros([num_outputs]),dtype=tf.float32,name="b")
+
+model=tf.matmul(x_tensor,w)+b #y=W*x + b 
+
+loss = tf.reduce_mean(tf.square(model-y_tensor))#MSE 
+
+mse = tf.reduce_mean(tf.square(model-y_tensor))#MSE 
+
+y_mean=tf.reduce_mean(y_tensor)
+
+total_error=tf.reduce_sum(tf.square(y_tensor-y_mean))
+
+unexplained_error=tf.reduce_sum(tf.square(y_tensor-model))
+
+learning_rate=0.001
+
+optimizer=tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
+##gradient descent is an algorithm that minimizes functions
+## learning rate is the step we take per iteration
+
+num_epochs=1800 ##number of iterations to run the training for
+
+##w_hat and b_hat: estimates of w and b
+w_hat=0
+b_hat=0
+
+loss_epochs=np.empty(shape=[num_epochs],dtype=float)
+mse_epochs=np.empty(shape=[num_epochs],dtype=float)
+rs_epochs=np.empty(shape=[num_epochs],dtype=float)
+
+mse_score=0
+rsq_score=0
+#initial values
+
+with tf.Session() as tfs:
+    tfs.run(tf.global_variables_initializer())#run optimizer/loop on training data
+    for epoch in range(num_epochs):
+        feed_dict = {x_tensor: X_train, y_tensor: y_train}
+        loss_val, _ = tfs.run([loss, optimizer], feed_dict=feed_dict)
+        loss_epochs[epoch] = loss_val #calculate and store error
+
+        feed_dict = {x_tensor: X_test, y_tensor: y_test}
+        mse_score, rsq_score = tfs.run([mse, rsq], feed_dict=feed_dict)
+        mse_epochs[epoch] = mse_score
+        rs_epochs[epoch] = rsq_score
+
+    w_hat, b_hat = tfs.run([w, b]) #final values of w and b obtained after all iterations
+    w_hat = w_hat.reshape(1)
+
+print('model : Y = {0:.8f} X + {1:.8f}'.format(w_hat[0], b_hat[0]))
+print('For test data : MSE = {0:.8f}, R2 = {1:.8f} '.format(
+    mse_score, rsq_score))

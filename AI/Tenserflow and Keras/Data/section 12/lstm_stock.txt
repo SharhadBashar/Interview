@@ -1,0 +1,79 @@
+###LSTM on Stock data
+
+##Build a model that predicts the stock prices of a company based on the ##prices of the previous few days
+
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+from keras.models import Sequential
+from keras.layers import LSTM,Dense
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('all_stocks_5yr.csv')
+
+df.head()
+
+companies = df.Name.unique()
+companies
+
+
+z = df.loc[df['Name'] == 'ZTS']
+z.info()
+
+z.head()
+
+# creating an array with closing prices
+trainingd = z.iloc[:, 4:5].values
+
+from sklearn.preprocessing import MinMaxScaler
+sc = MinMaxScaler()
+training_set_scaled = sc.fit_transform(trainingd)
+
+##x_train stores the values of closing prices of past 45(or as specified in ##timestamp) days
+
+##y_train stores the values of closing prices of the present day
+
+x_train = []
+y_train = []
+timestamp = 45
+length = len(trainingd)
+for i in range(timestamp, length):
+    x_train.append(training_set_scaled[i-timestamp:i, 0])
+    y_train.append(training_set_scaled[i, 0])
+    
+x_train = np.array(x_train)
+y_train = np.array(y_train)
+
+print (x_train[0])
+print ('\n')
+print (y_train[0])
+
+x_train = np.reshape(x_train, (x_train.shape[0], x_train.shape[1], 1))
+x_train.shape
+
+from keras.models import Sequential
+from keras.layers import LSTM, Dense, Dropout
+
+model = Sequential() #define the Keras model
+
+model.add(LSTM(units = 120, return_sequences = True, input_shape = (x_train.shape[1], 1))) #120 neurons in the hidden layer
+##return_sequences=True makes LSTM layer to return the full history including outputs at all times
+model.add(Dropout(0.2))
+
+model.add(LSTM(units = 120, return_sequences = True))
+model.add(Dropout(0.2))
+
+model.add(LSTM(units = 120, return_sequences = True))
+model.add(Dropout(0.2))
+
+model.add(LSTM(units = 120, return_sequences = False)) 
+model.add(Dropout(0.2))
+
+model.add(Dense(units = 1)) #output
+model.compile(optimizer = 'adam', loss = 'mean_squared_error')
+
+model.fit(x_train, y_train, epochs = 25, batch_size = 32)
+
+
+
+

@@ -1,0 +1,44 @@
+
+
+##Rank 1 array
+
+arr1=[3,4,5,6,7]
+
+print(type(arr1))
+
+narr1=np.array(arr1)
+
+print(type(narr1))
+
+# multidimensional array
+
+arr2=[[1,2,3,4],[3,4,5,6]]
+
+narr2=np.array(arr2)
+
+print(narr2)
+
+arr3=[[1,2,3,4],[3,4,5,6],[7,8,9,6]]
+
+narr3=np.array(arr3)
+
+print(narr3)
+
+print(narr3.shape)
+
+#2*2 array with 0s
+
+zer=np.zeros((2,2))
+print(zer)
+
+#2*2 array with 5
+
+full=np.full((2,2),5)
+
+print(full)
+
+ex3 = np.eye(2,2) #diagonal 1
+print(ex3)
+
+ex3 = np.eye(4,4) #diagonal 1
+print(ex3)

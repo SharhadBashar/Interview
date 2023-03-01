@@ -1,0 +1,23 @@
+
+import pandas as pd
+
+import os
+os.getcwd()
+
+#Read in a very simple CSV file
+
+file="F:\\Python_ML\\Course6_Python4DS\\MLData_n_Script\\section5\\Resp2.csv"
+df1=pd.read_csv(file)
+df1.head()
+
+#Read in CSV when the seperator is ;
+file="F:\\Python_ML\\Course6_Python4DS\\MLData_n_Script\\section5\\winequality-red.csv"
+df1=pd.read_csv(file)
+df1=pd.read_csv(file, sep = ";")
+df1.head()
+
+#Read in .txt file
+#df1=pd.read_csv("bostonTxt.txt") #tab seperated
+df1=pd.read_csv("bostonTxt.txt", sep = "\t")
+df1.head()
+

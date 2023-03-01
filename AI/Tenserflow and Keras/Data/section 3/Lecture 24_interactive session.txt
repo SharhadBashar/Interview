@@ -1,0 +1,10 @@
+import tensorflow as tf
+
+##targeted for using IPython and Jupyter Notebooks that allows you to add things and use .eval() instead of Sessions.run
+
+sess = tf.InteractiveSession()
+a = tf.constant(1)
+b = tf.constant(5)
+c = a + b
+# instead of sess.run(c)
+c.eval()

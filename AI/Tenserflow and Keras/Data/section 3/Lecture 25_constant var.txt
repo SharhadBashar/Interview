@@ -1,0 +1,37 @@
+import tensorflow as tf
+
+##when you declare some constant, its value can't be changed in the future (also the initialization should be with a value,
+## not with operation)
+
+# Initialize two constants
+x1 = tf.constant([1,2,3,4])
+x2 = tf.constant([5,6,7,6])
+
+# Multiply
+result = tf.multiply(x1, x2)
+
+# Print the result
+print(result)
+
+# Multiply
+result = tf.multiply(x1, x2)
+
+# Intialize the Session
+sess = tf.Session()
+
+# Print the result
+print(sess.run(result))
+
+# Close the session
+sess.close()
+
+##when you declare a Variable, you can change its value in the future
+
+x = tf.constant(35, name='x')
+y = tf.Variable(x + 8, name='y')
+
+model = tf.global_variables_initializer() 
+
+with tf.Session() as session:
+    session.run(model)
+    print(session.run(y))

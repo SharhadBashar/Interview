@@ -1,0 +1,54 @@
+domain adaptation
+transfer learning
+Model compression
+batch normalization
+
+(x ** 2 - a) ** 2
+Using a Pytorch model as class object, write a code to find an approximation to the above equation.
+Output a real number
+
+
+beta tstat and rsqaured
+how will they change if data is duplicated
+
+beta unchanged
+tstas descerases because error changes
+rsqaure unchanged
+
+
+import pandas.dataframe as df
+
+# read the dataframe
+df = df.open('comments.csv')
+
+data = {}
+comments = {}
+
+for i in df:
+  if content_type == 'photo' or content_type == 'post' or content_type == 'link':
+    data[i[content_id]] = 0
+  # its a comment
+  else:
+    data[i[parent_id]] += 1
+    
+max_comment_of_one_post = 0
+for item in data:
+   sum = len(item.value)
+   if sum > max_comment_of_one_post: 
+      max_comment_of_one_post = sum
+
+# for this ex max_comment_of_one_post = 3
+for i in range(max_comment_of_one_post):
+  comments[i] = 0
+  for item in data:
+    if len(item.value) == i:
+      comments[i] += 1
+    
+dict = {1111: [2222, 4444, 5555],
+        3333: []
+        }
+        
+        0 1
+        1 0
+        2 0
+        3 0

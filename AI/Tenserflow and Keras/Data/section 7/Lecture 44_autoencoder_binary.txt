@@ -1,0 +1,106 @@
+
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("creditcard.csv")
+df.head(n=6)
+
+##Explore data
+
+fraud_indices = df[df.Class == 1].index
+number_records_fraud = len(fraud_indices)
+
+normal_indices = df[df.Class == 0].index
+number_records_normal = len(normal_indices)
+
+print("Normal transactions: ", number_records_normal)
+print("Fraud transactions: ", number_records_fraud)
+
+# sampling 75% for train data
+train_set = df.sample(frac=0.75, replace=False, random_state=123)
+
+test_set = df.loc[ set(df.index) - set(train_set.index)] #25% testing
+
+
+from sklearn.preprocessing import MinMaxScaler #data scaling
+scaler = MinMaxScaler()
+scaler.fit(df.drop(['Class','Time'],axis=1))
+
+
+## Scale the predictors
+
+scaled_data = scaler.transform(train_set.drop(['Class','Time'],axis=1))#75%
+scaled_test_data = scaler.transform(test_set.drop(['Class','Time'],axis=1))
+print("Size training data: ", len(scaled_data))
+print("Size test data:     ", len(scaled_test_data))
+
+
+num_inputs = len(scaled_data[1])#training 
+num_hidden = 2  
+num_outputs = num_inputs 
+
+learning_rate = 0.001
+keep_prob = 0.5
+tf.reset_default_graph() 
+
+# placeholder X
+X = tf.placeholder(tf.float32, shape=[None, num_inputs])
+
+# weights
+initializer = tf.variance_scaling_initializer()
+w = tf.Variable(initializer([num_inputs, num_hidden]), dtype=tf.float32)
+w_out = tf.Variable(initializer([num_hidden, num_outputs]), dtype=tf.float32)
+
+# bias
+b = tf.Variable(tf.zeros(num_hidden))
+b_out = tf.Variable(tf.zeros(num_outputs))
+
+#activation
+act_func = tf.nn.tanh
+
+# layers
+hidden_layer = act_func(tf.matmul(X, w) + b)
+dropout_layer= tf.nn.dropout(hidden_layer,keep_prob=keep_prob)
+output_layer = tf.matmul(dropout_layer, w_out) + b_out
+
+loss = tf.reduce_mean(tf.abs(output_layer - X))
+optimizer = tf.train.AdamOptimizer(learning_rate)
+train  = optimizer.minimize( loss)
+init = tf.global_variables_initializer()
+
+def next_batch(x_data,batch_size):
+    
+    rindx = np.random.choice(x_data.shape[0], batch_size, replace=False)
+    x_batch = x_data[rindx,:]
+    return x_batch
+
+num_steps = 10
+batch_size = 150
+num_batches = len(scaled_data) // batch_size
+
+with tf.Session() as sess:
+    sess.run(init)
+    for step in range(num_steps):        
+        for iteration in range(num_batches):
+            X_batch = next_batch(scaled_data,batch_size)
+            sess.run(train,feed_dict={X: X_batch})
+        
+        if step % 1 == 0:
+            err = loss.eval(feed_dict={X: scaled_data})
+            print(step, "\tLoss:", err)
+            output_2d = hidden_layer.eval(feed_dict={X: scaled_data})
+    
+    output_2d_test = hidden_layer.eval(feed_dict={X: scaled_test_data})
+
+########### Visualize
+
+import seaborn as sns
+import matplotlib.gridspec as gridspec
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+plt.figure(figsize=(20,8))
+plt.scatter(output_2d[:,0],output_2d[:,1],c=train_set['Class'],alpha=0.7)#class variable response

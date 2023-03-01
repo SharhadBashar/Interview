@@ -1,0 +1,28 @@
+
+######Some Basic Stats with numpy
+
+arr=[[1,2,3,4],[3,4,5,6],[7,8,9,6],[12,7,10,9],[2,11,8,10]]
+
+narr=np.array(arr) #convert array into numpy array
+
+print (narr)
+
+narr.sum() #sum all values of the array
+
+narr.sum(axis=0) #column wise sum
+
+narr.sum(axis=1) #row wise sum
+
+#mean and medians are measures of centre tendency
+
+narr.mean(axis=0) #column means
+
+np.median(narr,axis=1) #row median
+
+#variance in the data
+
+np.std(narr) #standard dev
+
+#percentile- value below which a given percentage of observations
+
+np.percentile(narr,50,axis=1) #50th percentile

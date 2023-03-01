@@ -1,0 +1,19 @@
+import tensorflow as tf
+
+##Placeholders in TensorFlow are similar to variables
+##dont have to provide an initial value and you can specify it at runtime with feed_dict argument inside Session.run
+
+
+#setup placeholder using tf.placeholder
+x = tf.placeholder(tf.int32, shape=[3],name='x')
+
+y = tf.placeholder(tf.int32, shape=[3],name='y')
+
+sum_x = tf.reduce_sum(x,name="sum_x")
+prod_y = tf.reduce_prod(y,name="prod_y")
+
+final_mean = tf.reduce_mean([sum_x, prod_y], name="final_mean")
+sess = tf.Session()
+print ("sum(x): ", sess.run(sum_x, feed_dict={x: [100,200,300]}))
+print ("prod(y): ", sess.run(prod_y, feed_dict={y: [1,2,3]}))
+writer = tf.summary.FileWriter('./tensorflow_example',sess.graph)

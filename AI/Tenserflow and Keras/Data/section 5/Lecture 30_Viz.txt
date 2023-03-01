@@ -1,0 +1,44 @@
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(14, 8))
+plt.title('Original Data and Trained Model')
+
+x_plot = [np.min(X) - 1, np.max(X) + 1]#range of X values
+y_plot = w_hat * x_plot + b_hat #w_hat and b_hat predicted before 
+plt.axis([x_plot[0], x_plot[1], y_plot[0], y_plot[1]])
+plt.plot(X, y, 'b.', label='Original Data')
+plt.plot(x_plot, y_plot, 'r-', label='Trained Model')
+plt.legend()
+plt.show()
+
+
+plt.figure(figsize=(14, 8))
+
+plt.axis([0, num_epochs, 0, np.max(loss_epochs)])
+plt.plot(loss_epochs, label='Loss on X_train')
+plt.title('Loss in Iterations')
+plt.xlabel('# Epoch')
+plt.ylabel('MSE')
+
+plt.axis([0, num_epochs, 0, np.max(mse_epochs)])
+plt.plot(mse_epochs, label='MSE on X_test')
+plt.xlabel('# Epoch')
+plt.ylabel('MSE')
+plt.legend()
+
+plt.show()
+
+
+plt.figure(figsize=(14, 8))
+
+plt.axis([0, num_epochs, np.min(rs_epochs), np.max(rs_epochs)])
+plt.title('R-squared in Iterations')
+plt.plot(rs_epochs, label='R2 on X_test')
+plt.xlabel('# Epoch')
+plt.ylabel('R2')
+plt.legend()
+
+plt.show()
+

@@ -1,0 +1,63 @@
+### Keras for CNN Autoencoder
+
+from IPython.display import Image, SVG
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+
+import numpy as np
+import keras
+from keras.datasets import mnist
+from keras.models import Model, Sequential
+from keras.layers import Input, Dense, Conv2D, MaxPooling2D, UpSampling2D, Flatten, Reshape
+from keras import regularizers
+
+# Loads the training and test data sets (ignoring class labels)
+(x_train, _), (x_test, _) = mnist.load_data()
+
+# Scales the training and test data to range between 0 and 1.
+max_value = float(x_train.max())
+x_train = x_train.astype('float32') / max_value
+x_test = x_test.astype('float32') / max_value
+
+x_train.shape, x_test.shape #The images have a resolution of 28 x 28 (pixels)
+
+x_train = x_train.reshape((len(x_train), 28, 28, 1))
+x_test = x_test.reshape((len(x_test), 28, 28, 1))
+
+### auto encoder model
+
+autoencoder = Sequential()
+
+# Encoder Layers
+autoencoder.add(Conv2D(16, (3, 3), activation='relu', padding='same', input_shape=x_train.shape[1:]))
+autoencoder.add(MaxPooling2D((2, 2), padding='same'))
+
+autoencoder.add(Conv2D(8, (3, 3), activation='relu', padding='same'))
+autoencoder.add(MaxPooling2D((2, 2), padding='same'))
+autoencoder.add(Conv2D(8, (3, 3), strides=(2,2), activation='relu', padding='same'))
+
+# Flatten encoding for visualization
+autoencoder.add(Flatten())
+autoencoder.add(Reshape((4, 4, 8)))
+
+# Decoder Layers
+autoencoder.add(Conv2D(8, (3, 3), activation='relu', padding='same'))
+autoencoder.add(UpSampling2D((2, 2)))
+
+autoencoder.add(Conv2D(8, (3, 3), activation='relu', padding='same'))
+autoencoder.add(UpSampling2D((2, 2)))
+
+autoencoder.add(Conv2D(16, (3, 3), activation='relu'))
+autoencoder.add(UpSampling2D((2, 2)))
+autoencoder.add(Conv2D(1, (3, 3), activation='sigmoid', padding='same'))
+
+autoencoder.summary()
+
+encoder = Model(inputs=autoencoder.input, outputs=autoencoder.get_layer('flatten_1').output)
+
+autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
+autoencoder.fit(x_train, x_train,
+                epochs=100,
+                batch_size=128,
+                validation_data=(x_test, x_test))

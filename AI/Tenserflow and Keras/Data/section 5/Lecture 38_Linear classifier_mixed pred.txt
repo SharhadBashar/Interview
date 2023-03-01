@@ -1,0 +1,93 @@
+
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import pandas as pd
+
+
+df = pd.read_csv("titanic.csv")
+df.head(n=8)
+
+
+#dropping columns
+train_df = df.drop(["PassengerId","Name","Ticket"], axis=1)
+
+print ("Train")
+print (train_df.isnull().sum() )
+
+##### Fill in NAs
+
+##identify mean ages
+male_mean_age = train_df[train_df["Sex"]=="male"]["Age"].mean()
+female_mean_age = train_df[train_df["Sex"]=="female"]["Age"].mean()
+print ("female mean age: %1.0f" %female_mean_age )
+print ("male mean age: %1.0f" %male_mean_age )
+
+# fill the nan values 
+train_df.loc[ (train_df["Sex"]=="male") & (train_df["Age"].isnull()), "Age"] = male_mean_age
+train_df.loc[ (train_df["Sex"]=="female") & (train_df["Age"].isnull()), "Age"] = female_mean_age
+
+### same for fare
+
+mean_fare = train_df["Fare"].mean()
+
+
+train_df["Cabin"] = train_df["Cabin"].fillna("X")
+train_df["Embarked"] = train_df["Embarked"].fillna("S")
+
+#############
+
+y = train_df.Survived#response 
+x = train_df.drop(['Survived'],axis=1)#predictors
+
+X_train, X_test, y_train, y_test = train_test_split(x, y, train_size=0.75, random_state=101)#75% training
+
+
+# defining numeric columns
+pclass_feature = tf.feature_column.numeric_column('Pclass')
+parch_feature = tf.feature_column.numeric_column('Parch')
+fare_feature = tf.feature_column.numeric_column('Fare')
+age_feature = tf.feature_column.numeric_column('Age')
+
+#defining buckets for children, teens, adults and elders.
+age_bucket_feature = tf.feature_column.bucketized_column(age_feature,[12,21,60])
+
+#defining a categorical column with predefined values
+sex_feature = tf.feature_column.categorical_column_with_vocabulary_list(
+    'Sex',['female','male']
+)
+#defining a categorical columns with dynamic values
+embarked_feature =  tf.feature_column.categorical_column_with_hash_bucket(
+    'Embarked', 3 
+)
+cabin_feature =  tf.feature_column.categorical_column_with_hash_bucket(
+    'Cabin', 100 
+)
+
+feature_columns = [ pclass_feature,age_feature, age_bucket_feature, parch_feature, 
+                   fare_feature, embarked_feature, cabin_feature ]
+
+
+
+########## Define TF Estimator
+
+estimator = tf.estimator.LinearClassifier(feature_columns=feature_columns)
+
+# train input function
+train_input_fn = tf.estimator.inputs.pandas_input_fn(
+      x=X_train,
+      y=y_train,
+      num_epochs=None, #For training it can use how many epochs is necessary
+      shuffle=True,
+      target_column='target',
+)
+
+estimator.train(input_fn=train_input_fn, steps=450)
+
+#test on training data
+results=estimator.evaluate(tf.estimator.inputs.pandas_input_fn(x=X_train,y=y_train,batch_size=10, num_epochs=1, shuffle=False))
+
+
+eval_input_func = tf.estimator.inputs.pandas_input_fn(x=X_test,y=y_test,batch_size=10, num_epochs=1, shuffle=False)
+results=estimator.evaluate(eval_input_func)
+print(results)

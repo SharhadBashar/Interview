@@ -1,0 +1,47 @@
+
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import keras
+
+df = pd.read_csv('creditcard.csv')
+
+## Response variable is binary
+df['Class'].unique() # 0 = no fraud, 1 = fraudulent
+
+X = df.iloc[:, :-1].values #predictors
+y = df.iloc[:, -1].values #response
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.25, random_state=1)#25% data for testing 
+
+##normalize the data
+
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+
+from keras.models import Sequential
+from keras.layers import Dense
+####used to perform the full connection of the neural network
+from keras.layers import Dropout
+
+##Define DNN Classification model
+
+clf = Sequential([
+    Dense(units=16, kernel_initializer='uniform', input_dim=30, activation='relu'), #30 Xs
+    Dense(units=18, kernel_initializer='uniform', activation='relu'),
+    Dropout(0.25),
+    Dense(20, kernel_initializer='uniform', activation='relu'),
+    Dense(24, kernel_initializer='uniform', activation='relu'),
+    Dense(1, kernel_initializer='uniform', activation='sigmoid') #output 
+])
+
+clf.summary()
+
+clf.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+clf.fit(X_train, Y_train, batch_size=15, epochs=2)
+
+score = clf.evaluate(X_test, Y_test, batch_size=128)
+print('\nAnd the Score is ', score[1] * 100, '%')

@@ -1,0 +1,17 @@
+##Read in Excel File
+
+import pandas as pd
+
+file="F:\\Python_ML\\Course6_Python4DS\\MLData_n_Script\\section5\\boston1.xls"
+
+# Load spreadsheet
+xl = pd.ExcelFile(file)
+
+# Print the sheet names
+print(xl.sheet_names)
+
+# Load a sheet into a DataFrame by name: df1
+df1 = xl.parse('Sheet1')
+
+df1.head()
+

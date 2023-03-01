@@ -1,0 +1,17 @@
+import tensorflow as tf
+
+a = tf.constant(6, name='constant_a')
+b = tf.constant(3, name='constant_b')
+c = tf.constant(10, name='constant_c')
+d = tf.constant(5, name='constant_d')
+
+#a,b,c and d are the tensors flowing through the graph
+mul = tf.multiply(a,b, name="mul")
+#mul is a node which specifies the multiply operation on 'a' and 'b'
+div = tf.div(c,d, name="div")
+#division operation which divides c by d and have the name "div"
+#tf.add_n sums up the element in an array
+addn = tf.add_n([mul,div], name="addn")
+
+sess = tf.Session()
+sess.run(addn)

@@ -1,0 +1,84 @@
+#############Softmax classification
+
+##Softmax regression (or multinomial logistic regression) is a generalization of logistic regression 
+##to the case where we want to handle multiple classes
+
+
+import tensorflow as tf
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+df = pd.read_csv('Iris.csv',usecols=[1,2,3,4,5])#5 columns in dataset 
+
+df.head()
+
+##modify column names
+##map species names
+
+df.columns=  ['f1','f2','f3','f4','f5']
+#map data into arrays
+s=np.asarray([1,0,0])
+ve=np.asarray([0,1,0])
+vi=np.asarray([0,0,1])
+df['f5'] = df['f5'].map({'Iris-setosa': s, 'Iris-versicolor': ve,'Iris-virginica':vi})
+## hot encoding 
+df
+
+# Shuffle Pandas data frame
+import sklearn.utils
+df = sklearn.utils.shuffle(df)
+#print('\n\ndf: {0}'.format(df))
+
+# Then you can use df.reset_index() to reset the index column, if needs to be:
+df = df.reset_index(drop=True)
+print('\n\ndf: {0}'.format(df))
+
+x_input=df.ix[:,['f1','f2','f3','f4']]#predictors
+y_input=df['f5'] #response variables
+
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(x_input, y_input, test_size=0.30, random_state=42)
+#30% for testing
+
+
+
+x_input= X_train
+y_input= y_train
+
+#placeholders and variables. input has 4 features and output has 3 classes
+x=tf.placeholder(tf.float32,shape=[None,4])
+y_=tf.placeholder(tf.float32,shape=[None, 3])
+
+
+#weight and bias
+W=tf.Variable(tf.random_normal([4,3]))
+b=tf.Variable(tf.random_normal([3]))
+
+##softmax function for multiclass classification
+
+y = tf.nn.softmax(tf.matmul(x, W) + b)
+
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y), reduction_indices=[1]))
+
+#optimiser -
+train_step = tf.train.AdamOptimizer(0.01).minimize(cross_entropy)
+#calculating accuracy of our model 
+correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
+#session parameters
+sess = tf.InteractiveSession()
+#initialising variables
+init = tf.global_variables_initializer()
+sess.run(init)
+#number of interations
+epoch=2000
+
+for step in range(2,epoch):
+   _, c=sess.run([train_step,cross_entropy], feed_dict={x: x_input, y_:[t for t in y_input.as_matrix()]})
+   if step%500==0 :
+       print (c)
+
+print ("Accuracy is " , sess.run(accuracy,feed_dict={x: X_test, y_:[t for t in y_test.as_matrix()]}))

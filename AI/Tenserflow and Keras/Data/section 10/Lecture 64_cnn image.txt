@@ -1,0 +1,8 @@
+
+conda install -c anaconda simplejson 
+
+
+conda install -c conda-forge opencv 
+
+
+https://drive.google.com/open?id=1jz5Ed_g29k3bXIkAxFXmMQylV5b_p7oq
