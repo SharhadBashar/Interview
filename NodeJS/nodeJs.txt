@@ -1,0 +1,2 @@
+module.exports to have items availablie in other .js files
+to access items, you need to use require(./filename) to access them

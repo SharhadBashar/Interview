@@ -1,0 +1,50 @@
+{
+	"folders": [
+		{
+			"path": "auth"
+		},
+		{
+			"path": "testing"
+		},
+		{
+			"path": "jsx"
+		},
+		{
+			"path": "components"
+		},
+		{
+			"path": "seasons"
+		},
+		{
+			"path": "pics"
+		},
+		{
+			"path": "videos"
+		},
+		{
+			"path": "songs"
+		},
+		{
+			"path": "blog"
+		},
+		{
+			"path": "streams"
+		},
+		{
+			"path": "translate"
+		},
+		{
+			"path": "hooks"
+		},
+		{
+			"path": "Season"
+		},
+		{
+			"path": "ReduxSimpleStarter"
+		},
+		{
+			"path": "React Redux REST api"
+		}
+	],
+	"settings": {}
+}
