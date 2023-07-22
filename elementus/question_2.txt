@@ -1,0 +1,24 @@
+For this questions, I first used a notebook, 
+since its easier to view the dataframe at different stages.
+I then put all the steps in a function in a .py file.
+
+Here are the steps i took
+1. I created a data.csv file with the example data.
+This is what I used for the assignment.
+Normally this file would come from a aws S3 bucket or something else
+I would make sure to put these in a seperate data folder, and add that to the
+.gitignore file, so that its not uploaded to github.
+2. Read the CSV file into a pandas DataFrame
+3. Convert "currency" column to lowercase for case-insensitive grouping
+4. Filter out invalid "transaction_amount" values (e.g., NaN)
+5. Convert "transaction_amount" to numeric values
+6. Filter only legal transactions
+7. Group by currency and calculate the sum of legal transactions for each currency
+8. Round values to 2 decimal places, since its currency
+
+BONUS:
+To get the sum of all legal transactions, I followed steps 1 - 6, 
+and then added all the remaining columns 
+
+The assumption I made was I assumed currencies with the same name are the same, regardless of capitalization or not
+For example, I assumed BTC and btc are the same 

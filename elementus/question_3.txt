@@ -1,0 +1,68 @@
+a. Provide an example of a time you had performed a feature engineering task and how it
+improved the model's performance.
+
+I was working as a data scientist as Lawfully. This is a company that helps people with immigrating to USA
+One of the products we were testing out was helping people find houses
+The data set we had had many features, but for this example, lets focus on a few
+The features were "total square footage," "number of bedrooms", "number of bathrooms" and "garage size".
+Our goal was to build a regression model to predict the house price based on these features.
+
+One feature that we engineered, which was very simple was "price per square foot". 
+We calculate this feature by dividing the house price by the total square footage. 
+The intuition behind this feature is that the price per square foot could have a significant 
+impact on the house price and capture the local real estate market dynamics.
+
+Model Performance Improvement:
+By adding the "price per square foot" feature to our dataset, 
+the regression model now had a more nuanced understanding of the relationship 
+between house price and the other features. 
+This additional feature helped us better capture the differences in house prices, 
+especially when house sizes vary significantly.
+
+The inclusion of the "price per square foot" feature lead to better generalization and 
+improved performance for the regression model, as it provides valuable information that 
+was not have been evident solely from the raw features.
+
+
+
+
+b. List 2 to 3 examples of metrics you have monitored in your previous ML projects while in
+production and an example of how you went about improving the metrics.
+
+Metrics I monitor:
+1. Accuracy
+2. Mean Absolute Error (MAE)
+3. Precision
+4. Recall
+5. F1 Score
+
+1. Accuracy
+I am currently working on a multi class classification problem.
+n a classification problem, accuracy is a common metric to monitor. 
+It measures the number of correctly predicted instances among all instances in the dataset.
+To improve accuracy, I experimented with different classification algorithms, 
+finetuneed hyperparameters, handle class imbalances using techniques like oversampling or undersampling, 
+or tried using more relevant features in the dataset. 
+I also played with ensemble methods like Random Forest or Gradient Boosting, which lead to higher accuracy.
+
+2. MAE
+MAE is a commonly monitored metric in regression. 
+It calculates the average absolute difference between the predicted values and the actual values.
+I was working on a regression problem during my internship at Huawei, as well as the housing problem I described earlier.
+To reduce MAE, I mainly tried feature scaling and normalization to bring all features to a similar scale. 
+This can help the model converge faster during training and result in better predictions. 
+Also, I tried different regression algorithms, loss functions, 
+and feature engineering to create more informative features.
+
+3 - 5. Precision, Recall, and F1 score
+I work with a lot of imbalanced data sets. 
+I am currently working with classifying podcasts based on title, description and keywords.
+So to see how well my model is performing, I use F1 score, and to an extend precision and recall as well as accuracy.
+Precision measures the proportion of true positive predictions among all positive predictions.
+Recall measures the proportion of true positive predictions among all actual positives.
+F1 score is the harmonic mean of precision and recall.
+To address class imbalance, I am using an oversampling technique SMOTE (Synthetic Minority Over-sampling Technique) 
+I am also using different boosting algorithms like AdaBoost or XGBoost that handle class imbalance better. 
+Additionally, adjusting the classification threshold can also impact precision and recall trade-offs. 
+I am also currently in the process of implementing a method that prioritizes the correct prediction 
+of the smaller classes.

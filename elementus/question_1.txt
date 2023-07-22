@@ -1,0 +1,44 @@
+Time Complexity:
+The time complexity of the function mainly depends on the number of tuples in the input list. 
+For each tuple, the function performs dictionary operations (insertions or appends). 
+On average, dictionary operations in Python have an average time complexity of O(1) when you consider 
+a large number of insertions. However, in the worst-case scenario, when there are hash collisions or 
+dictionary resizing, the time complexity can be up to O(n). 
+This is because the dictionary may need to rehash and reorganize its internal structure.
+
+Since each tuple in the input list is processed independently, and the dictionary operations are constant 
+on average, the overall time complexity of the function is O(n) in the average case. 
+However, it can be up to O(n^2) in the worst-case scenario when all the tuples have the same key, 
+resulting in many collisions and resizing.
+
+Space Complexity:
+The space complexity is determined by the size of the output dictionary. 
+In the worst case, if all the tuples in the input list have different keys, 
+the dictionary will have n unique keys. Since each key can have a list of values 
+associated with it, the total space complexity for the dictionary would be O(n).
+
+In addition to the dictionary, the function uses a few variables with constant space requirements 
+(e.g., "key," "value," "result_dict," etc.), which do not depend on the size of the input list 
+and can be ignored in big O notation.
+
+So, the overall space complexity of the function is O(n) in the worst case.
+
+In summary:
+
+Time complexity: O(n) on average, but up to O(n^2) in the worst-case scenario with hash collisions and resizing.
+Space complexity: O(n) in the worst case.
+
+Since the function needs to examine every tuple to group them by their first elements, 
+there is no way to improve the time complexity beyond O(n). However, you can make some minor 
+optimizations to improve the constant factors and reduce the overhead.
+
+One possible optimization is to use the collections.defaultdict class from the collections module,
+ which automatically initializes the dictionary with a default value (in this case, an empty list) 
+ for new keys. This can make the function slightly faster than using a regular dictionary.
+
+ The time complexity remains O(n), but this version should be slightly faster due to the 
+ internal optimizations of defaultdict.
+
+Other than that, if the input list is sorted by the first element of the tuples, you can 
+further optimize the function by using a single pass through the list. But if the input list 
+is unsorted or if you cannot change the input order, the best time complexity you can achieve is still O(n).

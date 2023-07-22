@@ -1,0 +1,7 @@
+currency,transaction_amount,legal
+btc,1000.105001,True
+BTC,2000.111199,True
+btc,5000.112111,False
+eth,100.011111,True
+eth,nan,True
+eth,200,False
