@@ -1,0 +1,19 @@
+If you're only interested in the number of pairs, not the pairs themselves, this can be solved in O(n) with a dictionary.
+
+First, let c be the elementwise sum of a and b (i.e. c = [ai + bi for ai, bi in zip(a, b)]). Observe that the constraint a[i] + b[i] == a[j] + b[j] implies that we're looking for i, j such that c[i] == c[j].
+
+For each unique value v of c, if there are n indices such that c[i] == v, then there will be n * (n + 1) // 2 pairs of indices such that c[i] == c[j] and i <= j. Therefore, all we need to do is count the number of indices per unique value of c and apply this formula:
+
+from collections import Counter
+
+def count_pairs(a, b):
+    c = [ai + bi for ai, bi in zip(a, b)]
+    ctr = Counter(c)
+    return sum(n * (n + 1) // 2 for n in ctr.values())
+
+
+
+This runs in O(n) amortized time: constructing c takes O(n) time, constructing ctr takes O(n) amortized time (it is a dict which stores only the count of each unique value), and computing the sum takes O(n) time (the calculation runs once per unique value in c, and there are at most n such unique values).
+
+
+https://stackoverflow.com/questions/76782676/given-two-arrays-a-and-b-find-all-pairs-i-jsuch-that-i-j-and-ai/
