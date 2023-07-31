@@ -1,0 +1,7 @@
+underlying python list structure
+python decorators
+list vs tuple
+python function parameters are they value or addresses
+python generator
+python sagemaker
+numpy arrays vs lists
