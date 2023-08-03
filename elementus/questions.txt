@@ -5,3 +5,19 @@ python function parameters are they value or addresses
 python generator
 python sagemaker
 numpy arrays vs lists
+
+
+________________________________________________________________
+
+
+Simple/Open instructions for Candidate for system design:
+
+Your task is to design a chatbot system that will be used to provide users with the latest crypto news about crypto in a conversational manner. The idea is to use a Large Language Model (LLM) for orchestrating interactions with users, resolving intent from user’s messages, and to provide a coherent summary for the user as a response to each message.
+
+Assumptions:
+The system can be divided into multiple components, but it will need to have a crypto news database that the LLM will need to query in order to get target crypto news to respond to the user.
+No need to keep the context of the conversation, just a Q&A chatbot.
+No need to train nor fine-tune the LLM component, just use it.
+No need to focus on UI interfaces, just backend components.
+
+Save things in Vector DB or elastic search
