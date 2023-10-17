@@ -1,0 +1,198 @@
+import datetime
+import calendar
+
+def monthly_charge(month, subscription, users):
+  """ Computes the monthly charge for a given subscription.
+ 
+  @rtype: int
+  @returns: the total monthly bill for the customer in cents, rounded
+    to the nearest cent. For example, a bill of $20.00 should return 2000.
+    If there are no active users or the subscription is None, returns 0.
+ 
+  @type month: str
+  @param month - Always present
+    Has the following structure:
+    "2022-04"  # April 2022 in YYYY-MM format
+
+  @type subscription: dict
+  @param subscription - May be None
+    If present, has the following structure:
+    {
+      'id': 763,
+      'customer_id': 328,
+      'monthly_price_in_cents': 359  # price per active user per month
+    }
+ 
+  @type users: list
+  @param users - May be empty, but not None
+    Has the following structure:
+    [
+      {
+        'id': 1,
+        'name': "Employee #1",
+        'customer_id': 1,
+    
+        # when this user started
+        'activated_on': datetime.date(2021, 11, 4),
+    
+        # last day to bill for user
+        # should bill up to and including this date
+        # since user had some access on this date
+        'deactivated_on': datetime.date(2022, 4, 10)
+      },
+      {
+        'id': 2,
+        'name': "Employee #2",
+        'customer_id': 1,
+    
+        # when this user started
+        'activated_on': datetime.date(2021, 12, 4),
+    
+        # hasn't been deactivated yet
+        'deactivated_on': None
+      },
+    ]
+  """
+  # your code here!
+  '''
+  Since the number of days in a constant, at max 31, the time complexity is O(31*N), which can be simplified to O(N)
+  This code has a run complexity of O(N), where N is the number of users. 
+  Space complexity is O(1) since we are not storing anything
+  '''
+  charge = 0
+  month_list = month.split('-')
+  year = int(month_list[0])
+  month = int(month_list[1])
+  daily_rate = subscription['monthly_price_in_cents'] / days_in_month(year, month)
+  
+  for user in users:
+    user_start = user['activated_on']
+    user_end = user['deactivated_on']
+    for i in range(1, days_in_month(year, month) + 1):
+      if (active(user_start, user_end, datetime.date(year, month, i))):
+        charge += daily_rate
+  return round(charge, 2)
+      
+  
+####################
+# Helper functions #
+####################
+def days_in_month(year, month):
+  return calendar.monthrange(year, month)[1]
+
+def active(user_start, user_end, date):
+  if (user_end == None):
+    user_end = datetime.datetime.now().date()
+  if (date >= user_start and date <= user_end):
+    return True
+  return False
+  
+  
+def first_day_of_month(date):
+  """
+  Takes a datetime.date object and returns a datetime.date object
+  which is the first day of that month. For example:
+
+  >>> first_day_of_month(datetime.date(2022, 3, 17))  # Mar 17
+  datetime.date(2022, 3, 1)                           # Mar  1
+
+  Input type: datetime.date
+  Output type: datetime.date
+  """
+  return date.replace(day=1)
+
+def last_day_of_month(date):
+  """
+  Takes a datetime.date object and returns a datetime.date object
+  which is the last day of that month. For example:
+
+  >>> last_day_of_month(datetime.date(2022, 3, 17))  # Mar 17
+  datetime.date(2022, 3, 31)                         # Mar 31
+
+  Input type: datetime.date
+  Output type: datetime.date
+  """
+  last_day = calendar.monthrange(date.year, date.month)[1]
+  return date.replace(day=last_day)
+
+def next_day(date):
+  """
+  Takes a datetime.date object and returns a datetime.date object
+  which is the next day. For example:
+
+  >>> next_day(datetime.date(2022, 3, 17))   # Mar 17
+  datetime.date(2022, 3, 18)                 # Mar 18
+
+  >>> next_day(datetime.date(2022, 3, 31))  # Mar 31
+  datetime.date(2022, 4, 1)                 # Apr  1
+
+  Input type: datetime.date
+  Output type: datetime.date
+  """
+  return date + datetime.timedelta(days=1)
+
+########################################################################################################################################################
+
+import unittest
+import datetime
+from solution import monthly_charge
+
+users = [
+  {
+    'id': 1,
+    'name': 'Employee #1',
+    'activated_on': datetime.date(2019, 1, 1),
+    'deactivated_on': None,
+    'customer_id': 1,
+  },
+  {
+    'id': 2,
+    'name': 'Employee #2',
+    'activated_on': datetime.date(2019, 1, 1),
+    'deactivated_on': None,
+    'customer_id': 1,
+  },
+]
+
+plan = {
+  'id': 1,
+  'customer_id': 1,
+  'monthly_price_in_cents': 5_000
+}
+
+plan_2 = {
+  'id': 763,
+  'customer_id': 328,
+  'monthly_price_in_cents': 359  # price per active user per month
+}
+
+users_2 = [
+  {
+    'id': 1,
+    'name': "Employee #1",
+    'customer_id': 1,
+    'activated_on': datetime.date(2021, 11, 4),
+    'deactivated_on': datetime.date(2022, 4, 10)
+  }, # this guy actiuve only 10 days, so 119.67 
+  {
+    'id': 2,
+    'name': "Employee #2",
+    'customer_id': 1,
+    'activated_on': datetime.date(2021, 12, 4),
+    'deactivated_on': None
+  } # this guy active all month, so 359
+] # total = 119.67 + 359 = 370.97
+no_users = []
+
+# Note: the class must be called Test
+class Test(unittest.TestCase):
+  def test_works_when_no_users_are_active(self):
+    self.assertEqual(monthly_charge('2018-10', plan, users), 0)
+
+  def test_works_when_the_active_users_are_active_the_entire_month(self):
+    expected_user_count = 2
+    self.assertAlmostEqual(monthly_charge('2020-12', plan, users), expected_user_count * 5_000, delta=1)
+    
+  def test_example(self):
+    expected_charge = 478.67
+    self.assertAlmostEqual(monthly_charge('2022-04', plan_2, users_2), expected_charge, delta=1)
