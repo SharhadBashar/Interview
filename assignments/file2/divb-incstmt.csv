@@ -1,0 +1,19 @@
+# Division B - Income Statement - actual and year-ahead plan,,,,,
+Assumptions,,,,,
+SG,Sales Growth,12%,,,
+CGSP,CGS %,42%,,,
+,,,,,
+CODE,Description,Act2019,Act2020,,Proj2021
+,,,,,
+SALE,Sales Revenue,33.9,30.3,,33.9
+CGS,Cost of Goods Sold,17.5,18.0,,14.3
+PROF,GROSS PROFIT,16.4,12.3,,19.7
+,,,,,
+SGA,"Selling, General, and Admin",2.1,1.8,,2.1
+ADV,Advertising,1.3,1.2,,4.5
+DEP,Depreciation,2.1,2.0,,3.2
+RENT,Rental Expense,1.5,1.5,,2.2
+OTHX,Other Expense,3.0,3.0,,2.0
+EXP,TOTAL EXPENSES,10.0,9.5,,14.0
+,,,,,
+EBT,EARNINGS BEFORE TAXES,6.4,2.8,,5.7

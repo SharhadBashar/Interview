@@ -1,0 +1,7 @@
+mypy==1.7.0
+numpy==1.26.1
+pandas==2.1.2
+pandas-stubs==2.1.1.230928
+scipy==1.11.3
+tqdm==4.66.1
+types-tqdm==4.66.0.4

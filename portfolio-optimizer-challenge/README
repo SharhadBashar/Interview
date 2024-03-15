@@ -1,0 +1,9 @@
+With Python 3.9 or later installed, run the following commands to set up the project:
+
+$ python -m venv venv  # Create a virtual environment
+$ source ./venv/bin/activate  # Activate the virtual environment
+(venv) $ pip install -r requirements.txt  # Install the requirements
+
+With the virtual environment activated, you can run your solution with:
+
+(venv) $ python solution.py
