@@ -1,0 +1,86 @@
+"""
+Given an array of meeting time "intervals" where intervals[i] = [start_i, end_i], determine if a person can attend all the meetings
+"""
+
+# Example 1
+
+# input = [[0, 5], [0, 10], [15,20]]
+# output =False
+
+# input = [[0,1], [2,3]]
+# output =True
+
+def meeting_attendance(meeting_schedule):
+    if (len(meeting_schedule) == 0 or meeting_schedule is None):
+        return True
+    meeting_schedule.sort(key = lambda x: x[0])
+    
+    for i in range(1, len(meeting_schedule)):
+        if (meeting_schedule[i][0] < meeting_schedule[i - 1][1]):
+            return False
+    return True
+
+# print(meeting_attendance([[0, 5], [0, 10], [15, 20]]))
+# print(meeting_attendance([]))
+
+
+"""
+The minimum number of rooms required
+"""
+# [0, 5], [0, 30], [10, 15], [40, 50]
+
+def min_rooms(meeting_schedules):
+    start_time = [meeting_schedule[0] for meeting_schedule in meeting_schedules]
+    end_time = [meeting_schedule[1] for meeting_schedule in meeting_schedules]
+
+    start_time.sort()
+    end_time.sort()
+
+    start_ptr = 0
+    end_ptr = 0
+
+    ongoing_meeting = 0
+    max_rooms = 0
+
+    while start_ptr < len(meeting_schedules):
+        if (start_time[start_ptr] < end_time[end_ptr]):
+            ongoing_meeting += 1
+            max_rooms = max(max_rooms, ongoing_meeting)
+            start_ptr += 1
+        else:
+            ongoing_meeting -= 1
+            end_ptr += 1
+
+    return max_rooms
+
+# print(min_rooms([[0, 5], [0, 30], [10, 15], [40, 50]]))
+# print(min_rooms([[0, 5], [0, 10], [15, 20]]))
+
+"""
+You are given an array nums  of length n  and a positive integer k .
+
+A subarray of nums  is called good if the absolute difference between its first and last element is exactly k . In other words, the subarray nums[i..j]  is good if 
+
+|nums[i] - nums[j]| == k .
+
+Return the maximum sum of a good subarray of nums . If there are no good subarrays, return 0 .
+
+Example 1:
+nums = [1, 2, 3, 4], k = 1; return 3+4=7
+ 
+Example 2:
+nums = [-1, -2, -3, -4], k = 2; return -1-2-3=-6 
+
+"""
+import math
+def max_sum_good_array(nums, k):
+    max_sum = -float('inf')
+    for i in range(len(nums) - 1):
+        for j in range(i + 1, len(nums)):
+            diff = abs(nums[i] - nums[j])
+            if (diff == k):
+                cur_sum = sum(nums[i:j + 1])
+                max_sum = max(max_sum, cur_sum)
+    return max_sum
+
+print(max_sum_good_array([-1, -2, -3, -4], 2))

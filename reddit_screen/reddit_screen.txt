@@ -1,0 +1,169 @@
+We accidentally dropped the database where we store the current billing status for our advertisers. Fortunately, we still have the logs for all the transactions they did, and we can use this to recreate the dropped data.
+
+Part 1
+
+You are asked to process the financial transactions from the old system to build up a BillingStatus per user to be stored in our new system. You should create a class called BillingStatus, which will represent an account state. Each financial transaction represents a modification to a BillingStatus. A BillingStatus should be able to ingest new transactions that are generated in our own systems.
+
+Given a collection of financial transactions, we want to generate a BillingStatus instance for each user. This can be represented as a map:
+
+{ user_id1: BillingStatus(), user_id2: BillingStatus()}
+Our BillingStatus class should start with two monetary columns:
+
+'ad_delivery_pennies': 0, 'payment_pennies': 0
+Each transaction can have multiple monetary columns. Upon processing a transaction, the values in the monetary columns should be added to the current value in the BillingStatus.
+
+Given this input:
+
+monetary_columns = ('ad_delivery_pennies','payment_pennies')
+
+transactions = {
+    'ff8bc1c2-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000001},
+    'ff8bc2e4-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000002},
+    'ff8bc4ec-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'payment_pennies': 500, 'transaction_timestamp': 1500000003},
+    'ff8fc4ew-1d25-11cef-b4t2-813fs4765f30': {'user_id': 2, 'payment_pennies': 600, 'transaction_timestamp': 1500000003},
+    'fv24z4ec-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'payment_pennies': 500, 'transaction_timestamp': 1500000004},
+    'fk93z4my-5y50-07e3-bc42-476af2342f69': {'user_id': 2, 'ad_delivery_pennies': 700, 'payment_pennies': 800, 'transaction_timestamp': 1500000004},
+}
+Expected Result:
+
+user_id 1:
+    ad_delivery_pennies: 3000
+    payment_pennies: 1000 
+    
+userId2:
+    ad_delivery_pennies: 700
+    payment_pennies: 1400
+Part 2
+
+Now let's add a concept of an "overwrite transaction" where the transaction can indicate whether it should overwrite the current BillingStatus monetary value with the monetary value in the transaction.
+
+Given this input:
+
+monetary_columns = ('ad_delivery_pennies','payment_pennies')
+
+transactions = {
+    'ff8ba98a-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000001,'overwrite': False},
+    'ff8bad4a-8d45-11e9-bc42-526af7764f64': {'user_id': 2, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000004},
+    'ff8baea8-8d45-11e9-bc42-526af7764f64': {'user_id': 2, 'payment_pennies': 600, 'transaction_timestamp': 1500000007,'overwrite': False},
+    'ff8bb4ac-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000002,'overwrite': False},
+    'ff8bb600-8d45-11e9-bc42-526af7764f64': {'user_id': 2, 'ad_delivery_pennies': 1000, 'payment_pennies': 500, 'transaction_timestamp': 1500000003,'overwrite': False},
+    'ff8bb89e-8d45-11e9-bc42-526af7764f64': {'user_id': 2, 'payment_pennies': 2000, 'transaction_timestamp': 1500000005,'overwrite': True},
+    'ff8bb9c0-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'payment_pennies': 500, 'transaction_timestamp': 1500000003, 'overwrite': False},
+    'ff8bbf74-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'payment_pennies': 500, 'transaction_timestamp': 1500000004, 'overwrite': True},
+    'ff8bc0a0-8d45-11e9-bc42-526af7764f64': {'user_id': 2, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000001},
+    'ff8bc1c2-8d45-11e9-bc42-526af7764f64': {'user_id': 2, 'ad_delivery_pennies': 1000, 'transaction_timestamp': 1500000002},
+    'ff923488-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'payment_pennies': 100, 'transaction_timestamp': 1500000013},
+}
+Expected Result:
+
+user_id 1:
+    ad_delivery_pennies: 1000
+    payment_pennies: 600 
+    
+user_id 2:
+    ad_delivery_pennies: 4000
+    payment_pennies: 2600
+Part 3
+
+Instead of overwriting, now we want to replace it with the concept of 'undo_last'. When 'undo_last' is set to true, it will undo a regular transaction before it.
+
+Given this input:
+
+monetary_columns = ('ad_delivery_pennies','payment_pennies')
+
+transactions = {
+    'ff8bc1c2-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'undo_last': True, 'transaction_timestamp': 1500000007},
+    'ff8bc2e4-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'payment_pennies': 500, 'transaction_timestamp': 1500000004},
+    'ff8bc4ec-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 500, 'payment_pennies': 500, 'transaction_timestamp': 1500000001},
+    'ff8fc4ew-1d25-11ef-b4t2-813fs4765f30': {'user_id': 1, 'ad_delivery_pennies': 500, 'payment_pennies': 1000, 'transaction_timestamp': 1500000006},
+    'fv24z4ec-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'payment_pennies': 1000, 'transaction_timestamp': 1500000014},
+}
+Expected Result:
+
+user_id 1:
+    ad_delivery_pennies: 1500
+    payment_pennies: 2000 
+
+
+
+
+
+
+
+# import requests
+# import mysql.connector
+# import pandas as pd
+from pprint import pprint
+
+class Billing_Status:
+    def __init__(self):
+        self.ad_delivery_pennies = 0
+        self.payment_pennies = 0
+        
+class Transaction_Processor:
+    def __init__(self, monetary_columns):
+        self.monetary_columns = monetary_columns
+        
+    def process_transaction(self, transactions):
+        billing_statuses = {}
+        last_transaction = {}
+        
+        transactions = dict(sorted(transactions.items(), key = lambda x: x[1]['transaction_timestamp']))
+        for transaction_id, transaction_data in transactions.items():
+            user_id = transaction_data['user_id']
+            # overwrite = transaction_data.get('overwrite', False)
+            undo_last = transaction_data.get('undo_last', False)
+            
+            if user_id not in billing_statuses:
+                billing_statuses[user_id] = Billing_Status()
+                
+            billing_status = billing_statuses[user_id]
+            
+            # for column in self.monetary_columns:
+            #     if column in transaction_data:
+            #         if overwrite:
+            #             setattr(billing_status, column, transaction_data[column])
+            #         else:
+            #             setattr(billing_status, column, getattr(billing_status, column) + transaction_data[column])
+            
+            if undo_last and last_transaction:
+                if last_transaction:
+                    for column in self.monetary_columns:  
+                        if column in last_transaction:
+                            setattr(billing_status, column, getattr(billing_status, column) - last_transaction[column])
+                    last_transaction = {} # reset last transaction
+            else:
+                for column in self.monetary_columns:
+                    if column in transaction_data:
+                        setattr(billing_status, column, getattr(billing_status, column) + transaction_data[column])
+                last_transaction = transaction_data
+                
+        return billing_statuses
+        
+
+monetary_columns = ('ad_delivery_pennies','payment_pennies')
+
+transactions = {
+    'ff8bc1c2-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'undo_last': True, 'transaction_timestamp': 1500000007},
+    'ff8bc2e4-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 1000, 'payment_pennies': 500, 'transaction_timestamp': 1500000004},
+    'ff8bc4ec-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'ad_delivery_pennies': 500, 'payment_pennies': 500, 'transaction_timestamp': 1500000001},
+    'ff8fc4ew-1d25-11ef-b4t2-813fs4765f30': {'user_id': 1, 'ad_delivery_pennies': 500, 'payment_pennies': 1000, 'transaction_timestamp': 1500000006},
+    'fv24z4ec-8d45-11e9-bc42-526af7764f64': {'user_id': 1, 'payment_pennies': 1000, 'transaction_timestamp': 1500000014},
+}
+
+tp = Transaction_Processor(monetary_columns)
+billing_statuses = tp.process_transaction(transactions)
+
+for user_id, billing_status in billing_statuses.items():
+    print(f'user_id: {user_id}')
+    print(f'ad_delivery_pennies: {billing_status.ad_delivery_pennies}')
+    print(f'payment_pennies: {billing_status.payment_pennies}')
+    
+    
+'''
+ad_delivery_pennies = 500, payment_pennies = 500
+ad_delivery_pennies = 1500, payment_pennies = 1000
+ad_delivery_pennies = 2000, payment_pennies = 2000 (ad_delivery_pennies = 500, payment_pennies = 1000)
+ad_delivery_pennies = 1500, payment_pennies = 1000
+ad_delivery_pennies = 1500, payment_pennies = 2000
+'''
