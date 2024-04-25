@@ -1,0 +1,104 @@
+Part I
+Suppose we had latitude and longitude information for a list of N providers (red pins in figure 1) in our network, as well as a unique provider ID. You can assume this information is given to you in any format and contains numerical lat long coordinates linked to providers. In addition, we are given lat long information about a single member (green pin in figure 1).
+
+Finally, we are given a function linear_distance(coordinates_1 , coordinates_2), which, given two pairs of lat long coordinates returns the linear distance between them. Assume that you can use this function in all of your code without having to worry about how it works.
+
+How would you create a function which takes as inputs the data on the providers and the data of a single member and returns the provider that is closest to the member given?
+
+
+import math
+
+def linear_distance(c1, c2): 
+    return math.sqrt((c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2)
+
+# This is your data - you may put it into whatever data structure you like.
+# Member     (0,0)
+# Provider 1 (1,2)
+# Provider 2 (7,9)
+# Provider 3 (9,1)
+
+###### YOUR CODE STARTS HERE ######
+def find_closest_provider(member, provider):
+    closest_provider = None
+    min_distance = float('inf')
+    
+    for provider_id, provider_coord in provider.items():
+        distance = linear_distance(member, provider_coord)
+        if (distance < min_distance):
+            min_distance = distance
+            closest_provider = provider_id
+
+    print(closest_provider)
+    
+member = (0, 0)
+provider = {
+    1: (1, 2),
+    2: (7, 9),
+    3: (9, 1)
+}    
+find_closest_provider(member, provider)
+
+
+Part II:
+For part II you may rewrite or modify everything that you have as you see fit.
+
+How would you alter/rewrite your function so that it takes one more input (k) in addition to the locations of the providers and the location of the member (as before) and returns a list of the k closest providers to the member?
+
+As before, assume that linear_distance(coordinates_1 , coordinates_2) is given to you.
+
+
+
+import math
+
+def linear_distance(c1,c2): 
+    return math.sqrt((c1[0] - c2[0])**2 + (c1[1] - c2[1])**2)
+
+
+
+# This is your data - you may put it into whatever data structure you like or copy your data structure from part I.
+# Member     (0,0)
+# Provider 1 (1,2)
+# Provider 2 (7,9)
+# Provider 3 (9,1)
+
+###### YOUR CODE STARTS HERE ######
+def find_closest_provider(member, provider, k):
+    closest_provider = []
+    min_distance = float('inf')
+    
+    for provider_id, provider_coord in provider.items():
+        distance = linear_distance(member, provider_coord)
+        closest_provider.append((distance, provider_id))
+        # if (distance < min_distance):
+        #     min_distance = distance
+        #     closest_provider = provider_id
+    closest_provider.sort()
+    
+    print(closest_provider[:k])
+    
+member = (0, 0)
+provider = {
+    1: (1, 2),
+    2: (7, 9),
+    3: (9, 1)
+}    
+k = 2
+find_closest_provider(member, provider, k)
+
+
+Part III
+Now suppose that for every provider that we now have on the map we have managed to query an api that has given us the driving time between every provider and our target member.
+
+As before, assume that linear_distance(coordinates_1 , coordinates_2) is given to you.
+
+In addition to this, we are given a function driving_time(coordinates_1 , coordinates_2), which, given two pairs of lat long coordinates returns the driving time between them. Assume that you can use this function in all of your code without having to worry about how it works. However, it may return a null value for new coordinates if the API is unavailable.
+
+A new provider has been added to our network (marked with the blue pin on figure 2), but suppose that for budget or time reasons we cannot query the API to get the driving time between this new provider and our member in question.
+
+To recap, we have:
+
+linear distance [linear_distance(coordinates_1 , coordinates_2)]
+for any two pins on the figure
+driving time [driving_time(coordinates_1 , coordinates_2)]
+for any two pins on the figure except for the blue pin
+the functions you created in parts I and II of the interview

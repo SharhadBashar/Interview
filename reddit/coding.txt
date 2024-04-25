@@ -1,0 +1,122 @@
+https://codesign.al/BK6H
+Change Description (For Everyone)
+Level 1 - Current level
+
+Things you should know:
+
+We care about your thought process just as much as the solution so please walk us through how you're thinking about the problem
+Throughout this interview we may evolve the problem and ask you to adjust your code as necessary to meet those new requirements
+Our questions are designed to scale from Intern to Principal Engineer, so you may not see every level of this question
+YES, you can search for information during the interview, but please tell us you are doing that
+YES, we expect you to ask questions throughout the interview
+Did you know Reddit has a chat feature? Well we do! And we want to make it better.
+
+In our real system, we have a service that manages all of the chat messages, and provides access to them through an API. For this interview, we're going to give you a function/method that behaves just like the real thing, and ask you to use it to build a new feature that lets us show more chat messages than we can right now.
+
+If you look at the code, you'll see a function/method called get_chat_messages(), which mimics the real system. You pass in a single chat message ID, and it returns 5 messages above and below the given chat ID. The 5 messages above and below are inclusive of the given chat ID.
+
+We want you to build a new function/method that can be given a list of chat ID's, and returns the merged output of the calls to get_chat_messages(). More explicitly, merge_messages() must:
+
+merge the responses from the get_chat_messages() for each ID in the given list,
+remove duplicates, and
+return them in order.
+One obvious way to do this is to put all the ID's you get back from get_chat_messages() into a set, then sort that set. But thats way too easy for a coding interview, so we're asking you to figure out a different approach.
+
+Here is the sample input:
+
+chat_messages = [
+    {"chat_msg_id": 123.41, "message": "Hello Snoo"},
+    {"chat_msg_id": 123.43, "message": "Very nice to meet"},
+    {"chat_msg_id": 123.45, "message": "you."},
+    {"chat_msg_id": 123.47, "message": "Hope you had wonderful"},
+    {"chat_msg_id": 124.49, "message": "time so far."},
+    {"chat_msg_id": 124.51, "message": "At Reddit, you’ll help"},
+    {"chat_msg_id": 125.53, "message": "build something that encourages"},
+    {"chat_msg_id": 126.55, "message": "millions around the world to think more"},
+    {"chat_msg_id": 126.57, "message": "do more, learn more, feel more and maybe even laugh more."},
+    {"chat_msg_id": 128.61, "message": "Our mission is to bring community"},
+    {"chat_msg_id": 129.63, "message": "and belonging to everyone in the world"},
+    {"chat_msg_id": 130.65, "message": "Our core value is to make something people love"},
+    {"chat_msg_id": 132.67, "message": "Hope you"},
+    {"chat_msg_id": 134.68, "message": "enjoyed this interview"},
+    {"chat_msg_id": 135.53, "message": "session very much"},
+    {"chat_msg_id": 135.71, "message": "and had loads of fun"},
+    {"chat_msg_id": 135.73, "message": "along the way"},
+    {"chat_msg_id": 135.75, "message": "as much as we did"},
+]
+To test your code, based on that sample input, all of the following must be verified:
+
+Test 1: Given [123.41], the output should be
+
+[
+"Hello Snoo", 
+"Very nice to meet", 
+"you.", 
+"Hope you had wonderful", 
+"time so far."
+]
+Test 2:Given [124.49], the output should be
+
+[
+"Hello Snoo", 
+"Very nice to meet", 
+"you.", 
+"Hope you had wonderful", 
+"time so far.",
+"At Reddit, you’ll help",
+"build something that encourages",
+ "millions around the world to think more",
+"do more, learn more, feel more and maybe even laugh more."
+]
+Tests 3 & 4: Given [123.41, 135.75] or [135.75, 123.41], the output should be
+
+[
+"Hello Snoo", 
+"Very nice to meet", 
+"you.", 
+"Hope you had wonderful", 
+"time so far.",
+"Hope you", 
+"enjoyed this interview", 
+"session very much", 
+"and had loads of fun", 
+"along the way",
+"as much as we did"
+]
+Test 5: And finally, given [123.41, 124.49], the output should be
+
+[
+"Hello Snoo", 
+"Very nice to meet", 
+"you.", 
+"Hope you had wonderful", 
+"time so far.",
+"At Reddit, you’ll help",
+"build something that encourages",
+ "millions around the world to think more",
+"do more, learn more, feel more and maybe even laugh more."
+]
+[execution time limit] 4 seconds (py3)
+
+[memory limit] 1 GB
+
+46474849505152535455565758596061626364656667686970
+            
+        return merged_messages
+
+# O(k*m*log(m*k)) -> O(klogk)
+
+if __name__ == '__main__':
+    chatter = Chatter()
+    # print("test 1:", chatter.merge_messages([123.41]))
+    # print("test 2:", chatter.merge_messages([124.49]))
+    # print("test 3:", chatter.merge_messages([123.41, 135.75]))
+
+OUTPUT
+TERMINAL
+Free-format output
+SUBMITTED
+Hit Run to see the output
+Kayl
+Sharhad Bashar
+object, hint
