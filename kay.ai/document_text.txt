@@ -1,0 +1,493 @@
+**ACORD:**
+COMMERCIAL INSURANCE APPLICATION
+                                      APPLICANT INFORMATION SECTION  DATE (MM/DD/YYYY)
+                                                                            03/06/2025
+PRODUCER             CARRIER                                                 NAIC CODE
+Fidella Agency LLC        TBD
+15 America Avenue
+Suite 202              COMPANY POLICY OR PROGRAM NAME                            PROGRAM CODE
+Lakewood, NJ 08701
+POLICY NUMBER
+CONTACT
+NAME:
+PHONE                 UNDERWRITER                                           UNDERWRITER OFFICE
+(A/C, No, Ext):
+FAX
+(A/C, No):
+E-MAIL                 STATUS OF             QUOTE           ISSUE POLICY  RENEW
+ADDRESS:               TRANSACTION           BOUND (Give Date and/or Attach Copy):
+CODE:         SUBCODE:                      DATE              TIME          AM
+AGENCY CUSTOMER ID:                         CHANGE                              PM
+                                               CANCEL
+
+NOTICE REGARDING CANCELLATION APPLICABLE IN SOUTH CAROLINA: THE INSURER CAN CANCEL THIS POLICY FOR WHICH YOU ARE
+APPLYING WITHOUT CAUSE DURING THE FIRST 120 DAYS. THAT IS THE INSURER'S CHOICE. AFTER THE FIRST 120 DAYS, THE INSURER CAN
+ONLY CANCEL THIS POLICY FOR REASONS STATED IN THE POLICY.
+
+LINES OF BUSINESS
+INDICATE LINES OF BUSINESS      PREMIUM                  PREMIUM                                   PREMIUM
+BOILER & MACHINERY               $      CYBER AND PRIVACY            $      YACHT                        $
+BUSINESS AUTO                    $      FIDUCIARY LIABILITY          $                                    $
+BUSINESS OWNERS                  $      GARAGE AND DEALERS           $                                    $
+[X] COMMERCIAL GENERAL LIABILITY   $      LIQUOR LIABILITY            $                                    $
+COMMERCIAL INLAND MARINE           $      MOTOR CARRIER                $                                    $
+[X] COMMERCIAL PROPERTY            $      TRUCKERS                   $                                    $
+CRIME                            $      UMBRELLA                   $                                    $
+
+ATTACHMENTS
+ACCOUNTS RECEIVABLE/VALUABLE PAPERS  GLASS AND SIGN SECTION             STATEMENT / SCHEDULE OF VALUES
+ADDITIONAL INTEREST SCHEDULE       HOTEL/MOTEL SUPPLEMENT             STATE SUPPLEMENT (If applicable)
+ADDITIONAL PREMISES INFORMATION SCHEDULE  INSTALLATION/BUILDERS RISK SECTION       VACANT BUILDING SUPPLEMENT
+APARTMENT BUILDING SUPPLEMENT        INTERNATIONAL LIABILITY EXPOSURE SUPPLEMENT   VEHICLE SCHEDULE
+CONDO ASSN BYLAWS (for D&O Coverage only) INTERNATIONAL PROPERTY EXPOSURE SUPPLEMENT
+CONTRACTORS SUPPLEMENT             LOSS SUMMARY
+COVERAGES SCHEDULE                 OPEN CARGO SECTION
+DEALERS SECTION                    PREMIUM PAYMENT SUPPLEMENT
+DRIVER INFORMATION SCHEDULE        PROFESSIONAL LIABILITY SUPPLEMENT
+ELECTRONIC DATA PROCESSING SECTION   RESTAURANT/TAVERN SUPPLEMENT
+
+POLICY INFORMATION
+PROPOSED EFF DATE   PROPOSED EXP DATE   BILLING PLAN      PAYMENT PLAN      METHOD OF PAYMENT  AUDIT  DEPOSIT  MINIMUM   POLICY PREMIUM
+                                                                                           PREMIUM
+04/30/2025          04/30/2026          DIRECT [ ] AGENCY           $        $        $
+
+APPLICANT INFORMATION
+NAME (First Named Insured) AND MAILING ADDRESS (including ZIP+4)                               GL CODE  SIC    NAICS   FEIN OR SOC SEC #
+Kay Test LLC                                                                                           33-032393
+1112 Harding Ave                                                                                    BUSINESS PHONE #:
+Calumet City, IL 60409                                                                            WEBSITE ADDRESS
+
+[ ] CORPORATION            JOINT VENTURE                   NOT FOR PROFIT ORG      SUBCHAPTER "S" CORPORATION    OTHER
+[ ] INDIVIDUAL             [X] LLC    NO. OF MEMBERS _______ PARTNERSHIP [ ] TRUST
+                             AND MANAGERS:
+NAME (Other Named Insured) AND MAILING ADDRESS (including ZIP+4)                               GL CODE  SIC    NAICS   FEIN OR SOC SEC #
+
+                                                                                                BUSINESS PHONE #:
+                                                                                                WEBSITE ADDRESS
+[ ] CORPORATION            JOINT VENTURE                   NOT FOR PROFIT ORG      SUBCHAPTER "S" CORPORATION    OTHER
+[ ] INDIVIDUAL             [ ] LLC    NO. OF MEMBERS _______ PARTNERSHIP [ ] TRUST
+                             AND MANAGERS:
+ACORD 125 (2024/11)              Page 1 of 5     © 1993-2024 ACORD CORPORATION. All rights reserved.
+                                           The ACORD name and logo are registered marks of ACORD
+
+APPLICANT INFORMATION (Continued)
+NAME (Other Named Insured) AND MAILING ADDRESS (including ZIP+4)
+_________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
+
+[ ] CORPORATION	[ ] JOINT VENTURE
+[ ] INDIVIDUAL		[ ] LLC   NO. OF MEMBERS _________________________________________________
+                                                 AND MANAGERS:
+[ ] NOT FOR PROFIT ORG
+[ ] SUBCHAPTER "S" CORPORATION
+[ ] PARTNERSHIP	    [ ] TRUST			      [ ] OTHER
+CONTACT INFORMATION
+
+CONTACT TYPE: _________________________________________________________________________________________________________
+CONTACT NAME:  Sharna' Hines					CONTACT TYPE: _________________________________________________________________________________________________________
+PRIMARY	    [ ] HOME  [ ] BUS  [ ] CELL				PRIMARY	 [ ] HOME  [ ] BUS  [ ] CELL
+PHONE #		 773-709-6560						PHONE #		_________________________________________
+SECONDARY	[ ] HOME  [ ] BUS  [ ] CELL				SECONDARY	[ ] HOME  [ ] BUS  [ ] CELL
+PHONE #		_________________________________________						PHONE #		_________________________________________
+PRIMARY E-MAIL ADDRESS:  kaytest@kay.com		PRIMARY E-MAIL ADDRESS: ____________________________________________________________________________________
+SECONDARY E-MAIL ADDRESS: ____________________________________________________________________________________		SECONDARY E-MAIL ADDRESS: ____________________________________________________________________________________
+PREMISES INFORMATION (Attach ACORD 823 for Additional Premises)
+LOC # STREET 292 Alabaster Dr				CITY LIMITS	   INTEREST	# FULL TIME EMPL	ANNUAL REVENUES: $500,000
+1								[ ] INSIDE	   [ ] OWNER		3		OCCUPIED AREA:	__________ SQ FT
+BLD # CITY: Dothan							[ ] OUTSIDE   [ ] TENANT	# PART TIME EMPL	OPEN TO PUBLIC AREA: __________ SQ FT
+COUNTY:__________________________________________	STATE: AL	 ZIP: 36301					TOTAL BUILDING AREA: 2550		SQ FT
+DESCRIPTION OF OPERATIONS:					   					ANY AREA LEASED TO OTHERS? Y / N
+LOC # STREET ____________________________________________________________________________________________	CITY LIMITS	   INTEREST	# FULL TIME EMPL	ANNUAL REVENUES: $_______________________
+									  [ ] INSIDE	   [ ] OWNER			OCCUPIED AREA:	__________ SQ FT
+BLD # CITY: ______________________________________________________________________________________________	[ ] OUTSIDE   [ ] TENANT	# PART TIME EMPL	OPEN TO PUBLIC AREA: __________ SQ FT
+COUNTY:__________________________________________	STATE: ________ ZIP: ________					TOTAL BUILDING AREA: __________ SQ FT
+DESCRIPTION OF OPERATIONS:					   					ANY AREA LEASED TO OTHERS? Y / N
+LOC # STREET ____________________________________________________________________________________________	CITY LIMITS	   INTEREST	# FULL TIME EMPL	ANNUAL REVENUES: $_______________________
+									  [ ] INSIDE	   [ ] OWNER			OCCUPIED AREA:	__________ SQ FT
+BLD # CITY: ______________________________________________________________________________________________	[ ] OUTSIDE   [ ] TENANT	# PART TIME EMPL	OPEN TO PUBLIC AREA: __________ SQ FT
+COUNTY:__________________________________________	STATE: ________ ZIP: ________					TOTAL BUILDING AREA: __________ SQ FT
+DESCRIPTION OF OPERATIONS:					   					ANY AREA LEASED TO OTHERS? Y / N
+LOC # STREET ____________________________________________________________________________________________	CITY LIMITS	   INTEREST	# FULL TIME EMPL	ANNUAL REVENUES: $_______________________
+									  [ ] INSIDE	   [ ] OWNER			OCCUPIED AREA:	__________ SQ FT
+BLD # CITY: ______________________________________________________________________________________________	[ ] OUTSIDE   [ ] TENANT	# PART TIME EMPL	OPEN TO PUBLIC AREA: __________ SQ FT
+COUNTY:__________________________________________	STATE: ________ ZIP: ________					TOTAL BUILDING AREA: __________ SQ FT
+DESCRIPTION OF OPERATIONS:					   					ANY AREA LEASED TO OTHERS? Y / N
+NATURE OF BUSINESS
+
+[X] APARTMENTS		[ ] CONTRACTOR		[ ] MANUFACTURING		[ ] RESTAURANT		[ ] SERVICE		[ ] _______________
+[ ] CONDOMINIUMS	[ ] INSTITUTIONAL	[ ] OFFICE			[ ] RETAIL			[ ] WHOLESALE		[ ] OTHER
+DESCRIPTION OF PRIMARY OPERATIONS
+
+Apartment Complex  - 23 units w/ pool
+
+RETAIL STORES OR SERVICE OPERATIONS % OF TOTAL SALES:				INSTALLATION, SERVICE OR REPAIR WORK				OFF PREMISES INSTALLATION, SERVICE OR REPAIR WORK
+_________________________________________________________________________________________________________%			_________________________________________________________________________________________________________%			_________________________________________________________________________________________________________%
+DESCRIPTION OF OPERATIONS OF OTHER NAMED INSUREDS					DATE BUSINESS Started (MM/DD/YYYY)
+
+
+ACORD 125 (2024/11)		Page 2 of 5
+
+AGENCY CUSTOMER ID:
+ADDITIONAL INTEREST (Not all fields apply to all scenarios - provide only the necessary data) Attach ACORD 45 for more Additional Interests
+<table>
+<tr>
+<td>INTEREST</td><td>NAME AND ADDRESS RANK:</td><td>EVIDENCE:</td><td>CERTIFICATE</td><td>POLICY</td><td>SEND BILL</td><td>INTEREST IN ITEM NUMBER</td>
+</tr>
+<tr>
+<td>[ ] ADDITIONAL INSURED<br>
+[ ] BREACH OF WARRANTY<br>
+[ ] CO-OWNER<br>
+[ ] EMPLOYEE AS LESSOR<br>
+[ ] LEASEBACK OWNER<br>
+[ ] LENDER'S LOSS PAYABLE</td>
+<td>[ ] LIENHOLDER<br>
+[ ] LOSS PAYEE<br>
+[X] MORTGAGEE<br>
+[ ] OWNER<br>
+[ ] REGISTRANT<br>
+[ ] TRUSTEE</td>
+<td>Chase Bank<br>
+123 ABC Drive<br>
+Chicago, IL 60615</td>
+<td></td>
+<td></td>
+<td></td>
+<td>LOCATION: ________ BUILDING: ________<br>
+VEHICLE: ________ BOAT: ________<br>
+AIRPORT: ________ AIRCRAFT: ________<br>
+ITEM CLASS: ________ ITEM: ________<br>
+ITEM DESCRIPTION ________</td>
+</tr>
+<tr>
+<td>REASON FOR INTEREST:</td>
+<td>REFERENCE / LOAN #: ________<br>
+LIEN AMOUNT: ________</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>FAX (A/C, No): ________<br>
+E-MAIL ADDRESS: ________<br>
+PHONE (A/C, No, Ext): ________</td>
+</tr>
+</table>
+GENERAL INFORMATION
+EXPLAIN ALL "YES" RESPONSES
+1a. IS THE APPLICANT A SUBSIDIARY OF ANOTHER ENTITY? ________ Y / N
+PARENT COMPANY NAME ________ RELATIONSHIP DESCRIPTION ________ % OWNED ________
+
+1b. DOES THE APPLICANT HAVE ANY SUBSIDIARIES?
+SUBSIDIARY COMPANY NAME ________ RELATIONSHIP DESCRIPTION ________ % OWNED ________
+
+2. IS A FORMAL SAFETY PROGRAM IN OPERATION?
+[ ] SAFETY MANUAL  [ ] SAFETY POSITION  [ ] MONTHLY MEETINGS  [ ] OSHA
+
+3. ANY EXPOSURE TO FLAMMABLES, EXPLOSIVES, CHEMICALS?
+
+4. ANY OTHER INSURANCE WITH THIS COMPANY? (List policy numbers)
+LINE OF BUSINESS ________ POLICY NUMBER ________ LINE OF BUSINESS ________ POLICY NUMBER ________
+
+5. ANY POLICY OR COVERAGE DECLINED, CANCELLED OR NON-RENEWED DURING THE PRIOR THREE (3) YEARS FOR ANY PREMISES OR
+OPERATIONS? (Missouri Applicants - Do not answer this question)
+[ ] NON-PAYMENT [ ] AGENT NO LONGER REPRESENTS CARRIER
+[ ] NON-RENEWAL [ ] UNDERWRITING [ ] CONDITION CORRECTED (Describe): ________
+
+6. ANY PAST LOSSES OR CLAIMS RELATING TO SEXUAL ABUSE OR MOLESTATION ALLEGATIONS, DISCRIMINATION OR NEGLIGENT HIRING?
+
+7. DURING THE LAST FIVE YEARS (TEN IN RI), HAS ANY APPLICANT BEEN INDICTED FOR OR CONVICTED OF ANY DEGREE OF THE CRIME OF FRAUD, BRIBERY,
+ARSON OR ANY OTHER ARSON-RELATED CRIME IN CONNECTION WITH THIS OR ANY OTHER PROPERTY?
+(In RI, this question must be answered by any applicant for property insurance. Failure to disclose the existence of an arson conviction is a misdemeanor punishable by a
+sentence of up to one year of imprisonment. In VA the following notice applies: information concerning an arrest, charge, or conviction that has been sealed does not have
+to be disclosed in the application).
+
+8. ANY UNCORRECTED FIRE AND/OR SAFETY CODE VIOLATIONS?
+OCCUR DATE ________ EXPLANATION ________ RESOLUTION ________ RESOLVE DATE ________
+
+9. HAS THE APPLICANT HAD A FORECLOSURE FILED AGAINST THEM, HAD A FORECLOSURE, REPOSSESSION, BANKRUPTCY OR FILED FOR BANKRUPTCY
+DURING THE LAST FIVE (5) YEARS?
+OCCUR DATE ________ EXPLANATION ________ RESOLUTION ________ RESOLVE DATE ________
+
+10. HAS APPLICANT HAD A JUDGEMENT OR LIEN DURING THE LAST FIVE (5) YEARS?
+OCCUR DATE ________ EXPLANATION ________ RESOLUTION ________ RESOLVE DATE ________
+
+11. HAS BUSINESS BEEN PLACED IN A TRUST? NAME OF TRUST: ________
+
+12. ANY FOREIGN OPERATIONS, FOREIGN PRODUCTS DISTRIBUTED IN USA, OR US PRODUCTS SOLD / DISTRIBUTED IN FOREIGN COUNTRIES?
+(If "YES", attach ACORD 815 for Liability Exposure and/or ACORD 816 for Property Exposure)
+
+13. DOES APPLICANT HAVE OTHER BUSINESS VENTURES FOR WHICH COVERAGE IS NOT REQUESTED?
+
+14. DOES APPLICANT OWN / LEASE / OPERATE ANY DRONES? (If "YES", describe use) ________
+
+15. DOES APPLICANT HIRE OTHERS TO OPERATE DRONES? (If "YES", describe use) ________
+
+ACORD 125 (2024/11)
+Page 3 of 5
+
+AGENCY CUSTOMER ID: ________
+REMARKS / PROCESSING INSTRUCTIONS (ACORD 101, Additional Remarks Schedule, may be attached if more space is required)
+PRIOR CARRIER INFORMATION
+<table>
+<tr>
+<td>YEAR</td>
+<td>CATEGORY</td>
+<td>GENERAL LIABILITY</td>
+<td>AUTOMOBILE</td>
+<td>PROPERTY</td>
+<td>OTHER:</td>
+</tr>
+<tr>
+<td></td>
+<td>CARRIER</td>
+<td>State Farm</td>
+<td></td>
+<td>State Farm</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>POLICY NUMBER</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>PREMIUM</td>
+<td>$ ______</td>
+<td>$ ______</td>
+<td>$ ______</td>
+<td>$ ______</td>
+</tr>
+<tr>
+<td></td>
+<td>EFFECTIVE DATE</td>
+<td>07/01/2024</td>
+<td></td>
+<td>07/01/2024</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>EXPIRATION DATE</td>
+<td>07/01/2025</td>
+<td></td>
+<td>07/01/2025</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CARRIER</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>POLICY NUMBER</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>PREMIUM</td>
+<td>$ ______</td>
+<td>$ ______</td>
+<td>$ ______</td>
+<td>$ ______</td>
+</tr>
+<tr>
+<td></td>
+<td>EFFECTIVE DATE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>EXPIRATION DATE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>CARRIER</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>POLICY NUMBER</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>PREMIUM</td>
+<td>$ ______</td>
+<td>$ ______</td>
+<td>$ ______</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>EFFECTIVE DATE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr>
+<td></td>
+<td>EXPIRATION DATE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+LOSS HISTORY		Check if none (Attach Loss Summary for Additional Loss Information)
+ENTER ALL CLAIMS OR LOSSES (REGARDLESS OF FAULT AND WHETHER OR NOT INSURED) OR OCCURRENCES THAT MAY GIVE RISE TO CLAIMS
+FOR THE LAST _______ YEARS		TOTAL LOSSES: $ ________
+
+<table>
+<tr>
+<td>DATE OF
+OCCURRENCE</td>
+<td>LINE</td>
+<td>TYPE / DESCRIPTION OF OCCURRENCE OR CLAIM</td>
+<td>DATE OF CLAIM</td>
+<td>AMOUNT PAID</td>
+<td>AMOUNT RESERVED</td>
+<td>SUBRO-
+GATION
+Y / N</td>
+<td>CLAIM
+OPEN
+Y / N</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+
+SIGNATURE
+Copy of the Notice of Information Practices (Privacy) has been given to the applicant. (Not required in all states, contact your agent or broker for your state's requirements.)
+
+PERSONAL INFORMATION ABOUT YOU, INCLUDING INFORMATION FROM A CREDIT OR OTHER INVESTIGATIVE REPORT, MAY BE COLLECTED FROM PERSONS
+OTHER THAN YOU IN CONNECTION WITH THIS APPLICATION FOR INSURANCE AND SUBSEQUENT AMENDMENTS AND RENEWALS. SUCH INFORMATION AS WELL AS
+OTHER PERSONAL AND PRIVILEGED INFORMATION COLLECTED BY US OR OUR AGENTS MAY IN CERTAIN CIRCUMSTANCES BE DISCLOSED TO THIRD PARTIES
+WITHOUT YOUR AUTHORIZATION. CREDIT SCORING INFORMATION MAY BE USED TO HELP DETERMINE EITHER YOUR ELIGIBILITY FOR INSURANCE OR THE
+PREMIUM YOU WILL BE CHARGED. WE MAY USE A THIRD PARTY IN CONNECTION WITH THE DEVELOPMENT OF YOUR SCORE. YOU MAY HAVE THE RIGHT TO
+REVIEW YOUR PERSONAL INFORMATION IN OUR FILES AND REQUEST CORRECTION OF ANY INACCURACIES. YOU MAY ALSO HAVE THE RIGHT TO REQUEST IN
+WRITING THAT WE CONSIDER EXTRAORDINARY LIFE CIRCUMSTANCES IN CONNECTION WITH THE DEVELOPMENT OF YOUR CREDIT SCORE. THESE RIGHTS MAY
+BE LIMITED IN SOME STATES. PLEASE CONTACT YOUR AGENT OR BROKER TO LEARN HOW THESE RIGHTS MAY APPLY IN YOUR STATE OR FOR INSTRUCTIONS ON
+HOW TO SUBMIT A REQUEST TO US FOR A MORE DETAILED DESCRIPTION OF YOUR RIGHTS AND OUR PRACTICES REGARDING PERSONAL INFORMATION.
+
+(Not applicable in AZ, CA, DE, KS, MA, MN, ND, NY, OR, VA, or WV. Specific ACORD 38s are available for applicants in these states.)		(Applicant's Initials): _______
+
+Applicable in AL, AR, DC, LA, MD, NM, RI and WV: Any person who knowingly (or willfully)* presents a false or fraudulent claim for payment of a loss or
+benefit or knowingly (or willfully)* presents false information in an application for insurance is guilty of a crime and may be subject to fines and confinement in
+prison. *Applies in MD Only.
+
+Applicable in California: For your protection, California law requires the following to appear on this form:
+Any person who knowingly presents false or fraudulent information to obtain or amend insurance coverage or to make a claim for the payment of a loss is
+guilty of a crime and may be subject to fines and confinement in state prison.
+
+Applicable in CO: It is unlawful to knowingly provide false, incomplete, or misleading facts or information to an insurance company for the purpose of
+defrauding or attempting to defraud the company. Penalties may include imprisonment, fines, denial of insurance and civil damages. Any insurance
+company or agent of an insurance company who knowingly provides false, incomplete, or misleading facts or information to a policyholder or claimant for the
+purpose of defrauding or attempting to defraud the policyholder or claimant with regard to a settlement or award payable from insurance proceeds shall be
+reported to the Colorado Division of Insurance within the Department of Regulatory Agencies.
+
+Applicable in FL and OK: Any person who knowingly and with intent to injure, defraud, or deceive any insurer files a statement of claim or an application
+containing any false, incomplete, or misleading information is guilty of a felony (of the third degree)*. *Applies in FL Only.
+
+Applicable in KS: Any person who, knowingly and with intent to defraud, presents, causes to be presented or prepares with knowledge or belief that it will be
+presented to or by an insurer, purported insurer, broker or any agent thereof, any written, electronic, electronic impulse, facsimile, magnetic, oral, or
+telephonic communication or statement as part of, or in support of, an application for the issuance of, or the rating of an insurance policy for personal or
+commercial insurance, or a claim for payment or other benefit pursuant to an insurance policy for commercial or personal insurance which such person knows
+to contain materially false information concerning any fact material thereto; or conceals, for the purpose of misleading, information concerning any fact
+material thereto commits a fraudulent insurance act.
+
+ACORD 125 (2024/11)		Page 4 of 5
+
+AGENCY CUSTOMER ID:  _______________________________________
+
+Applicable in KY, OH and PA: Any person who knowingly and with intent to defraud any insurance company or other person files an application for
+insurance or statement of claim containing any materially false information or conceals for the purpose of misleading, information concerning any fact material
+thereto commits a fraudulent insurance act, which is a crime and subjects such person to criminal and civil penalties.
+
+Applicable in ME, TN, VA and WA: It is a crime to knowingly provide false, incomplete or misleading information to an insurance company for the purpose
+of defrauding the company. Penalties (may)* include imprisonment, fines and denial of insurance benefits. *Applies in ME Only.
+
+Applicable in NJ: Any person who includes any false or misleading information on an application for an insurance policy is subject to criminal and civil
+penalties.
+
+Applicable in OR: Any person who knowingly and with intent to defraud or solicit another to defraud the insurer by submitting an application containing a
+false statement as to any material fact may be violating state law.
+
+Applicable in PR: Any person who knowingly and with the intention of defrauding presents false information in an insurance application, or presents, helps,
+or causes the presentation of a fraudulent claim for the payment of a loss or any other benefit, or presents more than one claim for the same damage or loss,
+shall incur a felony and, upon conviction, shall be sanctioned for each violation by a fine of not less than five thousand dollars ($5,000) and not more than ten
+thousand dollars ($10,000), or a fixed term of imprisonment for three (3) years, or both penalties. Should aggravating circumstances be present, the penalty
+thus established may be increased to a maximum of five (5) years, if extenuating circumstances are present, it may be reduced to a minimum of two (2)
+years.
+
+THE UNDERSIGNED IS AN AUTHORIZED REPRESENTATIVE OF THE APPLICANT AND REPRESENTS THAT REASONABLE INQUIRY HAS BEEN MADE TO OBTAIN THE
+ANSWERS TO QUESTIONS ON THIS APPLICATION. HE/SHE REPRESENTS THAT THE ANSWERS ARE TRUE, CORRECT AND COMPLETE TO THE BEST OF HIS/HER
+KNOWLEDGE.
+
+PRODUCER'S SIGNATURE _____________________________________________________  PRODUCER'S NAME (Please Print) _____________________________________________  STATE PRODUCER LICENSE NO
+                                                                                                                                                             (Required in Florida) ________________________
+
+Applicable in NY: Any person who knowingly and with intent to defraud any insurance company or other person files an application for insurance or
+statement of claim containing any materially false information, or conceals for the purpose of misleading, information concerning any fact material thereto,
+commits a fraudulent insurance act, which is a crime, and shall also be subject to a civil penalty not to exceed five thousand dollars and the stated value of
+the claim for each such violation.
+
+APPLICANT'S SIGNATURE _____________________________________________________  DATE __________________________________________________  NATIONAL PRODUCER NUMBER ____________________
+
+THIS SECTION IS INTENTIONALLY LEFT BLANK
+
+ACORD 125 (2024/11)                                                                                                                                                        Page 5 of 5
+
+
