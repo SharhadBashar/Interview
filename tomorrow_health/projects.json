@@ -1,0 +1,93 @@
+{
+  "projects": [
+    {
+      "id": "B1",
+      "city_type": "Low",
+      "start_date": "2024-10-05",
+      "end_date": "2024-10-05"
+    },    
+    {
+      "id": "B2",
+      "city_type": "Low",
+      "start_date": "2024-10-07",
+      "end_date": "2024-10-08"
+    },    
+    {
+      "id": "B3",
+      "city_type": "High",
+      "start_date": "2024-10-08",
+      "end_date": "2024-10-10"
+    }
+  ]
+}
+
+{
+  "projects": [
+    {
+      "id": "C1",
+      "city_type": "High",
+      "start_date": "2024-11-02",
+      "end_date": "2024-11-04"
+    },
+    {
+      "id": "C2",
+      "city_type": "Low",
+      "start_date": "2024-11-06",
+      "end_date": "2024-11-10"
+    },
+    {
+      "id": "C3",
+      "city_type": "High",
+      "start_date": "2024-11-10",
+      "end_date": "2024-11-12"
+    },
+    {
+      "id": "C4",
+      "city_type": "High",
+      "start_date": "2024-11-12",
+      "end_date": "2024-11-12"
+    },
+    {
+      "id": "C5",
+      "city_type": "Low",
+      "start_date": "2024-11-14",
+      "end_date": "2024-11-21"
+    },
+    {
+      "id": "C6",
+      "city_type": "Low",
+      "start_date": "2024-11-22",
+      "end_date": "2024-11-27"
+    },
+    {
+      "id": "C7",
+      "city_type": "High",
+      "start_date": "2024-11-26",
+      "end_date": "2024-11-29"
+    }
+  ]
+}
+
+{
+  "projects": [
+    {
+      "id": "A1",
+      "city_type": "High",
+      "start_date": "2024-09-01",
+      "end_date": "2024-09-03"
+    },    
+    {
+      "id": "A2",
+      "city_type": "Low",
+      "start_date": "2024-09-07",
+      "end_date": "2024-09-09"
+    },    
+    {
+      "id": "A3",
+      "city_type": "Low",
+      "start_date": "2024-09-10",
+      "end_date": "2024-09-15"
+    }
+  ]
+}
+
