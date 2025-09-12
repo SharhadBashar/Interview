@@ -1,0 +1,109 @@
+'''
+Wikimedia provides public APIs that report article view statistics by day and by country.
+
+https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/2022/04/01 (can replace the date for each day of April 2022)
+
+https://wikimedia.org/api/rest_v1/metrics/pageviews/top-by-country/en.wikipedia/all-access/2022/04
+
+Using these APIs, determine for the month of April 2022 on English Wikipedia:
+
+- The top 10 most viewed articles for each day of the month.
+- For each of these articles, estimate the number of views per country per day, based on overall country-level viewing patterns.
+
+headers={'User-Agent' : "Magic Browser"}
+'''
+import requests
+from pprint import pprint
+
+URL = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/2022/04/{day}'
+
+URL_COUNTRY = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/top-by-country/en.wikipedia/all-access/2022/04'
+def get_data_top_10(day: str):
+    articles = []
+    response = requests.get(
+        url = URL.format(day = day),
+        headers = {'User-Agent' : 'Magic Browser'}
+    )
+
+    if (response.status_code == 200):
+        data = response.json()['items']
+        for i, article in enumerate(data[0]['articles']):
+            articles.append({
+                'article': article['article'],
+                'views': article['views']
+            })
+            if (i >= 9):
+                break
+
+        return articles
+
+def get_top_10_april():
+    april_articles = {}
+    for day in range(1, 31):
+        if (day < 10):
+            day = '0' + str(day)
+        else:
+            day = str(day)
+        april_articles[day] = get_data_top_10(day)
+    return april_articles
+
+def get_total_views():
+    total_views = 0
+    response = requests.get(
+        url = URL_COUNTRY,
+        headers = {'User-Agent' : 'Magic Browser'}
+    )
+    data = response.json()['items'][0]['countries']
+    for country in data:
+        total_views += country['views_ceil']
+    return total_views
+
+def views_us():
+    response = requests.get(
+        url = URL_COUNTRY,
+        headers = {'User-Agent' : 'Magic Browser'}
+    )
+    us_data = response.json()['items'][0]['countries'][0]
+    print(us_data)
+
+def get_view_cells():
+    country_views_ceil = dict()
+    response = requests.get(
+        url = URL_COUNTRY,
+        headers = {'User-Agent' : 'Magic Browser'}
+    )
+    data = response.json()['items'][0]['countries']
+    for country in data:
+        country_views_ceil[country['country']] = country['views_ceil']
+    return country_views_ceil
+
+
+def views_by_country(april_articles, total_views, country_views_ceil):
+    for day in april_articles.keys():
+        for article in april_articles[day]:
+            for country in country_views_ceil.keys():
+                april_articles[day][article]['views_per_country'].append(
+                    {
+                        'country': country,
+                        'views': april_articles[day][article]['views'] * country_views_ceil[country] / total_views
+                    }
+                )
+    return april_articles
+
+#{'country': 'US', 'views': '1000000000-9999999999', 'rank': 1, 'views_ceil': 2829290000}
+
+'''
+{
+    'article': 'List_of_highest-grossing_Indian_films', 
+    'views': 176427
+    'views_per_country': [
+        {
+            'US': 176427 * (views_ceil/total_views)
+        }
+    ]
+}
+'''
+april_articles = get_top_10_april()
+total_views = get_total_views()
+country_views_ceil = get_view_cells()
+pprint(views_by_country(april_articles, total_views, country_views_ceil))
