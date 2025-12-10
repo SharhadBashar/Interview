@@ -1,0 +1,94 @@
+AI Agent Coding Challenge
+Build a small autonomous agent that can interact with a remote HTTP API and solve a series of text challenges.
+
+Agent Requirements
+Your agent should:
+
+Call /public/techscreen/session to start a new session and obtain a sessionId and initial text.
+Read the challenge text from the response.
+Generate an answer and send it to /public/techscreen/answer along with the same sessionId.
+Process the response:
+If done is false, read the new text challenge and continue.
+If done is true, stop. The text will contain a final completion summary.
+Repeat this loop automatically until completion, with no manual intervention once started.
+API Overview
+Base URL: https://chat.rillavoice.com
+
+1. Start a new session
+Endpoint
+
+POST /public/techscreen/session
+
+Request body
+
+{
+  "candidateId": "string"
+}
+Response
+
+{
+  "sessionId": "uuid",
+  "level": 0,
+  "text": "Type START"
+}
+sessionId is a unique identifier for this run.
+level is the current challenge level (starting at 0).
+text is the initial challenge text your agent must respond to.
+2. Send an answer
+Endpoint
+
+POST /public/techscreen/answer
+
+Request body
+
+{
+  "sessionId": "uuid",
+  "answer": "string"
+}
+Response
+
+{
+  "level": 0,
+  "correct": true,
+  "text": "plain text next challenge or FINISHED summary",
+  "done": false
+}
+Fields:
+
+level: current level index.
+correct: whether the submitted answer was accepted.
+text: either the next challenge (plain text) or a final FINISHED summary.
+done: true when the session is complete; false otherwise.
+All challenges and answers are plain text strings.
+
+LLM
+For this exercise, you’ll interact with OpenAI-style LLMs through our proxy endpoint. The proxy implements the Chat Completions API and is compatible with the official OpenAI Python SDK as well as any library that speaks the same API format.
+
+Important notes:
+
+Only the Chat Completions API is supported (no Responses API, no legacy Completions API).
+Authenticate using your Candidate ID as the API key.
+Use the base_url we provide—this routes requests through our proxy.
+Available Models
+gpt-5.1
+gpt-4.1
+gpt-4.1-mini
+Example
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://chat.rillavoice.com/public/techscreen",
+    api_key="<Your Candidate ID>",
+)
+
+resp = client.chat.completions.create(
+    model="gpt-5.1",
+    messages=[
+        {"role": "user", "content": "Hi there"}
+    ],
+)
+print(resp.choices[0].message.content)
+Expectations
+The challenges will increase in difficulty and test the agent’s ability to perform various tasks over multiple steps.
+You may use any language or libraries.
+In addition to the functionality, your submission will be judged based on good engineering judgement how you design the agent and overall codebase.
