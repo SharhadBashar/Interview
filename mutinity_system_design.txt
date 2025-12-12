@@ -1,0 +1,58 @@
+# Architecture Session
+
+Mutiny enables GTM to use data from their core systems to automate revenue driving workflows using AI. Native access to their GTM data allows customers to:
+
+- Build campaigns for groups of accounts for outreach
+- Send automated follow ups after a call completes
+- Use the most up to date context in generations to build content
+
+In order to do that, we integrate with a number of systems:
+
+- CRM
+    - Includes Accounts, Contacts, and Deals
+    - Accounts are usually associated with a domain (but can handle subsidiaries)
+        - Accounts have many contacts and deals
+    - All objects have metadata that are unique to each customer system
+- Call Recordings
+    - Calls include a transcript, an `account_id`, and a transcript
+
+# Part 1: List Building
+
+A core concept in GTM is building lists of accounts or contacts, based on the data in the system. This enables them to create new campaigns and automation, based on a set of accounts or contacts. A user must be able to:
+
+- Preview a list based on a set of filters
+- When building a list of contacts, they should be able to filter on account attributes
+- List definitions are dynamic and membership can change over time as data changes
+
+How would you design the system to support this? Your solution should include:
+
+- How data is imported
+- How data is stored or processed
+- How data can be previewed before creation
+- How list membership can be kept consistent
+
+# Part 2: Workflow Automation
+
+Mutiny users can setup Workflows that allow them to run processes in response to a number of conditions. Workflows are the core of the scaling principle in Mutiny, and encapsulate all the repeated functionality needed in order to build customer facing assets and distribute them at key points in time. A user must be able to:
+
+- Define a condition for when a workflow should begin. Examples include:
+    - When a user becomes a part of list X
+    - When a contact switches from attribute X → Y
+    - When a new call finishes
+    - When a deal moves to stage Z
+- Define a set of steps that run as a result
+- Ensure workflows are idempotent and run with consistency
+- Track progress and report on status to the UX
+
+---
+
+### **Please walk through your approach to designing this system.**
+
+You’re welcome to whiteboard, sketch, or talk through:
+
+- How you’d approach the problem end-to-end
+- What the major components are and how they interact
+- What data sources are involved, and how you’d use them effectively
+- How you’d store and process this data in our system
+- Any challenges you anticipate, such as working within rate limits, dealing with uncertain timing, and ensuring consistency
+- How the system might evolve over time
