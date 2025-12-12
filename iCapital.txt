@@ -1,0 +1,144 @@
+"""
+# Create a Class "CustomLinearRegression" that can perform linear regression on 2-d dataset
+
+# Class "CustomLinearRegression" has following utility functions:
+
+# 1. load_data - load input dataset to the class
+
+# 2. preprocess - perform any necessary steps to make dataset useful
+
+# 3. fit - train the regression model and save related parameter in memory
+
+# 4. predict - use the trained model to predict new input
+
+# Import any library of your choice
+
+data_train = [
+    [2.23423, 28.234],
+    [6.4235, 52.5435],
+    [0.4530, "10.234"],
+    [None, "97.7"],
+    [8.12, 69.125],
+    [2.0098, 17.353],
+    ["None", "10.1001"],
+    [25.2625, "any_text"],
+    [-11.19, -101.123],
+    [13.092, 163.233]
+]
+data_test = [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
+"""
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+class CustomLinearRegression:
+    def __init__(self):
+        self.data = None
+        self.clean_data = []
+        self.reg = None
+    
+    def load_data(self, data):
+        self.data = data
+        
+    def preprocess(self):
+        '''
+        Things we can do:
+        1. Make sure that all values are numbers
+        2. If any value is not a number:
+            a. Try to convert it to a number
+            b. We can either drop that row
+            c. We can get the mean of that col and replace it there
+        '''
+        data = self.data
+        for i in range(len(data)):
+            try:
+                x = float(data[i][0])
+                y = float(data[i][1])
+                self.clean_data.append([x, y])
+            except:
+                continue
+    
+    def fit(self):
+        data = list(map(list,zip(*self.clean_data)))
+        X = np.array(data[0])
+        
+        X = X.reshape(-1, 1) 
+        y = data[1] 
+        self.reg = LinearRegression().fit(X, y)
+        
+    def predict(self, x):
+        x = np.array(x)
+        x = x.reshape(-1, 1) 
+        predictions = self.reg.predict(x)
+        return predictions
+        
+
+data_train = [
+    [2.23423, 28.234],
+    [6.4235, 52.5435],
+    [0.4530, "10.234"],
+    [None, "97.7"],
+    [8.12, 69.125],
+    [2.0098, 17.353],
+    ["None", "10.1001"],
+    [25.2625, "any_text"],
+    [-11.19, -101.123],
+    [13.092, 163.233]
+]
+
+data_test = [10, 20, 30, 40, 50, 10, 20, 30, 40, 50]
+        
+cr = CustomLinearRegression()
+cr.load_data(data_train)
+cr.preprocess()
+cr.fit()
+predictions = cr.predict(data_test)
+
+print(predictions)
+        
+"""
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+Example 1:
+
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+Example 2:
+
+Input: digits = [4,9,9,9]
+Output: [4,3,2,2]
+Explanation: The array represents the integer 4321.
+Incrementing by one gives 4321 + 1 = 4322.
+Thus, the result should be [4,3,2,2].
+Example 3:
+
+Input: digits = [9]
+Output: [1,0]
+Explanation: The array represents the integer 9.
+Incrementing by one gives 9 + 1 = 10.
+Thus, the result should be [1,0].
+"""
+
+def increment(digits):
+    n = len(digits)
+    # if n == 1:
+    #     if (digits[0]) < 9:
+    #         digits[0] += 1
+    #     else:
+    #         digits = [1, 0]
+    for i in range(n - 1, -1, -1):
+        if digits[i] < 9:
+            digits[i] += 1
+            return digits
+        digits[i] = 0
+        
+    return [1] + digits
+            
+
+
+print(increment([9,9,9,9]))
